@@ -1,0 +1,610 @@
+﻿<!-- Portfolio Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio - Shad Dev</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+    --primary: #1e293b;
+    --primary-dark: #0f172a;
+    --primary-light: #334155;
+    --sidebar-bg: linear-gradient(135deg, #0f172a 60%, #1e  <!-- Sidebar Navigation -->
+<aside class="sidebar-nav" id="sidebarNav">
+  <div class="sidebar-logo-circle">
+    <a href="index.html" aria-label="Shad Dev Home">
+      <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img" style="width:54px;height:54px;margin-left:0.5em;margin-right:0.5em;vertical-align:middle;border-radius:50%;background:#fff;">
+      <span class="logo-text">ShadEl Web</span>
+    </a>
+  </div>
+  <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar"><i class="fas fa-times"></i></button>);
+    --sidebar-accent: #38bdf8;
+    --bg: #181a20;
+    --surface: #23263a;
+    --surface-alt: #222436;
+    --text: #e5e7eb;
+    --highlight: #38bdf8;
+  }
+    /* Shared CSS from other pages */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Times New Roman', Times, serif; /* Changed font */
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .main-header {
+      background: var(--primary-dark); /* Ensures dark header */
+      color: var(--text);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+      border-bottom: 2px solid var(--primary-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      min-height: 48px;
+    }
+    .main-header .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 10px;
+    }
+    .main-header h1 a, .main-header h1 {
+      color: var(--sidebar-accent);
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #38bdf855;
+      margin: 0;
+      padding: 10px 0;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+    nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Only header nav should be horizontal, sidebar nav is vertical below */
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+    nav a:hover, nav a.active {
+      background: var(--primary-light);
+    }
+    .main-header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .page-title {
+      text-align: center;
+      background: linear-gradient(135deg, #23263a 60%, #2b71f0 100%); /* Complimenting dark blue gradient */
+      color: #e5e7eb;
+      padding: 4rem 1rem;
+      border-bottom: 2px solid #38bdf8;
+    }
+    .page-title h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .portfolio-section {
+      padding: 3rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: linear-gradient(135deg, #f8fafc 60%, #e0e7ef 100%);
+      border-radius: 18px;
+      box-shadow: 0 6px 24px rgba(30,41,59,0.12);
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.7,.3,.3,1), box-shadow 0.3s;
+      border: 1.5px solid #e0e7ef;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(56,189,248,0.18);
+      border-color: #38bdf8;
+    }
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid #38bdf8;
+      filter: brightness(0.98) contrast(1.05);
+      transition: filter 0.3s;
+    }
+    .project-card:hover img {
+      filter: brightness(1.05) contrast(1.1) saturate(1.1);
+    }
+    .project-card .card-content {
+      padding: 1.3rem 1.1rem 1.2rem 1.1rem;
+      background: rgba(255,255,255,0.95);
+    }
+    .project-card h3 {
+      color: #2563eb;
+      margin-bottom: 0.7rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .project-card p {
+      color: #334155;
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+    .tech-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.85rem 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tech-list li {
+      background: linear-gradient(90deg, #e0f2fe 60%, #bae6fd 100%);
+      color: #2563eb;
+      font-size: 0.88rem;
+      padding: 0.28rem 0.85rem;
+      border-radius: 16px;
+      font-weight: 500;
+      box-shadow: 0 1px 4px #38bdf822;
+      border: 1px solid #bae6fd;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      background: linear-gradient(90deg, #38bdf8 60%, #2563eb 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.55em 1.2em;
+      border-radius: 24px;
+      text-decoration: none;
+      margin-top: 1.1em;
+      box-shadow: 0 2px 8px #38bdf822;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover, .btn:focus {
+      background: linear-gradient(90deg, #2563eb 60%, #38bdf8 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px #2563eb33;
+      transform: scale(1.05);
+    }
+    .btn i {
+      font-size: 1.1em;
+      margin-left: 0.3em;
+      transition: transform 0.2s;
+    }
+    .btn:hover i {
+      transform: translateY(-2px) scale(1.15);
+    }
+    footer {
+      margin-top: auto;
+      background: var(--primary-dark);
+      color: #e5e7eb;
+      padding: 1.5rem 0 1rem 0;
+      border-top: 1.5px solid #22304a;
+      border-radius: 0 0 12px 12px;
+      text-align: center;
+      box-shadow: 0 -2px 8px #0003;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-content p {
+      margin: 0;
+      font-size: 0.98rem;
+      color: #b6e3ff;
+    }
+    .footer-content .social-icons a {
+      color: var(--sidebar-accent);
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+      text-decoration: none;
+    }
+    .footer-content .social-icons a:hover {
+      color: #fff;
+    }
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      background: linear-gradient(135deg, #0d6efd, #6610f2);
+      color: #fff;
+      border: none;
+      outline: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      box-shadow: 0 2px 8px rgba(13,110,253,0.15);
+      cursor: pointer;
+      font-size: 1.7rem; /* Make the icon larger */
+      transition: background 0.2s, transform 0.2s;
+      align-items: center;
+      justify-content: center;
+      display: flex; /* Ensure icon is centered */
+      padding: 0;
+    }
+    #backToTop i {
+      pointer-events: none;
+      font-size: 1.3em; /* Make arrow icon larger */
+      line-height: 1;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #backToTop:hover {
+      background: #0b5ed7;
+      transform: translateY(-4px) scale(1.07);
+    }
+    @media (max-width: 768px) {
+      .main-header .container { flex-direction: column; gap: 1rem; }
+      #backToTop {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+
+    /* ======= SIDEBAR START ======= */
+    /* REMOVE ALL OLD SIDEBAR CSS BELOW THIS LINE AND REPLACE WITH NEW SETTINGS */
+
+    /* Sidebar Navigation with Logo in Circle */
+    .sidebar-nav {
+      position: fixed;
+      top: 0; left: -260px;
+      width: 260px;
+      height: 100vh;
+      background: var(--primary-dark);
+      color: #fff;
+      box-shadow: 2px 0 24px #0005;
+      z-index: 1003;
+      transition: left 0.3s cubic-bezier(.7,.3,.3,1);
+      padding-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-nav.open { left: 0; }
+    .sidebar-logo-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+      margin-top: 1.2rem;
+    }
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--sidebar-accent);
+      letter-spacing: 1px;
+    }
+    .sidebar-logo-circle a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .sidebar-logo-img {
+      width:54px;height:54px;margin-left:0.5em;margin-right:0.5em;vertical-align:middle;border-radius:50%;background:#fff;
+    }
+    .sidebar-close {
+      position: absolute;
+      top: 18px; right: 18px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    .sidebar-nav nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar-nav nav ul li {
+      margin: 1.2rem 0;
+    }
+    .sidebar-nav nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.08rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      padding: 0.5em 1.5em;
+      border-radius: 8px 0 0 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sidebar-nav nav ul li a:hover,
+    .sidebar-nav nav ul li a.active {
+      background: var(--sidebar-accent);
+      color: #181a20;
+    }
+    .sidebar-toggle {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      z-index: 1002;
+      background: var(--sidebar-accent);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      box-shadow: 0 2px 12px #38bdf822;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .sidebar-toggle:hover { background: var(--primary); }
+    @media (max-width: 600px) {
+      .sidebar-nav { width: 90vw; }
+      .sidebar-toggle { left: 12px; top: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Start -->
+<header class="main-header">
+  <div class="container">
+    <h1>
+      <a href="index.html" aria-label="ShadEl Web Home">
+        <i class="fas fa-code" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+        ShadEl Web
+      </a>
+    </h1>
+  </div>
+</header>
+<!-- Header End -->
+
+  <section class="page-title">
+    <h2>Our Portfolio</h2>
+    <p>A showcase of recent projects and success stories.</p>
+  </section>
+
+  <main>
+    <section class="portfolio-section container" aria-label="Portfolio Projects">
+      <article class="project-card">
+        <a href="#" aria-label="View Ecommerce Website">
+          <img src="download (3).png" alt="Screenshot of Ecommerce Website">
+        </a>
+        <div class="card-content">
+          <h3>Ecommerce Website</h3>
+          <p>Online store with secure payment and product management for retailers.</p>
+          <ul class="tech-list">
+            <li>React</li>
+            <li>Node.js</li>
+            <li>Stripe API</li>
+            <li>MongoDB</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/her-essence-website/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </article>
+      <article class="project-card">
+        <a href="#" aria-label="View Church Website">
+          <img src="holy-spirit-catholic-church.jpg" alt="Screenshot of Church Website">
+        </a>
+        <div class="card-content">
+          <h3>Church Website</h3>
+          <p>Modern church site with events, sermons, and donation features.</p>
+          <ul class="tech-list">
+            <li>WordPress</li>
+            <li>PHP</li>
+            <li>MySQL</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/Restoration-Tabernacle/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </article>
+      <article class="project-card">
+        <a href="#" aria-label="View Choir Website">
+          <img src="download.png" alt="Screenshot of Choir Website">
+        </a>
+        <div class="card-content">
+          <h3>Choir Website</h3>
+          <p>Showcase for choir groups with media gallery and event calendar.</p>
+          <ul class="tech-list">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/Oseias-Website/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </article>
+      <article class="project-card">
+        <a href="#" aria-label="View Recruitment Platform">
+          <img src="download (1).png" alt="Screenshot of Recruitment Platform">
+        </a>
+        <div class="card-content">
+          <h3>Recruitment Platform</h3>
+          <p>Job board and application management for employers and candidates.</p>
+          <ul class="tech-list">
+            <li>Laravel</li>
+            <li>MySQL</li>
+            <li>Bootstrap</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/Baroque/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </article>
+      <article class="project-card">
+        <a href="#" aria-label="View Online Takeaway Site">
+          <img src="download (2).png" alt="Screenshot of Online Takeaway Site">
+        </a>
+        <div class="card-content">
+          <h3>Online Takeaway Site</h3>
+          <p>Order food online with menu browsing and delivery tracking.</p>
+          <ul class="tech-list">
+            <li>Vue.js</li>
+            <li>Firebase</li>
+            <li>SCSS</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/Naomi/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Sidebar Navigation (Reusable) -->
+  <!-- Sidebar Navigation -->
+<aside class="sidebar-nav" id="sidebarNav">
+  <div class="sidebar-logo-circle">
+    <a href="index.html" aria-label="Shad Dev Home">
+      <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img" style="width:54px;height:54px;margin-left:0.5em;margin-right:0.5em;vertical-align:middle;border-radius:50%;background:#fff;">
+      <span class="logo-text">ShadEl Web</span>
+    </a>
+  </div>
+  <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar"><i class="fas fa-times"></i></button>
+  <nav>
+    <ul>
+      <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html" id="nav-about"><i class="fas fa-user"></i> About</a></li>
+      <li><a href="services.html" id="nav-services"><i class="fas fa-cogs"></i> Services</a></li>
+      <li><a href="portfolio.html" id="nav-portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+      <li><a href="contact.html" id="nav-contact"><i class="fas fa-phone"></i> Contact</a></li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open sidebar">
+  <i class="fas fa-bars"></i>
+</button>
+
+  <!-- Footer Start -->
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2025 ShadEl Web. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://linkedin.com/in/shadel" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://Instagram.com/shadeldev" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com/shadeldev" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</footer>
+<!-- Footer End -->
+
+  <script>
+    // JavaScript functionality for the sidebar component
+    // Sidebar toggle logic
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebarNav');
+  sidebar.classList.toggle('open');
+}
+// Close sidebar on outside click
+document.addEventListener('click', function(e) {
+  const sidebar = document.getElementById('sidebarNav');
+  const toggleBtn = document.querySelector('.sidebar-toggle');
+  if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+    sidebar.classList.remove('open');
+  }
+});
+
+    // Theme switcher (persistent across pages)
+    const themeSwitch = document.getElementById('themeSwitch');
+    // Apply saved theme on load
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      if (themeSwitch) themeSwitch.checked = true;
+    }
+    if (themeSwitch) {
+      themeSwitch.addEventListener('change', () => {
+        if (themeSwitch.checked) {
+          document.body.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.body.classList.remove('dark-mode');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    }
+
+    // Dynamic active link for sidebar and header nav
+    function setActiveLinks() {
+      const path = window.location.pathname.split('/').pop();
+      document.querySelectorAll('.side-nav-left ul li a, header nav ul li a').forEach(link => {
+        if (link.getAttribute('href') === path || (path === '' && link.getAttribute('href') === 'index.html')) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+    setActiveLinks();
+
+    // Accessibility: trap focus in sidebar when open
+    document.addEventListener('keydown', function(e) {
+      if (document.body.classList.contains('sidebar-open')) {
+        const sidebar = document.getElementById('sideNavLeft');
+        const focusable = sidebar.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              last.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === last) {
+              first.focus();
+              e.preventDefault();
+            }
+          }
+        }
+        if (e.key === 'Escape') {
+          closeSidebar();
+        }
+      }
+    });
+  </script>
+  <!-- Font Awesome CDN (add in <head> if not already present) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+</body>
+</html>
+

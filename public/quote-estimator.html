@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Quote Estimator - ShadEl Web</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    html, body, input, button, textarea, select {
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+    :root {
+      --primary: #1e293b;
+      --primary-dark: #0f172a;
+      --primary-light: #334155;
+      --sidebar-bg: linear-gradient(135deg, #0f172a 60%, #1e293b 100%);
+      --sidebar-accent: #38bdf8;
+      --bg: #181a20;
+      --surface: #23263a;
+      --surface-alt: #222436;
+      --text: #e5e7eb;
+      --text-light: #f8fafc;
+      --highlight: #38bdf8;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg) 0%, var(--primary-dark) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .main-header {
+      background: var(--primary-dark);
+      color: var(--text);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+      border-bottom: 2px solid var(--primary-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      min-height: 48px;
+    }
+
+    .main-header .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 10px;
+    }
+
+    .main-header h1 a, .main-header h1 {
+      color: var(--sidebar-accent);
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #38bdf855;
+      margin: 0;
+      padding: 10px 0;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    /* Enhanced Sidebar Navigation */
+    .sidebar-nav {
+      position: fixed;
+      top: 0; left: -280px;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      color: #fff;
+      box-shadow: 4px 0 32px rgba(15, 23, 42, 0.4);
+      z-index: 1003;
+      transition: left 0.4s cubic-bezier(.7,.3,.3,1);
+      padding: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .sidebar-nav.open { 
+      left: 0; 
+      animation: slideInLeft 0.4s ease-out;
+    }
+    
+    @keyframes slideInLeft {
+      from { 
+        left: -280px; 
+        opacity: 0; 
+      }
+      to { 
+        left: 0; 
+        opacity: 1; 
+      }
+    }
+    
+    .sidebar-logo-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      margin-top: 1rem;
+      padding: 0 1.5rem;
+      position: relative;
+      animation: fadeInDown 0.6s ease-out 0.2s both;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .logo-text {
+      font-size: 1.35rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+    }
+    
+    .sidebar-logo-circle a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+    
+    .sidebar-logo-circle a:hover {
+      transform: translateY(-2px);
+    }
+    
+    .sidebar-logo-img {
+      width: 60px;
+      height: 60px;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      vertical-align: middle;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--sidebar-accent);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .sidebar-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
+    
+    .sidebar-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .sidebar-nav nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+    }
+    
+    .sidebar-nav nav ul li {
+      margin: 0.5rem 0;
+      opacity: 0;
+      animation: slideInFromLeft 0.3s ease forwards;
+    }
+    
+    .sidebar-nav nav ul li:nth-child(1) { animation-delay: 0.1s; }
+    .sidebar-nav nav ul li:nth-child(2) { animation-delay: 0.2s; }
+    .sidebar-nav nav ul li:nth-child(3) { animation-delay: 0.3s; }
+    .sidebar-nav nav ul li:nth-child(4) { animation-delay: 0.4s; }
+    .sidebar-nav nav ul li:nth-child(5) { animation-delay: 0.5s; }
+    .sidebar-nav nav ul li:nth-child(6) { animation-delay: 0.6s; }
+    
+    @keyframes slideInFromLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .sidebar-nav nav ul li a {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-radius: 0 25px 25px 0;
+      margin-right: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .sidebar-nav nav ul li a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .sidebar-nav nav ul li a:hover::before {
+      left: 100%;
+    }
+    
+    .sidebar-nav nav ul li a i {
+      margin-right: 1rem;
+      width: 20px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    
+    .sidebar-nav nav ul li a:hover,
+    .sidebar-nav nav ul li a.active {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(6, 182, 212, 0.1));
+      border-left: 4px solid var(--sidebar-accent);
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+      transform: translateX(5px);
+    }
+    
+    .sidebar-nav nav ul li a:hover i,
+    .sidebar-nav nav ul li a.active i {
+      color: var(--sidebar-accent);
+      transform: scale(1.1);
+    }
+    
+    .sidebar-nav nav ul li a.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(6, 182, 212, 0.2));
+    }
+
+    .sidebar-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: var(--sidebar-accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      z-index: 1001;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .sidebar-toggle:hover {
+      background: var(--primary);
+      transform: scale(1.1);
+    }
+    
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1002;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .sidebar-footer {
+      padding: 1.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+      margin-top: auto;
+    }
+    
+    .sidebar-footer p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .social-links a {
+      color: #94a3b8;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+    
+    .social-links a:hover {
+      color: var(--sidebar-accent);
+      background: rgba(56, 189, 248, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .hero-section {
+      padding: 4rem 0;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--sidebar-accent), #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .quote-form-section {
+      padding: 4rem 0;
+      background: var(--bg);
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 3rem;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .step-title {
+      font-size: 2rem;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-subtitle {
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+      padding-right: 2.5rem;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .form-select option {
+      background: var(--surface);
+      color: var(--text-light);
+      padding: 0.75rem;
+      border: none;
+    }
+
+    .form-select option:checked {
+      background: var(--sidebar-accent);
+      color: white;
+    }
+
+    /* Enhanced select styling for better UX */
+    .select-wrapper {
+      position: relative;
+      display: block;
+    }
+
+    .select-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--text);
+      pointer-events: none;
+    }
+
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--sidebar-accent);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .form-input:hover, .form-textarea:hover, .form-select:hover {
+      border-color: rgba(56, 189, 248, 0.5);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* Add animation for better UX */
+    .checkbox-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      transform: scale(1);
+    }
+
+    .checkbox-item:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--sidebar-accent);
+      transform: scale(1.02);
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+    }
+
+    .checkbox-item.selected {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--sidebar-accent);
+      transform: scale(1.02);
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+    }
+
+    .checkbox-item input[type="checkbox"], 
+    .checkbox-item input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    /* Custom checkbox indicator */
+    .checkbox-item::before {
+      content: '';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 4px;
+      background: transparent;
+      transition: all 0.3s;
+    }
+
+    .checkbox-item input[type="radio"] + .checkbox-content::before {
+      border-radius: 50%;
+    }
+
+    .checkbox-item.selected::before {
+      background: var(--sidebar-accent);
+      border-color: var(--sidebar-accent);
+    }
+
+    .checkbox-item.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 20px;
+      height: 20px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .checkbox-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .checkbox-icon {
+      font-size: 1.5rem;
+      color: var(--sidebar-accent);
+    }
+
+    .checkbox-text h4 {
+      color: var(--text-light);
+      margin-bottom: 0.3rem;
+    }
+
+    .checkbox-text p {
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--sidebar-accent);
+      color: white;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #0ea5e9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--sidebar-accent);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .loading-section {
+      display: none;
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(56, 189, 248, 0.2);
+      border-top: 4px solid var(--sidebar-accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 2rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .results-section {
+      display: none;
+      padding: 4rem 0;
+      background: var(--surface);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .result-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .result-card h3 {
+      color: var(--sidebar-accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .feature-list li {
+      padding: 0.5rem 0;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    .cost-breakdown {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .total-cost {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--success);
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--sidebar-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .booking-section {
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .progress-bar {
+      background: rgba(255, 255, 255, 0.1);
+      height: 4px;
+      border-radius: 2px;
+      margin: 2rem 0 1rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: var(--sidebar-accent);
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .step-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+    }
+
+    .step-dot.active {
+      background: var(--sidebar-accent);
+      transform: scale(1.2);
+    }
+
+    .error-message {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--error);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .form-container {
+        padding: 2rem 1rem;
+      }
+      
+      .btn-group {
+        flex-direction: column;
+      }
+      
+      .checkbox-group {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container">
+      <h1>
+        <a href="index.html" aria-label="ShadEl Web Home">
+          <i class="fas fa-code" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+          ShadEl Web
+        </a>
+      </h1>
+    </div>
+  </header>
+  
+  <!-- Enhanced Sidebar Navigation -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  <aside class="sidebar-nav" id="sidebarNav">
+    <div class="sidebar-logo-circle">
+      <a href="index.html" aria-label="ShadEl Web Home">
+        <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img">
+        <span class="logo-text">ShadEl Web</span>
+      </a>
+    </div>
+    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar">
+      <i class="fas fa-times"></i>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html" id="nav-about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="services.html" id="nav-services"><i class="fas fa-cogs"></i> Services</a></li>
+        <li><a href="portfolio.html" id="nav-portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <li><a href="quote-estimator.html" id="nav-quote" class="active"><i class="fas fa-calculator"></i> Smart Quote</a></li>
+        <li><a href="contact.html" id="nav-contact"><i class="fas fa-phone"></i> Contact</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Enhanced Sidebar Footer with Social Links -->
+    <div class="sidebar-footer">
+      <p>Professional Web Development Since 2023</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/shadel" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://instagram.com/shadeldev" target="_blank" aria-label="Instagram" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com/shadeldev" target="_blank" aria-label="GitHub" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://facebook.com/shadeldev" target="_blank" aria-label="Facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://m.me/shadeldev" target="_blank" aria-label="Messenger" title="Messenger">
+          <i class="fab fa-facebook-messenger"></i>
+        </a>
+      </div>
+    </div>
+  </aside>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open sidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="hero-title">
+        <i class="fas fa-calculator"></i> Smart Quote Estimator
+      </h1>
+      <p class="hero-subtitle">
+        Get an instant, AI-powered estimate for your dream website. Our intelligent system analyzes your project requirements and provides accurate cost estimates, timelines, and feature recommendations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quote Form Section -->
+  <section class="quote-form-section">
+    <div class="container">
+      <div class="form-container">
+        <!-- Progress Indicator -->
+        <div class="step-indicator">
+          <div class="step-dot active" data-step="1"></div>
+          <div class="step-dot" data-step="2"></div>
+          <div class="step-dot" data-step="3"></div>
+          <div class="step-dot" data-step="4"></div>
+        </div>
+        
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 25%"></div>
+        </div>
+
+        <form id="quote-form">
+          <!-- Step 1: Project Type -->
+          <div class="form-step active" data-step="1">
+            <div class="step-header">
+              <h2 class="step-title"><i class="fas fa-rocket"></i> Project Type</h2>
+              <p class="step-subtitle">What kind of website do you need?</p>
+            </div>
+
+            <div class="checkbox-group">
+              <label class="checkbox-item" for="type-business">
+                <input type="radio" name="projectType" value="business" id="type-business">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-building"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Business Website</h4>
+                    <p>Professional site for services, about page, contact</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="type-ecommerce">
+                <input type="radio" name="projectType" value="ecommerce" id="type-ecommerce">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-shopping-cart"></i></div>
+                  <div class="checkbox-text">
+                    <h4>E-commerce Store</h4>
+                    <p>Online store with product catalog and payments</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="type-portfolio">
+                <input type="radio" name="projectType" value="portfolio" id="type-portfolio">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-palette"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Portfolio</h4>
+                    <p>Showcase your work, skills, and achievements</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="type-blog">
+                <input type="radio" name="projectType" value="blog" id="type-blog">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-pen"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Blog/News Site</h4>
+                    <p>Content-focused site with articles and posts</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="type-restaurant">
+                <input type="radio" name="projectType" value="restaurant" id="type-restaurant">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-utensils"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Restaurant</h4>
+                    <p>Menu, reservations, location, reviews</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="type-custom">
+                <input type="radio" name="projectType" value="custom" id="type-custom">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-cog"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Custom Solution</h4>
+                    <p>Unique requirements and specialized features</p>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" onclick="nextStep()">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Features -->
+          <div class="form-step" data-step="2">
+            <div class="step-header">
+              <h2 class="step-title"><i class="fas fa-list-check"></i> Features & Functionality</h2>
+              <p class="step-subtitle">
+                <i class="fas fa-check-double"></i> Select all features you need (multiple selections allowed)
+                <br><small style="color: var(--sidebar-accent); font-weight: 600;">✓ Mobile Responsive is included by default</small>
+              </p>
+              <div class="feature-counter" id="feature-counter" style="
+                background: rgba(56, 189, 248, 0.1); 
+                border: 1px solid var(--sidebar-accent); 
+                border-radius: 8px; 
+                padding: 0.75rem; 
+                margin-top: 1rem; 
+                text-align: center; 
+                color: var(--sidebar-accent); 
+                font-weight: 600;
+                display: none;
+              ">
+                <i class="fas fa-check-circle"></i> <span id="selected-count">0</span> additional features selected
+              </div>
+            </div>
+
+            <div class="checkbox-group">
+              <label class="checkbox-item" for="feature-responsive">
+                <input type="checkbox" name="features" value="responsive" id="feature-responsive" checked>
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-mobile-alt"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Mobile Responsive</h4>
+                    <p>Optimized for all devices (included free)</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="feature-cms">
+                <input type="checkbox" name="features" value="cms" id="feature-cms">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-edit"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Content Management</h4>
+                    <p>Easy content updates</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="feature-seo">
+                <input type="checkbox" name="features" value="seo" id="feature-seo">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-search"></i></div>
+                  <div class="checkbox-text">
+                    <h4>SEO Optimization</h4>
+                    <p>Search engine friendly</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="feature-analytics">
+                <input type="checkbox" name="features" value="analytics" id="feature-analytics">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-chart-line"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Analytics Integration</h4>
+                    <p>Track visitor behavior</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="feature-contact">
+                <input type="checkbox" name="features" value="contact" id="feature-contact">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-envelope"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Contact Forms</h4>
+                    <p>Lead generation forms</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="feature-social">
+                <input type="checkbox" name="features" value="social" id="feature-social">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-share-alt"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Social Media Integration</h4>
+                    <p>Connect social platforms</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="feature-ecommerce">
+                <input type="checkbox" name="features" value="ecommerce" id="feature-ecommerce">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-credit-card"></i></div>
+                  <div class="checkbox-text">
+                    <h4>E-commerce Functionality</h4>
+                    <p>Online store and payments</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="feature-booking">
+                <input type="checkbox" name="features" value="booking" id="feature-booking">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-calendar"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Booking System</h4>
+                    <p>Appointments and reservations</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="feature-membership">
+                <input type="checkbox" name="features" value="membership" id="feature-membership">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-users"></i></div>
+                  <div class="checkbox-text">
+                    <h4>User Accounts</h4>
+                    <p>Member login and profiles</p>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item" for="feature-multilingual">
+                <input type="checkbox" name="features" value="multilingual" id="feature-multilingual">
+                <div class="checkbox-content">
+                  <div class="checkbox-icon"><i class="fas fa-language"></i></div>
+                  <div class="checkbox-text">
+                    <h4>Multi-language Support</h4>
+                    <p>Support for multiple languages</p>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-primary" onclick="nextStep()">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Requirements -->
+          <div class="form-step" data-step="3">
+            <div class="step-header">
+              <h2 class="step-title"><i class="fas fa-clipboard-list"></i> Project Details</h2>
+              <p class="step-subtitle">Help us understand your specific needs</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="project-description">
+                <i class="fas fa-file-alt"></i> Describe Your Project Vision
+              </label>
+              <textarea 
+                id="project-description" 
+                name="description" 
+                class="form-textarea" 
+                placeholder="Tell us about your business, target audience, goals, and any specific requirements or preferences you have..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="timeline">
+                <i class="fas fa-clock"></i> Desired Timeline
+              </label>
+              <div class="select-wrapper">
+                <select id="timeline" name="timeline" class="form-select" required>
+                  <option value="">Select your preferred timeline...</option>
+                  <option value="rush">🚀 Rush (1-2 weeks) - Additional charges apply</option>
+                  <option value="standard">⚡ Standard (3-4 weeks) - Most Popular</option>
+                  <option value="relaxed">🕒 Relaxed (5-8 weeks) - Budget Friendly</option>
+                  <option value="flexible">📅 Flexible (No specific deadline)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="budget-range">
+                <i class="fas fa-rand-sign"></i> Budget Range (South African Rand)
+              </label>
+              <div class="select-wrapper">
+                <select id="budget-range" name="budgetRange" class="form-select" required>
+                  <option value="">Select your budget range...</option>
+                  <option value="small">💼 R8,000 - R25,000 (Basic Website)</option>
+                  <option value="medium">🏢 R25,000 - R80,000 (Professional Website)</option>
+                  <option value="large">🚀 R80,000 - R250,000 (Premium Website)</option>
+                  <option value="enterprise">⭐ R250,000+ (Enterprise Solution)</option>
+                  <option value="discuss">💬 Let's discuss based on requirements</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-primary" onclick="nextStep()">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 4: Contact Info -->
+          <div class="form-step" data-step="4">
+            <div class="step-header">
+              <h2 class="step-title"><i class="fas fa-user"></i> Contact Information</h2>
+              <p class="step-subtitle">We'll send your personalized quote to this email</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="client-name">
+                <i class="fas fa-user-circle"></i> Full Name
+              </label>
+              <input type="text" id="client-name" name="name" class="form-input" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="client-email">
+                <i class="fas fa-envelope"></i> Email Address
+              </label>
+              <input type="email" id="client-email" name="email" class="form-input" placeholder="john@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="client-phone">
+                <i class="fas fa-phone"></i> Phone Number (Optional)
+              </label>
+              <input type="tel" id="client-phone" name="phone" class="form-input" placeholder="+1 (555) 123-4567">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="company-name">
+                <i class="fas fa-building"></i> Company/Organization (Optional)
+              </label>
+              <input type="text" id="company-name" name="company" class="form-input" placeholder="ABC Company">
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-magic"></i> Generate My Quote
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="error-message" id="error-message">
+          <i class="fas fa-exclamation-triangle"></i> Please fill in all required fields before proceeding.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loading Section -->
+  <section class="loading-section" id="loading-section">
+    <div class="container">
+      <div class="loading-spinner"></div>
+      <h2 style="color: var(--text-light); margin-bottom: 1rem;">
+        <i class="fas fa-brain"></i> AI is analyzing your project...
+      </h2>
+      <p style="color: var(--text); font-size: 1.1rem;">
+        Our intelligent system is calculating costs, timelines, and creating personalized recommendations.
+      </p>
+      <p style="color: var(--text); font-size: 0.9rem; margin-top: 1rem;">
+        This usually takes 10-15 seconds.
+      </p>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results-section" id="results-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 style="font-size: 2.5rem; color: var(--text-light); margin-bottom: 1rem;">
+          <i class="fas fa-sparkles"></i> Your Personalized Quote
+        </h2>
+        <p style="color: var(--text); font-size: 1.2rem;">
+          Based on your requirements, here's what we recommend:
+        </p>
+      </div>
+
+      <div class="results-grid" id="results-grid">
+        <!-- Results will be populated by JavaScript -->
+      </div>
+
+      <div class="booking-section">
+        <h3 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.8rem;">
+          <i class="fas fa-calendar-check"></i> Ready to Get Started?
+        </h3>
+        <p style="color: var(--text); margin-bottom: 2rem; font-size: 1.1rem;">
+          Book a free consultation to discuss your project in detail and refine this quote.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn btn-primary" onclick="bookConsultation()">
+            <i class="fas fa-video"></i> Book Free Consultation
+          </a>
+          <button type="button" class="btn btn-secondary" onclick="downloadQuote()">
+            <i class="fas fa-download"></i> Download Quote PDF
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="shareQuote()">
+            <i class="fas fa-share"></i> Share Quote
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="quote-estimator.js"></script>
+  
+  <script>
+    // Sidebar navigation functions
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarNav');
+      const overlay = document.getElementById('sidebarOverlay');
+      
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+      }
+    }
+    
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebarNav');
+      const overlay = document.getElementById('sidebarOverlay');
+      
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    }
+    
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebarNav');
+      const toggle = document.querySelector('.sidebar-toggle');
+      
+      if (!sidebar.contains(event.target) && !toggle.contains(event.target) && sidebar.classList.contains('open')) {
+        closeSidebar();
+      }
+    });
+
+    // Feature selection handling
+    document.addEventListener('DOMContentLoaded', function() {
+      // Handle feature checkbox selections
+      const featureCheckboxes = document.querySelectorAll('input[name="features"]');
+      const featureCounter = document.getElementById('feature-counter');
+      const selectedCount = document.getElementById('selected-count');
+      
+      function updateFeatureCounter() {
+        const checkedFeatures = document.querySelectorAll('input[name="features"]:checked');
+        const responsiveCheckbox = document.getElementById('feature-responsive');
+        
+        // Count all checked features except responsive (since it's included by default)
+        const additionalFeatures = Array.from(checkedFeatures).filter(cb => cb.id !== 'feature-responsive');
+        const count = additionalFeatures.length;
+        
+        selectedCount.textContent = count;
+        
+        if (count > 0) {
+          featureCounter.style.display = 'block';
+        } else {
+          featureCounter.style.display = 'none';
+        }
+      }
+      
+      // Add event listeners to all feature checkboxes
+      featureCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          // Update the visual state of the checkbox item
+          const checkboxItem = this.closest('.checkbox-item');
+          if (this.checked) {
+            checkboxItem.classList.add('selected');
+          } else {
+            checkboxItem.classList.remove('selected');
+          }
+          
+          // Prevent unchecking the responsive feature (it's included by default)
+          if (this.id === 'feature-responsive' && !this.checked) {
+            this.checked = true;
+            return;
+          }
+          
+          updateFeatureCounter();
+        });
+        
+        // Initialize visual state
+        const checkboxItem = checkbox.closest('.checkbox-item');
+        if (checkbox.checked) {
+          checkboxItem.classList.add('selected');
+        }
+      });
+      
+      // Initialize counter
+      updateFeatureCounter();
+      
+      // Handle project type selections (radio buttons)
+      const projectTypeRadios = document.querySelectorAll('input[name="projectType"]');
+      projectTypeRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          // Remove selected class from all project type items
+          document.querySelectorAll('.checkbox-item').forEach(item => {
+            const input = item.querySelector('input[name="projectType"]');
+            if (input) {
+              item.classList.remove('selected');
+            }
+          });
+          
+          // Add selected class to the checked item
+          if (this.checked) {
+            this.closest('.checkbox-item').classList.add('selected');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

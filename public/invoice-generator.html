@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Professional invoice generator - Create, customize, and download branded invoices instantly" />
+  <title>Invoice Generator | ShadEl Web</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://html2canvas.herokuapp.com/dist/html2canvas.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      color: #e5e7eb;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .form-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .preview-section {
+      position: sticky;
+      top: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #38bdf8;
+      font-size: 2.5rem;
+      text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    }
+
+    h2 {
+      color: #38bdf8;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #cbd5e1;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #e5e7eb;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .items-section {
+      border: 2px solid rgba(56, 189, 248, 0.3);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .item-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr auto;
+      gap: 10px;
+      margin-bottom: 15px;
+      align-items: end;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #64748b, #475569);
+      color: white;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    /* Invoice Preview Styles */
+    .invoice-preview {
+      background: white;
+      color: #000;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      min-height: 800px;
+    }
+
+    .invoice-header {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: white;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .company-info h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .invoice-title {
+      text-align: right;
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .invoice-body {
+      padding: 30px;
+    }
+
+    .invoice-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .bill-to h4, .invoice-info h4 {
+      color: #1e293b;
+      margin-bottom: 15px;
+      font-size: 18px;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 5px;
+    }
+
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    .items-table th {
+      background: #1e293b;
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .items-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .items-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .totals-section {
+      max-width: 400px;
+      margin-left: auto;
+      background: #f8fafc;
+      border: 2px solid #1e293b;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 5px 0;
+    }
+
+    .total-row.final {
+      border-top: 2px solid #1e293b;
+      margin-top: 15px;
+      padding-top: 15px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #1e293b;
+    }
+
+    .invoice-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #e2e8f0;
+      text-align: center;
+      color: #64748b;
+    }
+
+    .saved-invoices {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .saved-invoice-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+    }
+
+    .currency-symbol {
+      font-weight: bold;
+      color: #10b981;
+    }
+
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .preview-section {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .item-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      
+      .action-buttons {
+        grid-template-columns: 1fr;
+      }
+      
+      .invoice-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .invoice-details {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .logo-upload {
+      margin-bottom: 20px;
+    }
+
+    .logo-preview {
+      max-width: 150px;
+      max-height: 80px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    .payment-links {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(16, 185, 129, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .email-section {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      flex-direction: column;
+      color: white;
+    }
+
+    .loading-spinner {
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-left: 4px solid #38bdf8;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .status-saved {
+      background: #10b981;
+    }
+
+    .status-unsaved {
+      background: #ef4444;
+    }
+
+    .status-auto-saved {
+      background: #f59e0b;
+    }
+
+    .invoice-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-top: 5px;
+    }
+
+    .form-section .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .quick-action-btn {
+      padding: 8px 16px;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 20px;
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .quick-action-btn:hover {
+      background: rgba(56, 189, 248, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .field-hint {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    .preview-loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Form Section -->
+    <div class="form-section">
+      <h1><i class="fas fa-file-invoice-dollar"></i> Invoice Generator</h1>
+      
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <button class="quick-action-btn" onclick="fillSampleData()">
+          <i class="fas fa-magic"></i> Fill Sample Data
+        </button>
+        <button class="quick-action-btn" onclick="duplicateLastInvoice()">
+          <i class="fas fa-copy"></i> Duplicate Last
+        </button>
+        <button class="quick-action-btn" onclick="generateNewNumber()">
+          <i class="fas fa-hashtag"></i> New Number
+        </button>
+        <button class="quick-action-btn" onclick="exportData()">
+          <i class="fas fa-download"></i> Export Data
+        </button>
+      </div>
+
+      <!-- Invoice Stats -->
+      <div class="invoice-stats">
+        <div class="stat-item">
+          <div class="stat-value" id="totalInvoicesCount">0</div>
+          <div class="stat-label">Total Invoices</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="currentTotal">R 0.00</div>
+          <div class="stat-label">Current Total</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="autoSaveStatus">
+            <span class="status-indicator status-unsaved"></span> Ready
+          </div>
+          <div class="stat-label">Auto-Save</div>
+        </div>
+      </div>
+      
+      <!-- Company Information -->
+      <div class="section">
+        <h2><i class="fas fa-building"></i> Your Business Information</h2>
+        
+        <div class="logo-upload">
+          <label for="companyLogo">Company Logo:</label>
+          <input type="file" id="companyLogo" accept="image/*" onchange="handleLogoUpload(event)">
+          <img id="logoPreview" class="logo-preview" style="display: none;">
+        </div>
+
+        <div class="form-group">
+          <label for="companyName">Company Name:</label>
+          <input type="text" id="companyName" placeholder="Enter your company name" oninput="updateInvoice()">
+          <div class="field-hint">This will appear as the invoice sender</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="companyEmail">Email:</label>
+            <input type="email" id="companyEmail" placeholder="company@example.com" oninput="updateInvoice()">
+          </div>
+          <div class="form-group">
+            <label for="companyPhone">Phone:</label>
+            <input type="tel" id="companyPhone" placeholder="+27 12 345 6789" oninput="updateInvoice()">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="companyAddress">Address:</label>
+          <textarea id="companyAddress" rows="3" placeholder="Enter your company address" oninput="updateInvoice()"></textarea>
+        </div>
+      </div>
+
+      <!-- Client Information -->
+      <div class="section">
+        <h2><i class="fas fa-user"></i> Bill To</h2>
+        
+        <div class="form-group">
+          <label for="clientName">Client Name:</label>
+          <input type="text" id="clientName" placeholder="Enter client name" oninput="updateInvoice()">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="clientEmail">Client Email:</label>
+            <input type="email" id="clientEmail" placeholder="client@example.com" oninput="updateInvoice()">
+          </div>
+          <div class="form-group">
+            <label for="clientPhone">Client Phone:</label>
+            <input type="tel" id="clientPhone" placeholder="+27 12 345 6789" oninput="updateInvoice()">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="clientAddress">Client Address:</label>
+          <textarea id="clientAddress" rows="3" placeholder="Enter client address" oninput="updateInvoice()"></textarea>
+        </div>
+      </div>
+
+      <!-- Invoice Details -->
+      <div class="section">
+        <h2><i class="fas fa-file-alt"></i> Invoice Details</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="invoiceNumber">Invoice Number:</label>
+            <input type="text" id="invoiceNumber" value="" oninput="updateInvoice()">
+          </div>
+          <div class="form-group">
+            <label for="currency">Currency:</label>
+            <select id="currency" onchange="updateInvoice()">
+              <option value="ZAR">ZAR (R)</option>
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="invoiceDate">Invoice Date:</label>
+            <input type="date" id="invoiceDate" oninput="updateInvoice()">
+          </div>
+          <div class="form-group">
+            <label for="dueDate">Due Date:</label>
+            <input type="date" id="dueDate" oninput="updateInvoice()">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="taxRate">Tax Rate (%):</label>
+          <input type="number" id="taxRate" min="0" max="100" step="0.01" value="15" oninput="updateInvoice()">
+          <div class="field-hint">VAT/Tax percentage (15% is standard for South Africa)</div>
+        </div>
+      </div>
+
+      <!-- Items Section -->
+      <div class="items-section">
+        <h2><i class="fas fa-list"></i> Items & Services</h2>
+        <div id="itemsContainer">
+          <div class="item-row">
+            <div class="form-group">
+              <label>Description:</label>
+              <input type="text" class="item-description" placeholder="Item or service description" oninput="updateInvoice()">
+            </div>
+            <div class="form-group">
+              <label>Quantity:</label>
+              <input type="number" class="item-quantity" min="1" value="1" oninput="updateInvoice()">
+            </div>
+            <div class="form-group">
+              <label>Rate:</label>
+              <input type="number" class="item-rate" min="0" step="0.01" placeholder="0.00" oninput="updateInvoice()">
+            </div>
+            <div class="form-group">
+              <label>Amount:</label>
+              <input type="text" class="item-amount" readonly>
+            </div>
+            <div class="form-group">
+              <label>&nbsp;</label>
+              <button type="button" class="btn btn-danger" onclick="removeItem(this)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary" onclick="addItem()">
+          <i class="fas fa-plus"></i> Add Item
+        </button>
+      </div>
+
+      <!-- Payment Information -->
+      <div class="payment-links">
+        <h3><i class="fas fa-credit-card"></i> Payment Information</h3>
+        <div class="form-group">
+          <label for="paymentTerms">Payment Terms:</label>
+          <textarea id="paymentTerms" rows="2" placeholder="Net 30 days" oninput="updateInvoice()"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="paymentLink">Payment Link (Optional):</label>
+          <input type="url" id="paymentLink" placeholder="https://payment.example.com" oninput="updateInvoice()">
+        </div>
+      </div>
+
+      <!-- Email Section -->
+      <div class="email-section">
+        <h3><i class="fas fa-envelope"></i> Email Invoice</h3>
+        <div class="form-group">
+          <label for="emailSubject">Email Subject:</label>
+          <input type="text" id="emailSubject" placeholder="Invoice #INV-001 from Company Name">
+        </div>
+        <div class="form-group">
+          <label for="emailMessage">Email Message:</label>
+          <textarea id="emailMessage" rows="4" placeholder="Please find attached your invoice..."></textarea>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button type="button" class="btn btn-primary" onclick="downloadPDF()">
+          <i class="fas fa-download"></i> Download PDF
+        </button>
+        <button type="button" class="btn btn-success" onclick="saveInvoice()">
+          <i class="fas fa-save"></i> Save Invoice
+        </button>
+        <button type="button" class="btn btn-primary" onclick="emailInvoice()">
+          <i class="fas fa-envelope"></i> Email Invoice
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="clearForm()">
+          <i class="fas fa-refresh"></i> Clear Form
+        </button>
+      </div>
+
+      <!-- Saved Invoices -->
+      <div class="saved-invoices">
+        <h3><i class="fas fa-archive"></i> Saved Invoices</h3>
+        <div id="savedInvoicesList">
+          <p style="color: #64748b; text-align: center; padding: 20px;">No saved invoices yet</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview Section -->
+    <div class="preview-section">
+      <div class="invoice-preview" id="invoicePreview">
+        <div class="invoice-header">
+          <div class="company-info">
+            <div id="previewCompanyLogo" style="margin-bottom: 15px;"></div>
+            <h3 id="previewCompanyName">Your Company Name</h3>
+            <div id="previewCompanyDetails">
+              <div id="previewCompanyEmail"></div>
+              <div id="previewCompanyPhone"></div>
+              <div id="previewCompanyAddress"></div>
+            </div>
+          </div>
+          <div class="invoice-title">
+            <div>INVOICE</div>
+            <div style="font-size: 18px; margin-top: 10px;" id="previewInvoiceNumber">#INV-001</div>
+          </div>
+        </div>
+
+        <div class="invoice-body">
+          <div class="invoice-details">
+            <div class="bill-to">
+              <h4>Bill To:</h4>
+              <div id="previewClientName">Client Name</div>
+              <div id="previewClientEmail"></div>
+              <div id="previewClientPhone"></div>
+              <div id="previewClientAddress"></div>
+            </div>
+            
+            <div class="invoice-info">
+              <h4>Invoice Information:</h4>
+              <div><strong>Invoice Date:</strong> <span id="previewInvoiceDate"></span></div>
+              <div><strong>Due Date:</strong> <span id="previewDueDate"></span></div>
+              <div><strong>Payment Terms:</strong> <span id="previewPaymentTerms"></span></div>
+            </div>
+          </div>
+
+          <table class="items-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th style="text-align: center;">Quantity</th>
+                <th style="text-align: right;">Rate</th>
+                <th style="text-align: right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="previewItemsTable">
+              <tr>
+                <td>Sample Service</td>
+                <td style="text-align: center;">1</td>
+                <td style="text-align: right;">R 0.00</td>
+                <td style="text-align: right;">R 0.00</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="totals-section">
+            <div class="total-row">
+              <span>Subtotal:</span>
+              <span id="previewSubtotal">R 0.00</span>
+            </div>
+            <div class="total-row">
+              <span>Tax (<span id="previewTaxRate">15</span>%):</span>
+              <span id="previewTax">R 0.00</span>
+            </div>
+            <div class="total-row final">
+              <span>Total:</span>
+              <span id="previewTotal">R 0.00</span>
+            </div>
+          </div>
+
+          <div id="previewPaymentLink" style="display: none; margin-top: 20px; text-align: center;">
+            <a href="#" id="paymentLinkUrl" style="background: #10b981; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; display: inline-block;">
+              <i class="fas fa-credit-card"></i> Pay Now
+            </a>
+          </div>
+
+          <div class="invoice-footer">
+            <p>Thank you for your business!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="invoice-generator.js"></script>
+</body>
+</html>

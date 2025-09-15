@@ -1,0 +1,687 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Shad Dev</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- Color palette, fonts, and back-to-top button styles -->
+<style>
+  html, body, input, button, textarea, select {
+    font-family: 'Times New Roman', Times, serif !important;
+  }
+  :root {
+    --primary: #1e293b;
+    --primary-dark: #0f172a;
+    --primary-light: #334155;
+    --sidebar-bg: linear-gradient(135deg, #0f172a 60%, #1e293b 100%);
+    --sidebar-accent: #38bdf8;
+    --bg: #181a20;
+    --surface: #23263a;
+    --surface-alt: #222436;
+    --text: #e5e7eb;
+    --highlight: #38bdf8;
+  }
+  .main-header {
+    background: var(--primary-dark);
+    color: var(--text);
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+    border-bottom: 2px solid var(--primary-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: 48px;
+  }
+  .main-header .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 10px;
+  }
+  .main-header h1 a, .main-header h1 {
+    color: var(--sidebar-accent);
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px #38bdf855;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  /* Sidebar Navigation */
+  .sidebar-nav {
+    position: fixed;
+    top: 0; left: -260px;
+    width: 260px;
+    height: 100vh;
+    background: var(--primary-dark);
+    color: #fff;
+    box-shadow: 2px 0 24px #0005;
+    z-index: 1003;
+    transition: left 0.3s cubic-bezier(.7,.3,.3,1);
+    padding-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-nav.open { left: 0; }
+  .sidebar-logo-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    margin-top: 1.2rem;
+  }
+  .logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--sidebar-accent);
+    letter-spacing: 1px;
+  }
+  .sidebar-logo-circle a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .sidebar-logo-img {
+    width:54px;height:54px;margin-left:0.5em;margin-right:0.5em;vertical-align:middle;border-radius:50%;background:#fff;
+  }
+  .sidebar-close {
+    position: absolute;
+    top: 18px; right: 18px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+  .sidebar-nav nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar-nav nav ul li {
+    margin: 1.2rem 0;
+  }
+  .sidebar-nav nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.08rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    padding: 0.5em 1.5em;
+    border-radius: 8px 0 0 8px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .sidebar-nav nav ul li a:hover,
+  .sidebar-nav nav ul li a.active {
+    background: var(--sidebar-accent);
+    color: #181a20;
+  }
+  .sidebar-toggle {
+    position: fixed;
+    top: 28px;
+    left: 28px;
+    z-index: 1002;
+    background: var(--sidebar-accent);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 2px 12px #38bdf822;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .sidebar-toggle:hover { background: var(--primary); }
+  @media (max-width: 600px) {
+    .sidebar-nav { width: 90vw; }
+    .sidebar-toggle { left: 12px; top: 12px; }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .main-header {
+    background: var(--primary-dark);
+    color: var(--text);
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+    border-bottom: 2px solid var(--primary-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: 48px;
+  }
+  .main-header .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 10px;
+  }
+  .main-header h1 a, .main-header h1 {
+    color: var(--sidebar-accent);
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px #38bdf855;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: var(--text-light);
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  .hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+  }
+  .hero p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text);
+  }
+
+  /* Contact Section */
+  .contact-section {
+    padding: 3rem 0;
+  }
+  .contact-form {
+    background: var(--surface);
+    color: var(--text);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1.5px solid var(--primary-light);
+  }
+  .contact-form h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+  }
+  .form-group label {
+    color: var(--text-light);
+    font-weight: bold;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--surface-alt);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    padding: 0.75rem;
+  }
+  .form-group textarea {
+    resize: vertical;
+    height: 120px;
+  }
+  .form-group button {
+    background: linear-gradient(90deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+    color: #fff;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .form-group button:hover {
+    background: linear-gradient(90deg, var(--primary-dark) 0%, var(--sidebar-accent) 100%);
+    color: #fff;
+  }
+
+  /* Calendly Widget */
+  .calendly-inline-widget {
+    background: var(--surface);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: 1.5px solid var(--primary-light);
+  }
+
+  /* Footer */
+  footer {
+    margin-top: auto;
+    background: var(--primary-dark);
+    color: #e5e7eb;
+    padding: 1.5rem 0 1rem 0;
+    border-top: 1.5px solid #22304a;
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    box-shadow: 0 -2px 8px #0003;
+  }
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-content p {
+    margin: 0;
+    font-size: 0.98rem;
+    color: #b6e3ff;
+  }
+  .footer-content .social-icons a {
+    color: var(--sidebar-accent);
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+    text-decoration: none;
+  }
+  .footer-content .social-icons a:hover {
+    color: #fff;
+  }
+
+  /* WhatsApp Float Button */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: background 0.3s;
+  }
+  .whatsapp-float:hover {
+    background: #128c7e;
+  }
+
+  /* Back to Top Button */
+  #backToTop {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    background: linear-gradient(90deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    z-index: 1000;
+    transition: background 0.3s, opacity 0.3s;
+  }
+  #backToTop:hover {
+    background: linear-gradient(90deg, var(--primary-dark) 0%, var(--sidebar-accent) 100%);
+    opacity: 0.9;
+  }
+
+  /* Remove default header styles and light backgrounds */
+  .contact-form,
+  .calendly-inline-widget {
+    background: none;
+  }
+
+  @media (max-width: 600px) {
+  .container,
+  .contact-section {
+    width: 98%;
+    padding: 0 1vw;
+  }
+  .contact-form {
+    padding: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <h1>
+        <a href="index.html" aria-label="ShadEl Web Home">
+          <i class="fas fa-code" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+          ShadEl Web
+        </a>
+      </h1>
+    </div>
+  </header>
+  <aside class="sidebar-nav" id="sidebarNav">
+    <div class="sidebar-logo-circle">
+      <a href="index.html" aria-label="Shad Dev Home">
+        <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img">
+        <span class="logo-text">ShadEl Web</span>
+      </a>
+    </div>
+    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar"><i class="fas fa-times"></i></button>
+    <nav>
+      <ul>
+        <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html" id="nav-about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="services.html" id="nav-services"><i class="fas fa-cogs"></i> Services</a></li>
+        <li><a href="portfolio.html" id="nav-portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <li><a href="contact.html" id="nav-contact"><i class="fas fa-phone"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open sidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <main role="main">
+  <section class="hero">
+    <h2>Contact Us</h2>
+    <p>We'd love to hear about your project. Fill out the form below and let's get started.</p>
+    <div class="contact-direct-box" style="background: #f1f5f9; border-radius: 12px; box-shadow: 0 2px 8px #38bdf822; border-left: none; border-top: 4px solid #38bdf8; padding: 1.5em 2em; margin: 2em auto 1.5em; max-width: 420px; color: #1e293b; text-align: center;">
+      <div style="font-size: 1.15em; font-weight: 600; margin-bottom: 0.5em; letter-spacing: 1px; color: #0f172a;">
+        <i class="fas fa-user-circle" style="color:#38bdf8; margin-right:6px;"></i> Contact Directly
+      </div>
+      <div style="margin-bottom: 0.5em;">
+        <i class="fas fa-envelope" style="color:#38bdf8; margin-right:6px;"></i>
+        <a href="mailto:skashgray@gmail.com" style="color:#1e293b; font-weight:500; text-decoration:underline;">skashgray@gmail.com</a>
+      </div>
+      <div>
+        <i class="fas fa-phone" style="color:#38bdf8; margin-right:6px;"></i>
+        <a href="tel:+27699100214" style="color:#1e293b; font-weight:500; text-decoration:underline;">+27 69 910 0214</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container contact-section">
+    <form class="contact-form" id="contactForm">
+      <h3>Send a Message</h3>
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="Name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="Email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="Phone" />
+      </div>
+      <div class="form-group">
+        <label for="contactEmail">Alternate Email (optional)</label>
+        <input type="email" id="contactEmail" name="ContactEmail" />
+      </div>
+      <div class="form-group">
+        <label for="projectType">Project Type</label>
+        <select id="projectType" name="ProjectType" required>
+          <option value="">Select a type</option>
+          <option value="Website">Website</option>
+          <option value="Web App">Web App</option>
+          <option value="E-commerce">E-commerce</option>
+          <option value="UI/UX Design">UI/UX Design</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="budget">Budget</label>
+        <div style="display: flex; gap: 8px;">
+          <select id="currency" name="Currency" required style="max-width: 100px;">
+            <option value="USD">$ USD</option>
+            <option value="EUR">â‚¬ EUR</option>
+            <option value="GBP">Â£ GBP</option>
+            <option value="INR">â‚¹ INR</option>
+            <option value="AUD">$ AUD</option>
+            <option value="CAD">$ CAD</option>
+            <option value="NGN">â‚¦ NGN</option>
+            <option value="ZAR">R ZAR</option>
+            <option value="JPY">Â¥ JPY</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="number" id="budget" name="Budget" placeholder="Amount" min="0" required style="flex:1;" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="Message" required></textarea>
+      </div>
+      <div class="form-group" style="text-align: center;">
+        <button type="submit">Send Message</button>
+      </div>
+      <div id="formStatus" aria-live="polite" style="text-align:center; color:green; margin-top:10px;"></div>
+    </form>
+    <div style="margin: 2rem auto 0; max-width: 600px; text-align: center;">
+      <h4>Book a Free Consultation</h4>
+      <!-- Calendly inline widget begin -->
+      <div class="calendly-inline-widget" data-url="https://calendly.com/your-calendly-username/consultation" style="min-width:320px;height:630px;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <!-- Calendly inline widget end -->
+    </div>
+  </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 ShadEl Web. All rights reserved.</p>
+      <div style="margin: 0.5em 0; color: #e5e7eb;">
+        <strong>Contact:</strong>
+        <a href="mailto:skashgray@gmail.com" style="color:#38bdf8;">skashgray@gmail.com</a> |
+        <a href="tel:+27699100214" style="color:#38bdf8;">+27 69 910 0214</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/shadrac-bonzali-885543163/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        
+        <a href="https://github.com/dashboard" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Chat Button -->
+  <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Back to top" title="Back to top" style="display:none;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+<script>
+  // Back to top button functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.style.display = 'flex';
+      } else {
+        backToTopButton.style.display = 'none';
+      }
+    });
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  function toggleSidebar() {
+  const sidebar = document.getElementById('sidebarNav');
+  sidebar.classList.toggle('open');
+}
+
+// Optionally close sidebar when clicking outside (for better UX)
+document.addEventListener('click', function(event) {
+  const sidebar = document.getElementById('sidebarNav');
+  const toggleBtn = document.querySelector('.sidebar-toggle');
+  if (
+    sidebar.classList.contains('open') &&
+    !sidebar.contains(event.target) &&
+    !toggleBtn.contains(event.target)
+  ) {
+    sidebar.classList.remove('open');
+  }
+});
+</script>
+
+  <!-- ======= SIDEBAR START ======= -->
+  <!-- Sidebar Navigation -->
+  <!-- ======= SIDEBAR END ======= -->
+
+  <script>
+    // Handle URL parameters for special deals
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const deal = urlParams.get('deal');
+      const discount = urlParams.get('discount');
+      const dealType = urlParams.get('type');
+      const packageType = urlParams.get('package');
+      const price = urlParams.get('price');
+      
+      // If coming from any special deal, pre-fill and highlight the form
+      if (deal) {
+        const form = document.getElementById('contactForm');
+        const dealBanner = document.createElement('div');
+        
+        let bannerContent = '';
+        let bannerStyle = 'background: linear-gradient(45deg, #38bdf8, #0ea5e9); color: white;';
+        
+        // Customize banner based on deal type
+        switch(deal) {
+          case 'summer2025':
+            bannerStyle = 'background: linear-gradient(45deg, #ff6b6b, #ffa500); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ðŸ”¥ Summer 2025 Special Deal!</h4>
+              <p style="margin: 0; font-size: 1.1rem;">ANY Website for just <strong>R${price || '599'}</strong> (Save R200+)</p>
+              <small style="opacity: 0.9;">Limited time offer - expires end of August 2025</small>
+            `;
+            break;
+          case 'nonprofit':
+            bannerStyle = 'background: linear-gradient(45deg, #10b981, #059669); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ðŸ›ï¸ Nonprofit Heroes Discount</h4>
+              <p style="margin: 0; font-size: 1.1rem;"><strong>${discount}% OFF</strong> for Nonprofits, Churches & Schools</p>
+              <small style="opacity: 0.9;">Please have your registration certificate ready</small>
+            `;
+            break;
+          case 'student':
+            bannerStyle = 'background: linear-gradient(45deg, #f59e0b, #d97706); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ðŸŽ“ Student & Startup Power</h4>
+              <p style="margin: 0; font-size: 1.1rem;"><strong>${discount}% OFF</strong> for Students & New Startups</p>
+              <small style="opacity: 0.9;">Please have your Student ID or business registration ready</small>
+            `;
+            break;
+          case 'bundle':
+            bannerStyle = 'background: linear-gradient(45deg, #8b5cf6, #7c3aed); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ï¿½ Website + Care Bundle</h4>
+              <p style="margin: 0; font-size: 1.1rem;"><strong>${discount}% OFF</strong> Website + 6 Months Maintenance</p>
+              <small style="opacity: 0.9;">Save hundreds when you bundle!</small>
+            `;
+            break;
+          case 'referral':
+            bannerStyle = 'background: linear-gradient(45deg, #ec4899, #db2777); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ðŸ’° Referral Cash Rewards</h4>
+              <p style="margin: 0; font-size: 1.1rem;">Earn <strong>R400 Cash</strong> + Your friend gets ${discount}% OFF</p>
+              <small style="opacity: 0.9;">Unlimited referrals accepted!</small>
+            `;
+            break;
+        }
+        
+        dealBanner.style.cssText = `
+          ${bannerStyle}
+          padding: 1rem;
+          border-radius: 8px;
+          margin-bottom: 1.5rem;
+          text-align: center;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+        dealBanner.innerHTML = bannerContent;
+        form.insertBefore(dealBanner, form.firstChild);
+        
+        // Pre-fill form fields
+        document.getElementById('projectType').value = 'Website';
+        
+        // Pre-fill message with deal details
+        const messageTextarea = document.getElementById('message');
+        if (messageTextarea) {
+          let message = '';
+          switch(deal) {
+            case 'summer2025':
+              message = `Hi! I'm interested in claiming the Summer 2025 special deal for ANY website at R${price || '599'}. Please provide more details about this offer.`;
+              break;
+            case 'nonprofit':
+              message = `Hi! I'm interested in the ${discount}% nonprofit discount. I represent a [NGO/Church/School/Community Group] and can provide our registration certificate.`;
+              break;
+            case 'student':
+              message = `Hi! I'm interested in the ${discount}% student/startup discount. I'm a [student/startup founder] and can provide verification.`;
+              break;
+            case 'bundle':
+              message = `Hi! I'm interested in the Website + Care Bundle with ${discount}% off. Please tell me more about this package deal.`;
+              break;
+            case 'referral':
+              message = `Hi! I'm interested in your referral program where I can earn R400 cash for referring friends. Please tell me more about how this works.`;
+              break;
+          }
+          messageTextarea.value = message;
+        }
+        
+        // Scroll to form smoothly
+        setTimeout(() => {
+          form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 500);
+      }
+    });
+
+    // Example JS for demo only (replace with real backend integration)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('formStatus').textContent = "Thank you! We'll be in touch soon.";
+      this.reset();
+    });
+  </script>
+
+  <!-- Font Awesome (required for icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+</body>
+</html>

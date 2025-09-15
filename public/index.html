@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Affordable and professional website development services. Custom websites for your business with clear pricing and expert support." />
+  <meta name="keywords" content="web design South Africa, affordable websites Cape Town, Johannesburg web developer, business websites South Africa, SEO friendly websites" />
+  <title>ShadEl Web | Affordable Website Development</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+
+  <style>
+    /* Use Times New Roman for the whole page */
+    html, body, input, button, textarea, select {
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+
+    /* Modern dark color palette */
+    :root {
+      --primary: #1e293b;
+      --primary-dark: #0f172a;
+      --primary-light: #334155;
+      --sidebar-bg: linear-gradient(135deg, #0f172a 60%, #1e293b 100%);
+      --sidebar-accent: #38bdf8;
+      --bg: #181a20;
+      --surface: #23263a;
+      --surface-alt: #222436;
+      --text: #e5e7eb;
+      --text-light: #38bdf8;
+      --border: #334155;
+      --shadow: 0 4px 16px rgba(30,41,59,0.18);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header Bar */
+    header.main-header {
+      background: var(--primary-dark);
+      color: var(--text);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+      border-bottom: 2px solid var(--primary-light);
+    }
+    header.main-header .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70px;
+      position: relative;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 70px;
+    }
+    
+    /* Client Portal Button in Header */
+    .header-client-portal {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    
+    .header-client-portal:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+      color: white;
+    }
+    
+    .header-client-portal i {
+      font-size: 1rem;
+    }
+    
+    /* Responsive adjustments for Client Portal button */
+    @media (max-width: 768px) {
+      .header-client-portal {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        gap: 0.3rem;
+      }
+      .header-client-portal i {
+        font-size: 0.8rem;
+      }
+      header.main-header h1 {
+        font-size: 1.8rem;
+      }
+    }
+    header.main-header h1 {
+      font-size: 2.2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: var(--sidebar-accent);
+      text-shadow: 0 2px 12px #38bdf855;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-tagline {
+      text-align: center;
+      color: #38bdf8;
+      font-size: 1.1rem;
+      margin: 8px 0 10px 0;
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+    }
+
+    /* Hero */
+    section.hero {
+      background: linear-gradient(120deg, #eaf3ff 0%, #cbe0ff 100%);
+      background-size: 200% 200%;
+      animation: heroGradient 8s ease-in-out infinite;
+      padding: 80px 0 60px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    @keyframes heroGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    section.hero .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    section.hero h2 {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 700;
+      font-size: 2.25rem;
+      color: var(--primary);
+      margin-bottom: 18px;
+      text-shadow: 0 2px 8px #38bdf822;
+      text-align: center;
+      max-width: 100%;
+    }
+    section.hero p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.125rem;
+      color: #444;
+      margin-bottom: 32px;
+      text-align: center;
+      max-width: 800px;
+    }
+    .hero-cta-btn {
+      background: linear-gradient(90deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+      color: #fff;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      padding: 16px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+      box-shadow: 0 4px 18px rgba(37,99,235,0.10);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+      display: inline-block;
+    }
+    .hero-cta-btn:hover, .hero-cta-btn:focus {
+      background: linear-gradient(90deg, var(--primary-dark) 0%, var(--sidebar-accent) 100%);
+      color: #fff;
+    }
+    .trust-row {
+      margin-top: 32px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.08rem;
+      color: var(--primary);
+      font-family: 'Open Sans', sans-serif;
+      flex-wrap: wrap;
+    }
+    .trust-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 1.08rem;
+      color: var(--primary);
+      background: #eaf3ff;
+      border-radius: 5px;
+      padding: 6px 14px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.04);
+    }
+    
+    @media (max-width: 768px) {
+      .trust-row {
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .trust-row span {
+        font-size: 0.95rem;
+        padding: 5px 10px;
+      }
+    }
+
+    /* Intro Services */
+    .intro-services {
+      background: var(--surface);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .intro-services h2 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+      text-shadow: 0 2px 8px #38bdf822;
+    }
+    .intro-services p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto 25px auto;
+      color: #444;
+    }
+    .intro-services .service {
+      flex: 1 1 220px;
+      min-width: 220px;
+      background: var(--surface-alt);
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .intro-services .service i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .intro-services .service h3 {
+      margin: 15px 0 10px 0;
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+    }
+    .intro-services .service p {
+      color: #555;
+    }
+
+    /* Features */
+    section.features {
+      background: var(--surface);
+      padding: 60px 0;
+      border-radius: 24px;
+      margin: 40px 0;
+      box-shadow: 0 8px 32px #0003;
+    }
+    section.features h2 {
+      color: #38bdf8;
+      text-shadow: 0 2px 12px #0008;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+    }
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      align-items: stretch;
+    }
+    features .feature {
+      background: rgba(34,36,54,0.98);
+      color: #f3f3f3;
+      border: 1.5px solid #38bdf8;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px #38bdf822;
+      flex: 1 1 260px;
+      min-width: 240px;
+      max-width: 320px;
+      padding: 36px 28px 32px 28px;
+      margin: 0;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    section.features .feature:hover {
+      transform: translateY(-10px) scale(1.04);
+      box-shadow: 0 16px 40px #38bdf844;
+      border-color: #fff;
+      z-index: 2;
+    }
+    section.features .feature i {
+      font-size: 2.8rem;
+      color: #38bdf8;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 2px 8px #38bdf822);
+    }
+    section.features .feature h3 {
+      color: #fff;
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    section.features .feature p {
+      color: #e0e6ed;
+      font-size: 1.08rem;
+      margin-bottom: 0;
+    }
+
+    /* Testimonials */
+    section.testimonials {
+      background: linear-gradient(135deg, var(--primary) 60%, var(--primary-light) 100%);
+      color: white;
+      padding: 60px 20px;
+      border-radius: 0 0 60px 60px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    section.testimonials h2 {
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+    section.testimonials .testimonial {
+      max-width: 700px;
+      margin: 0 auto 35px auto;
+      font-style: italic;
+      font-size: 1.15rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    section.testimonials .testimonial strong {
+      display: block;
+      margin-top: 15px;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 1.1rem;
+      color: #cce0ff;
+    }
+    section.testimonials .testimonial::before {
+      content: "“";
+      font-size: 4rem;
+      position: absolute;
+      left: -40px;
+      top: -20px;
+      color: rgba(255, 255, 255, 0.3);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    /* Portfolio Preview */
+    .portfolio-preview {
+      background: var(--bg);
+      padding: 50px 0;
+    }
+    .portfolio-preview h2 {
+      text-align: center;
+      color: var(--primary);
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 8px #38bdf822;
+    }
+    .portfolio-preview .project {
+      flex: 1 1 260px;
+      min-width: 260px;
+      background: var(--surface);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      text-align: center;
+    }
+    .portfolio-preview .project img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .portfolio-preview .project h3 {
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+    }
+
+    /* Final Call to Action */
+    .cta-final {
+      background: linear-gradient(120deg, var(--primary) 0%, var(--primary-light) 100%);
+      background-size: 200% 200%;
+      animation: ctaGradient 10s ease-in-out infinite;
+      color: #fff;
+      padding: 60px 0;
+      text-align: center;
+      border-radius: 24px;
+      margin: 40px 0;
+      box-shadow: 0 8px 32px #38bdf822;
+    }
+    @keyframes ctaGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .cta-final h2 {
+      font-family: 'Times New Roman', Times, serif !important;
+      font-size: 2.3rem;
+      margin-bottom: 15px;
+    }
+    .cta-final p {
+      font-family: 'Times New Roman', Times, serif !important;
+      font-size: 1.15rem;
+      margin-bottom: 30px;
+    }
+
+    /* Footer */
+    footer {
+    background-color: #111827;
+    border-top: 1.5px solid #22304a;
+    border-radius: 0 0 12px 12px;
+    margin-top: 40px;
+    padding: 16px 10px 10px 10px;
+    text-align: center;
+  }
+
+  .footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .footer-container label {
+    color: #ddd;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .newsletter-form {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .newsletter-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .newsletter-form input[type="email"] {
+    padding: 10px 16px;
+    font-size: 1rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    flex: 1 1 250px;
+    min-width: 200px;
+    background: var(--surface-alt);
+    color: var(--text);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .newsletter-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--sidebar-accent);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+  }
+
+  .newsletter-form button {
+    padding: 10px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, var(--sidebar-accent), var(--primary));
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+    font-weight: 600;
+  }
+  
+  .newsletter-form button:hover {
+    background: linear-gradient(135deg, var(--primary), var(--sidebar-accent));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 14px;
+  }
+
+  .social-links a {
+    color: #ccc;
+    font-size: 1.2rem;
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  .social-links a:hover {
+    color: var(--primary-light);
+    transform: scale(1.2);
+  }
+
+  .footer-container p {
+    color: #ccc;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .newsletter-inputs {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .newsletter-form input[type="email"],
+    .newsletter-form button {
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .social-links {
+      justify-content: center;
+      margin-top: 10px;
+    }
+  }
+
+  /* Button Styles */
+  .btn {
+    background: linear-gradient(90deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+    color: #fff;
+    padding: 15px 42px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.15rem;
+    box-shadow: 0 6px 24px #38bdf822;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+    cursor: pointer;
+    display: inline-block;
+    letter-spacing: 0.5px;
+    outline: none;
+    text-shadow: 0 2px 8px rgba(37,99,235,0.08);
+  }
+  .btn:hover, .btn:focus {
+    background: linear-gradient(90deg, var(--primary-dark) 0%, var(--sidebar-accent) 100%);
+    color: #fff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 32px rgba(37,99,235,0.18);
+  }
+
+  /* Sidebar Navigation with Logo in Circle */
+  .sidebar-nav {
+    position: fixed;
+    top: 0; left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #fff;
+    box-shadow: 4px 0 32px rgba(15, 23, 42, 0.4);
+    z-index: 1003;
+    transition: left 0.4s cubic-bezier(.7,.3,.3,1);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(56, 189, 248, 0.2);
+  }
+  .sidebar-nav.open { 
+    left: 0; 
+    animation: slideInLeft 0.4s ease-out;
+  }
+  
+  @keyframes slideInLeft {
+    from { 
+      left: -280px; 
+      opacity: 0; 
+    }
+    to { 
+      left: 0; 
+      opacity: 1; 
+    }
+  }
+  
+  .sidebar-logo-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    padding: 0 1.5rem;
+    position: relative;
+    animation: fadeInDown 0.6s ease-out 0.2s both;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .logo-circle {
+    background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+    color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    margin-right: 0.8em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .logo-circle:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+  }
+  
+  .logo-circle::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: rotate(45deg);
+    transition: transform 0.6s ease;
+    opacity: 0;
+  }
+  
+  .logo-circle:hover::before {
+    transform: rotate(45deg) translate(50%, 50%);
+    opacity: 1;
+  }
+  
+  .logo-text {
+    font-size: 1.35rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-logo-circle a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-logo-circle a:hover {
+    transform: translateY(-2px);
+  }
+  
+  .sidebar-logo-img {
+    width: 60px;
+    height: 60px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--sidebar-accent);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .sidebar-logo-img:hover {
+    transform: scale(1.1);
+    border-color: #06b6d4;
+  }
+  
+  .sidebar-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 50%;
+    color: var(--sidebar-accent);
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-close:hover {
+    background: var(--sidebar-accent);
+    color: #0f172a;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-nav nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .sidebar-nav nav ul li {
+    margin: 0.8rem 0;
+    opacity: 0;
+    animation: slideInRight 0.4s ease-out forwards;
+  }
+  
+  .sidebar-nav nav ul li:nth-child(1) { animation-delay: 0.1s; }
+  .sidebar-nav nav ul li:nth-child(2) { animation-delay: 0.2s; }
+  .sidebar-nav nav ul li:nth-child(3) { animation-delay: 0.3s; }
+  .sidebar-nav nav ul li:nth-child(4) { animation-delay: 0.4s; }
+  .sidebar-nav nav ul li:nth-child(5) { animation-delay: 0.5s; }
+  .sidebar-nav nav ul li:nth-child(6) { animation-delay: 0.6s; }
+  .sidebar-nav nav ul li:nth-child(7) { animation-delay: 0.7s; }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .sidebar-nav nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sidebar-nav nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .sidebar-nav nav ul li a:hover::before {
+    left: 100%;
+  }
+  
+  .sidebar-nav nav ul li a i {
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  .sidebar-nav nav ul li a:hover,
+  .sidebar-nav nav ul li a.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(6, 182, 212, 0.1));
+    border-left: 4px solid var(--sidebar-accent);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    transform: translateX(5px);
+  }
+  
+  .sidebar-nav nav ul li a:hover i,
+  .sidebar-nav nav ul li a.active i {
+    color: var(--sidebar-accent);
+    transform: scale(1.1);
+  }
+  
+  .sidebar-nav nav ul li a.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(6, 182, 212, 0.2));
+  }
+  .sidebar-toggle {
+    position: fixed;
+    top: 28px;
+    left: 28px;
+    z-index: 1002;
+    background: linear-gradient(135deg, var(--sidebar-accent), #06b6d4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: pulseGlow 2s infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+      transform: scale(1.05);
+    }
+  }
+  
+  .sidebar-toggle:hover { 
+    background: linear-gradient(135deg, #06b6d4, var(--primary));
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.5);
+    animation: none;
+  }
+  
+  .sidebar-toggle i {
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-toggle:hover i {
+    transform: scale(1.2);
+  }
+  @media (max-width: 600px) {
+    .sidebar-nav { width: 90vw; }
+    .sidebar-toggle { left: 12px; top: 12px; }
+  }
+
+  /* Add a subtle background pattern */
+  .sidebar-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Add a bottom section with social links or additional info */
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(56, 189, 248, 0.2);
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.8s both;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .sidebar-footer p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .sidebar-footer .social-links {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .sidebar-footer .social-links a {
+    color: #64748b;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 0.4rem;
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.1);
+  }
+  
+  .sidebar-footer .social-links a:hover {
+    color: var(--sidebar-accent);
+    background: rgba(56, 189, 248, 0.2);
+    transform: translateY(-2px) scale(1.1);
+  }
+
+  /* Add overlay when sidebar is open */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Sidebar for all screen sizes */
+  .side-nav {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 260px;
+    height: 100vh;
+    background: #2b71f0;
+    color: #fff;
+    box-shadow: -2px 0 16px rgba(43,113,240,0.10);
+    z-index: 1200;
+    transition: right 0.35s cubic-bezier(.7,.3,.3,1);
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+  }
+  .side-nav.open {
+    right: 0;
+  }
+  .side-nav ul {
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .side-nav ul li {
+    margin: 0;
+  }
+  .side-nav ul li a {
+    display: block;
+    padding: 18px 32px;
+    color: #fff;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #2563eb33;
+    background: none;
+    border-radius: 0;
+    transition: background 0.3s;
+  }
+  .side-nav ul li a:hover,
+  .side-nav ul li a.active {
+    background: #1a47bb;
+    color: #fff;
+  }
+  .theme-switch-container {
+    margin-top: 32px;
+    padding-left: 24px;
+  }
+  .theme-switch-label {
+    font-size: 1rem;
+    color: #fff;
+    margin-right: 10px;
+  }
+  .theme-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  .nav-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30,40,80,0.25);
+    z-index: 1100;
+    display: none;
+    transition: background 0.3s;
+  }
+  .nav-overlay.active {
+    display: block;
+  }
+  .section-lead {
+  font-size: 1.18rem;
+  color: #b6e3ff;
+  margin-bottom: 32px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Improved Services Grid */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+.service-card {
+  background: rgba(34,36,54,0.98);
+  border: 1.5px solid #38bdf8;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #38bdf822;
+  padding: 36px 28px 32px 28px;
+  text-align: center;
+  color: #f3f3f3;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.service-card i {
+  font-size: 2.2rem;
+  color: #38bdf8;
+  margin-bottom: 18px;
+}
+.service-card h3 {
+  color: #fff;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+.service-card p {
+  color: #e0e6ed;
+  font-size: 1.08rem;
+  margin-bottom: 0;
+}
+.service-card:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 16px 40px #38bdf844;
+  border-color: #fff;
+  z-index: 2;
+}
+
+/* Improved Project Grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  margin: 32px 0;
+}
+.project-card {
+  background: rgba(34,36,54,0.96);
+  border: 1px solid #334155;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px #0003;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #334155;
+}
+.project-info {
+  padding: 18px 16px 14px 16px;
+  text-align: center;
+}
+.project-info h3 {
+  color: #38bdf8;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.project-info p {
+  color: #e0e6ed;
+  font-size: 1rem;
+}
+.project-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(56,189,248,0.18);
+  z-index: 2;
+}
+
+/* Make section headings and leads more visible */
+.intro-services h2,
+.portfolio-preview h2 {
+  color: #38bdf8 !important;
+  text-shadow: 0 2px 12px #0008;
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+.intro-services .section-lead,
+.portfolio-preview .section-lead {
+  color: #e0e6ed !important;
+  font-size: 1.18rem;
+  margin-bottom: 32px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  text-shadow: 0 1px 8px #0006;
+}
+
+/* Make "Our Recent Work" heading stand out */
+.portfolio-preview h2 {
+  margin-bottom: 18px;
+}
+
+/* Chatbot Styles */
+#chatbot-widget {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1002;
+  font-family: 'Times New Roman', Times, serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chatbot-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--sidebar-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #38bdf822;
+  font-size: 2rem;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot-btn:hover { 
+  background: var(--primary); 
+}
+
+.chatbot-window {
+  display: none;
+  flex-direction: column;
+  width: 320px;
+  max-width: 95vw;
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px #0005;
+  margin-bottom: 12px;
+  overflow: hidden;
+  animation: fadeIn 0.3s;
+}
+
+.chatbot-window.open { 
+  display: flex; 
+}
+
+.chatbot-header {
+  background: var(--sidebar-accent);
+  color: #fff;
+  padding: 0.8em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.08rem;
+}
+
+.chatbot-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.chatbot-body {
+  padding: 1em;
+  min-height: 80px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--surface-alt);
+  font-size: 0.98rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.chatbot-msg {
+  padding: 0.6em 1em;
+  border-radius: 12px;
+  margin-bottom: 0.2em;
+  max-width: 85%;
+  word-break: break-word;
+}
+
+.chatbot-msg.user {
+  background: var(--sidebar-accent);
+  color: white;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chatbot-msg.bot {
+  background: #38bdf822;
+  color: var(--sidebar-accent);
+  align-self: flex-start;
+  animation: bounceIn 0.5s;
+}
+
+.chatbot-form {
+  padding: 0.8em;
+  display: flex;
+  gap: 0.5em;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.chatbot-form input {
+  flex: 1;
+  padding: 0.8em 1em;
+  border: 2px solid var(--sidebar-accent);
+  border-radius: 12px;
+  background: var(--surface-alt);
+  color: var(--text);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.chatbot-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.chatbot-form input::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.chatbot-form button {
+  padding: 0.8em 1.2em;
+  background: linear-gradient(135deg, var(--sidebar-accent), var(--primary));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+  font-size: 1rem;
+}
+
+.chatbot-form button:hover {
+  background: linear-gradient(135deg, var(--primary), var(--sidebar-accent));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@media (max-width: 768px) {
+  #chatbot-widget { right: 10px; bottom: 10px; }
+  .chatbot-window {
+    width: 280px;
+    max-height: 350px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="main-header">
+    <div class="container">
+      <div class="header-content">
+        <div style="width: 140px;"></div> <!-- Spacer for balance -->
+        <h1>ShadEL Web.</h1>
+        <a href="client-login.html" class="header-client-portal">
+          <i class="fas fa-user-shield"></i>
+          Client Portal
+        </a>
+      </div>
+      <div class="header-tagline">
+        <em>Your Vision, Our Code.</em>
+      </div>
+    </div>
+    <div id="root"></div>
+  <script src="bundle.js"></script>
+  </header>
+
+  <!-- Sidebar Navigation (same as services page) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar-nav" id="sidebarNav">
+    <div class="sidebar-logo-circle">
+      <a href="index.html" aria-label="ShadEl Web Home">
+        <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img">
+        <span class="logo-text">ShadEl Web</span>
+      </a>
+    </div>
+    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar"><i class="fas fa-times"></i></button>
+    <nav>
+      <ul>
+        <li><a href="index.html" id="nav-home" class="active"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html" id="nav-about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="services.html" id="nav-services"><i class="fas fa-cogs"></i> Services</a></li>
+        
+        <li><a href="ai-blog-writer.html" id="nav-blog"><i class="fas fa-pen-fancy"></i> Blog Writer</a></li>
+        
+        <li><a href="portfolio.html" id="nav-portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <li><a href="contact.html" id="nav-contact"><i class="fas fa-phone"></i> Contact</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Professional Web Development<br>Since 2023</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </aside>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open sidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+  <!-- Hamburger Button (for opening sidebar) -->
+  <button class="nav-toggle-left" aria-label="Open sidebar" onclick="toggleSidebar()">
+    <span class="hamburger"></span>
+  </button>
+  <div class="nav-overlay" id="navOverlay" onclick="toggleSidebar()"></div>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="container">
+        <h2>Your Partner in Professional Website Development</h2>
+        <p>We create stunning, high-performance websites that help your business grow.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0; align-items: center;">
+          <a href="quote-estimator.html" class="hero-cta-btn" style="background: #10b981; border: 2px solid #10b981;">
+            <i class="fas fa-calculator" style="margin-right: 0.5rem;"></i>Get Instant Quote
+          </a>
+          <a href="#services" class="hero-cta-btn">See Our Services</a>
+        </div>
+        <div class="trust-row" style="justify-content: center; flex-wrap: wrap;">
+          <span><i class="fas fa-check"></i> Quality-Focused Development</span>
+          <span><i class="fas fa-award"></i> Professional & Clean Layouts</span>
+          <span><i class="fas fa-rocket"></i> Reliable Performance Focused</span>
+        </div>
+      </div>
+      <svg class="hero-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;position:absolute;bottom:0;left:0;">
+        <path fill="#cbe0ff" fill-opacity="1" d="M0,64L80,58.7C160,53,320,43,480,42.7C640,43,800,53,960,58.7C1120,64,1280,64,1360,64L1440,64L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"></path>
+      </svg>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-container">
+      <!-- Our Services (Improved Layout) -->
+      <section class="intro-services fade-in" id="services">
+        <div class="container">
+          <h2>Our Services</h2>
+          <p class="section-lead">A full suite of web solutions to help your business thrive online.</p>
+          <div class="service-grid">
+            <div class="service-card">
+              <i class="fas fa-laptop-code"></i>
+              <h3>Website Development</h3>
+              <p>Custom websites tailored to your business requirements, built for performance and scalability.</p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-paint-brush"></i>
+              <h3>Web Design</h3>
+              <p>Beautiful, user-friendly designs that engage your visitors and reflect your brand identity.</p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-search"></i>
+              <h3>SEO Services</h3>
+              <p>Optimize your website to rank higher in search engine results and attract more customers.</p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-headset"></i>
+              <h3>Support & Maintenance</h3>
+              <p>Ongoing support and updates to ensure your website runs smoothly and securely.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Free AI Apps Section -->
+      <section class="ai-apps-section fade-in" id="apps" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4rem 0; margin: 3rem 0; position: relative; overflow: hidden;">
+        <div class="container" style="position: relative; z-index: 2;">
+          <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="color: white; font-size: 2.8rem; margin-bottom: 1rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+              <i class="fas fa-magic" style="margin-right: 0.5rem; color: #ffd700;"></i>
+              Free AI-Powered Business Tools
+            </h2>
+            <p style="color: #e8e8ff; font-size: 1.3rem; max-width: 800px; margin: 0 auto; text-shadow: 0 1px 3px rgba(0,0,0,0.2);">
+              Experience the power of AI before you buy. Use these free tools and see the value we bring to your business.
+            </p>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+            
+            <!-- Logo Generator Tool -->
+            <div style="background: rgba(255,255,255,0.15); padding: 2rem; border-radius: 20px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'">
+              <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);">
+                  <i class="fas fa-palette" style="font-size: 1.8rem; color: white;"></i>
+                </div>
+                <h3 style="color: white; font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600;">Logo Generator</h3>
+                <p style="color: #e8e8ff; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                  Type your business name and let AI suggest professional logos instantly. Perfect for startups and rebranding.
+                </p>
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                  <p style="color: #ffd700; font-size: 0.9rem; margin: 0; font-style: italic;">
+                    "Just enter 'Green Garden Café' → Get 5 unique logo concepts in seconds!"
+                  </p>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <a href="ai-generator.html?tool=logo" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);">
+                  <i class="fas fa-magic" style="margin-right: 0.5rem;"></i>
+                  Try Logo Generator
+                </a>
+              </div>
+            </div>
+
+            <!-- Color Palette Tool -->
+            <div style="background: rgba(255,255,255,0.15); padding: 2rem; border-radius: 20px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'">
+              <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="background: linear-gradient(45deg, #9c88ff, #8c7ae6); width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 4px 15px rgba(140, 122, 230, 0.3);">
+                  <i class="fas fa-eye-dropper" style="font-size: 1.8rem; color: white;"></i>
+                </div>
+                <h3 style="color: white; font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600;">Color Palette Generator</h3>
+                <p style="color: #e8e8ff; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                  AI creates perfect brand color combinations based on your industry, mood, and preferences.
+                </p>
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                  <p style="color: #ffd700; font-size: 0.9rem; margin: 0; font-style: italic;">
+                    "Tech startup, modern, trustworthy" → Get harmonious color schemes with hex codes!"
+                  </p>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <a href="ai-generator.html?tool=colors" style="background: linear-gradient(45deg, #9c88ff, #8c7ae6); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; box-shadow: 0 4px 15px rgba(140, 122, 230, 0.3);">
+                  <i class="fas fa-palette" style="margin-right: 0.5rem;"></i>
+                  Generate Colors
+                </a>
+              </div>
+            </div>
+
+            <!-- Website Copywriter Tool -->
+            <div style="background: rgba(255,255,255,0.15); padding: 2rem; border-radius: 20px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'">
+              <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="background: linear-gradient(45deg, #20bf6b, #26d0ce); width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 4px 15px rgba(38, 208, 206, 0.3);">
+                  <i class="fas fa-pen-fancy" style="font-size: 1.8rem; color: white;"></i>
+                </div>
+                <h3 style="color: white; font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600;">Website Copywriter</h3>
+                <p style="color: #e8e8ff; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                  AI drafts compelling About pages, service descriptions, and marketing copy for your website.
+                </p>
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                  <p style="color: #ffd700; font-size: 0.9rem; margin: 0; font-style: italic;">
+                    "Describe your plumbing business" → Get professional About section + service descriptions!"
+                  </p>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <a href="ai-generator.html?tool=copy" style="background: linear-gradient(45deg, #20bf6b, #26d0ce); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; box-shadow: 0 4px 15px rgba(38, 208, 206, 0.3);">
+                  <i class="fas fa-edit" style="margin-right: 0.5rem;"></i>
+                  Generate Copy
+                </a>
+              </div>
+            </div>
+
+            <!-- SEO Meta Generator Tool -->
+            <div style="background: rgba(255,255,255,0.15); padding: 2rem; border-radius: 20px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'">
+              <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="background: linear-gradient(45deg, #fd79a8, #e84393); width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 4px 15px rgba(232, 67, 147, 0.3);">
+                  <i class="fas fa-search" style="font-size: 1.8rem; color: white;"></i>
+                </div>
+                <h3 style="color: white; font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600;">SEO Meta Generator</h3>
+                <p style="color: #e8e8ff; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                  Create optimized meta descriptions, titles, and keywords that help your site rank higher in Google.
+                </p>
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                  <p style="color: #ffd700; font-size: 0.9rem; margin: 0; font-style: italic;">
+                    "Yoga studio website" → Get SEO title, description & keywords optimized for search!"
+                  </p>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <a href="ai-generator.html?tool=seo" style="background: linear-gradient(45deg, #fd79a8, #e84393); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; box-shadow: 0 4px 15px rgba(232, 67, 147, 0.3);">
+                  <i class="fas fa-chart-line" style="margin-right: 0.5rem;"></i>
+                  Optimize SEO
+                </a>
+              </div>
+            </div>
+
+            <!-- Background Remover Tool -->
+            <div style="background: rgba(255,255,255,0.15); padding: 2rem; border-radius: 20px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'">
+              <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="background: linear-gradient(45deg, #f39c12, #e67e22); width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);">
+                  <i class="fas fa-cut" style="font-size: 1.8rem; color: white;"></i>
+                </div>
+                <h3 style="color: white; font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600;">Background Remover</h3>
+                <p style="color: #e8e8ff; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                  Upload any image and AI instantly removes the background. Perfect for product photos and portraits.
+                </p>
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                  <p style="color: #ffd700; font-size: 0.9rem; margin: 0; font-style: italic;">
+                    "Upload product photo → Get transparent PNG ready for your website!"
+                  </p>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <a href="ai-generator.html?tool=background" style="background: linear-gradient(45deg, #f39c12, #e67e22); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);">
+                  <i class="fas fa-image" style="margin-right: 0.5rem;"></i>
+                  Remove Background
+                </a>
+              </div>
+            </div>
+
+            <!-- Invoice Generator Tool -->
+            <div style="background: rgba(255,255,255,0.15); padding: 2rem; border-radius: 20px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'">
+              <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="background: linear-gradient(45deg, #10b981, #059669); width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
+                  <i class="fas fa-file-invoice-dollar" style="font-size: 1.8rem; color: white;"></i>
+                </div>
+                <h3 style="color: white; font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600;">Invoice Generator</h3>
+                <p style="color: #e8e8ff; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                  Create professional invoices with auto-calculations, PDF download, and payment links. Perfect for freelancers and small businesses.
+                </p>
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                  <p style="color: #ffd700; font-size: 0.9rem; margin: 0; font-style: italic;">
+                    "Add items & client info → Get branded invoice with PDF download & email!"
+                  </p>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <a href="invoice-generator.html" style="background: linear-gradient(45deg, #10b981, #059669); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
+                  <i class="fas fa-calculator" style="margin-right: 0.5rem;"></i>
+                  Create Invoice
+                </a>
+              </div>
+            </div>
+
+            <!-- All Tools Link -->
+            <div style="background: rgba(255,255,255,0.25); padding: 2rem; border-radius: 20px; backdrop-filter: blur(15px); border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'">
+              <div style="background: linear-gradient(45deg, #ffd700, #ffb347); width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);">
+                <i class="fas fa-rocket" style="font-size: 1.8rem; color: white;"></i>
+              </div>
+              <h3 style="color: white; font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600;">Try All Tools</h3>
+              <p style="color: #e8e8ff; font-size: 1rem; line-height: 1.6; margin-bottom: 2rem;">
+                Access our complete AI toolkit and experience the future of web design today.
+              </p>
+              <a href="ai-generator.html" style="background: linear-gradient(45deg, #ffd700, #ffb347); color: #333; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: 700; transition: all 0.3s; display: inline-flex; align-items: center; box-shadow: 0 4px 15px rgba(255, 179, 71, 0.4); font-size: 1.1rem;">
+                <i class="fas fa-tools" style="margin-right: 0.5rem;"></i>
+                Open AI Toolkit
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Value Proposition -->
+          <div style="text-align: center; margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px);">
+            <h3 style="color: #ffd700; font-size: 1.8rem; margin-bottom: 1rem;">Why Use Our Free Tools?</h3>
+            <p style="color: white; font-size: 1.1rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+              These tools give you a taste of our AI capabilities. See the quality and precision we bring to every project.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+              <div style="text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+                <h4 style="color: white; margin-bottom: 0.5rem;">Instant Results</h4>
+                <p style="color: #e8e8ff; font-size: 0.9rem;">No waiting, no setup required</p>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
+                <h4 style="color: white; margin-bottom: 0.5rem;">Professional Quality</h4>
+                <p style="color: #e8e8ff; font-size: 0.9rem;">Industry-standard results</p>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔥</div>
+                <h4 style="color: white; margin-bottom: 0.5rem;">Always Free</h4>
+                <p style="color: #e8e8ff; font-size: 0.9rem;">Use them unlimited times</p>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">💡</div>
+                <h4 style="color: white; margin-bottom: 0.5rem;">Preview Our Work</h4>
+                <p style="color: #e8e8ff; font-size: 0.9rem;">Experience our capabilities</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Animated background elements -->
+        <div style="position: absolute; top: 10%; left: 5%; width: 100px; height: 100px; background: rgba(255, 215, 0, 0.1); border-radius: 50%; animation: float 6s ease-in-out infinite;"></div>
+        <div style="position: absolute; top: 20%; right: 10%; width: 150px; height: 150px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; animation: float 8s ease-in-out infinite reverse;"></div>
+        <div style="position: absolute; bottom: 15%; left: 15%; width: 80px; height: 80px; background: rgba(255, 215, 0, 0.15); border-radius: 50%; animation: float 7s ease-in-out infinite;"></div>
+        <div style="position: absolute; bottom: 25%; right: 5%; width: 120px; height: 120px; background: rgba(255, 255, 255, 0.08); border-radius: 50%; animation: float 9s ease-in-out infinite reverse;"></div>
+      </section>
+
+      <!-- AI Web Design Preview Generator Feature -->
+      <section class="ai-feature-highlight fade-in" style="background: linear-gradient(135deg, var(--primary-dark), var(--primary)); padding: 4rem 0; margin: 3rem 0; position: relative; overflow: hidden;">
+        <div class="container" style="position: relative; z-index: 2;">
+          <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="color: var(--text-light); font-size: 2.5rem; margin-bottom: 1rem;">
+              <i class="fas fa-magic" style="margin-right: 0.5rem; color: var(--sidebar-accent);"></i>
+              NEW: AI Web Design Preview Generator
+            </h2>
+            <p style="color: var(--text); font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+              Describe your dream website in words and watch our AI create a professional mockup preview instantly!
+            </p>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1000px; margin: 0 auto;">
+            <div>
+              <h3 style="color: var(--sidebar-accent); font-size: 1.5rem; margin-bottom: 1rem;">
+                How It Works:
+              </h3>
+              <div style="margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <div style="background: var(--sidebar-accent); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; color: white; font-size: 0.9rem;">1</div>
+                  <span style="color: var(--text-light);">Describe your website needs in plain English</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <div style="background: var(--sidebar-accent); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; color: white; font-size: 0.9rem;">2</div>
+                  <span style="color: var(--text-light);">AI analyzes your requirements and suggests optimal design</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <div style="background: var(--sidebar-accent); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; color: white; font-size: 0.9rem;">3</div>
+                  <span style="color: var(--text-light);">View instant HTML mockup with your recommended features</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <div style="background: var(--sidebar-accent); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; color: white; font-size: 0.9rem;">4</div>
+                  <span style="color: var(--text-light);">Contact us to build your actual website!</span>
+                </div>
+              </div>
+            </div>
+            
+            <div style="text-align: center;">
+              <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px); margin-bottom: 2rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
+                <h4 style="color: var(--text-light); margin-bottom: 1rem;">See Your Vision Come to Life</h4>
+                <p style="color: var(--text); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                  "I need a bakery website with online ordering" → Beautiful bakery mockup in seconds!
+                </p>
+              </div>
+              
+              <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="ai-demo.html" target="_blank" style="background: var(--sidebar-accent); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); display: inline-flex; align-items: center;">
+                  <i class="fas fa-play" style="margin-right: 0.5rem;"></i>
+                  Try Demo Now
+                </a>
+                <a href="#ai-generator" style="background: transparent; color: var(--text-light); border: 2px solid var(--sidebar-accent); padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center;">
+                  <i class="fas fa-arrow-down" style="margin-right: 0.5rem;"></i>
+                  Use Full Version
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Animated background elements -->
+        <div style="position: absolute; top: 10%; left: 10%; width: 100px; height: 100px; background: rgba(56, 189, 248, 0.1); border-radius: 50%; animation: float 6s ease-in-out infinite;"></div>
+        <div style="position: absolute; bottom: 20%; right: 15%; width: 150px; height: 150px; background: rgba(56, 189, 248, 0.05); border-radius: 50%; animation: float 8s ease-in-out infinite reverse;"></div>
+      </section>
+
+      <!-- Smart Quote Estimator Feature -->
+      <section class="quote-feature-highlight fade-in" style="background: linear-gradient(135deg, #10b981, #059669); padding: 4rem 0; margin: 3rem 0; position: relative; overflow: hidden;">
+        <div class="container" style="position: relative; z-index: 2;">
+          <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;">
+              <i class="fas fa-calculator" style="margin-right: 0.5rem; color: #a7f3d0;"></i>
+              Smart Quote Estimator
+            </h2>
+            <p style="color: #d1fae5; font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+              Get an instant, AI-powered quote for your website project. No surprises, no hidden costs - just transparent pricing based on your exact needs.
+            </p>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1000px; margin: 0 auto;">
+            <div style="text-align: center;">
+              <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px); margin-bottom: 2rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">💰</div>
+                <h4 style="color: white; margin-bottom: 1rem;">Professional Estimates</h4>
+                <p style="color: #d1fae5; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                  "Business website with booking system" → Detailed cost breakdown with timeline in 30 seconds!
+                </p>
+              </div>
+              
+              <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="quote-estimator.html" style="background: white; color: #059669; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); display: inline-flex; align-items: center;">
+                  <i class="fas fa-calculator" style="margin-right: 0.5rem;"></i>
+                  Get My Quote
+                </a>
+                <a href="#quote-features" style="background: transparent; color: white; border: 2px solid white; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center;">
+                  <i class="fas fa-info-circle" style="margin-right: 0.5rem;"></i>
+                  Learn More
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="color: #a7f3d0; font-size: 1.5rem; margin-bottom: 1rem;">
+                What You Get:
+              </h3>
+              <div style="margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <div style="background: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; color: #059669; font-size: 0.9rem;">✓</div>
+                  <span style="color: white;">Detailed cost breakdown by feature</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <div style="background: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; color: #059669; font-size: 0.9rem;">✓</div>
+                  <span style="color: white;">Realistic project timeline with milestones</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <div style="background: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; color: #059669; font-size: 0.9rem;">✓</div>
+                  <span style="color: white;">Smart feature recommendations</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                  <div style="background: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; color: #059669; font-size: 0.9rem;">✓</div>
+                  <span style="color: white;">Free consultation booking</span>
+                </div>
+              </div>
+              
+              <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px; margin-top: 2rem;">
+                <h4 style="color: #a7f3d0; margin-bottom: 0.5rem; font-size: 1.1rem;">💡 Pro Tip:</h4>
+                <p style="color: #d1fae5; font-size: 0.9rem; margin: 0;">
+                  Be specific about your needs to get the most accurate estimate. Our AI considers industry standards, complexity factors, and current market rates.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Animated background elements -->
+        <div style="position: absolute; top: 15%; right: 10%; width: 80px; height: 80px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; animation: float 7s ease-in-out infinite;"></div>
+        <div style="position: absolute; bottom: 15%; left: 15%; width: 120px; height: 120px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; animation: float 9s ease-in-out infinite reverse;"></div>
+      </section>
+
+      <!-- Smart Quote Estimator Details Section -->
+      <section id="quote-features" class="quote-details fade-in" style="background: var(--surface); padding: 4rem 0; margin: 3rem 0; border-radius: 20px;">
+        <div class="container">
+          <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="color: var(--sidebar-accent); font-size: 2.3rem; margin-bottom: 1rem;">
+              How Our Smart Quote System Works
+            </h2>
+            <p style="color: var(--text); font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+              Our AI-powered estimator analyzes your project requirements and provides accurate, professional quotes in real-time.
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+            <div style="background: var(--surface-alt); padding: 2rem; border-radius: 15px; border: 1px solid var(--border); text-align: center;">
+              <div style="background: #10b981; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h3 style="color: var(--text-light); margin-bottom: 1rem;">AI-Powered Analysis</h3>
+              <p style="color: var(--text); line-height: 1.6;">
+                Our advanced AI analyzes your project description, identifies required features, and calculates costs based on industry standards and current market rates.
+              </p>
+            </div>
+
+            <div style="background: var(--surface-alt); padding: 2rem; border-radius: 15px; border: 1px solid var(--border); text-align: center;">
+              <div style="background: #10b981; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3 style="color: var(--text-light); margin-bottom: 1rem;">Real-Time Pricing</h3>
+              <p style="color: var(--text); line-height: 1.6;">
+                Get instant, accurate quotes with detailed breakdowns. No waiting, no back-and-forth emails - just transparent pricing in 30 seconds.
+              </p>
+            </div>
+
+            <div style="background: var(--surface-alt); padding: 2rem; border-radius: 15px; border: 1px solid var(--border); text-align: center;">
+              <div style="background: #10b981; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <h3 style="color: var(--text-light); margin-bottom: 1rem;">No Obligation</h3>
+              <p style="color: var(--text); line-height: 1.6;">
+                Explore different options and features without any commitment. Save quotes, compare packages, and make informed decisions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Sample Quote Process -->
+          <div style="background: linear-gradient(135deg, var(--primary-dark), var(--primary)); padding: 3rem; border-radius: 20px; margin: 3rem 0;">
+            <h3 style="color: white; text-align: center; font-size: 1.8rem; margin-bottom: 2rem;">
+              Sample Quote Process
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+              <div style="text-align: center; color: white;">
+                <div style="background: rgba(255,255,255,0.2); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.2rem; font-weight: bold;">1</div>
+                <h4 style="margin-bottom: 0.5rem;">Describe Your Project</h4>
+                <p style="font-size: 0.9rem; opacity: 0.9;">"Restaurant website with online ordering"</p>
+              </div>
+              <div style="text-align: center; color: white;">
+                <div style="background: rgba(255,255,255,0.2); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.2rem; font-weight: bold;">2</div>
+                <h4 style="margin-bottom: 0.5rem;">AI Analyzes Features</h4>
+                <p style="font-size: 0.9rem; opacity: 0.9;">Menu display, ordering system, payment gateway</p>
+              </div>
+              <div style="text-align: center; color: white;">
+                <div style="background: rgba(255,255,255,0.2); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.2rem; font-weight: bold;">3</div>
+                <h4 style="margin-bottom: 0.5rem;">Get Detailed Quote</h4>
+                <p style="font-size: 0.9rem; opacity: 0.9;">R2,999 total with 3-week timeline</p>
+              </div>
+              <div style="text-align: center; color: white;">
+                <div style="background: rgba(255,255,255,0.2); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.2rem; font-weight: bold;">4</div>
+                <h4 style="margin-bottom: 0.5rem;">Book Consultation</h4>
+                <p style="font-size: 0.9rem; opacity: 0.9;">Free strategy call to refine details</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Section -->
+          <div style="margin-top: 3rem;">
+            <h3 style="color: var(--sidebar-accent); text-align: center; font-size: 1.8rem; margin-bottom: 2rem;">
+              Frequently Asked Questions
+            </h3>
+            <div style="display: grid; gap: 1rem; max-width: 800px; margin: 0 auto;">
+              <div class="faq-item" style="background: var(--surface-alt); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #10b981;">
+                <h4 style="color: var(--text-light); margin-bottom: 0.5rem;">How accurate are the quotes?</h4>
+                <p style="color: var(--text); font-size: 0.95rem;">Our AI-powered system provides 90%+ accuracy by analyzing thousands of similar projects and current market rates.</p>
+              </div>
+              <div class="faq-item" style="background: var(--surface-alt); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #10b981;">
+                <h4 style="color: var(--text-light); margin-bottom: 0.5rem;">Can I modify the quote later?</h4>
+                <p style="color: var(--text); font-size: 0.95rem;">Absolutely! You can run multiple quotes with different features and save them for comparison.</p>
+              </div>
+              <div class="faq-item" style="background: var(--surface-alt); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #10b981;">
+                <h4 style="color: var(--text-light); margin-bottom: 0.5rem;">What happens after I get a quote?</h4>
+                <p style="color: var(--text); font-size: 0.95rem;">You can book a free consultation to discuss details, or start your project immediately if you're ready.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 3rem;">
+            <a href="quote-estimator.html" style="background: #10b981; color: white; padding: 18px 35px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1.1rem; display: inline-flex; align-items: center; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); transition: all 0.3s;">
+              <i class="fas fa-calculator" style="margin-right: 0.8rem;"></i>
+              Try the Smart Quote Estimator
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Call to Action -->
+      <div class="cta-final fade-in">
+        <div class="container">
+          <h2>Ready to Start Your Project?</h2>
+          <p>Contact us today and let's discuss your requirements.</p>
+          <a href="contact.html" class="btn">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <label>Subscribe to our Newsletter</label>
+      <form action="#" class="newsletter-form">
+        <div class="newsletter-inputs">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </div>
+      </form>
+      <div class="social-links">
+        <a href="https://www.facebook.com/ash.gray.94214/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/shadel.dev" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://m.me/shadel.dev" target="_blank" aria-label="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="https://github.com/dashboard" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/shadrac-bonzali-885543163/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <p>&copy; 2023 ShadEl Web. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts (safe, accessible, dynamic active link) -->
+  <script>
+    // Sidebar open/close helpers
+    function openSidebar() {
+      document.body.classList.add('sidebar-open');
+      document.getElementById('sideNavLeft').classList.add('open');
+      document.getElementById('sideNavLeft').focus();
+    }
+    function closeSidebar() {
+      document.body.classList.remove('sidebar-open');
+      document.getElementById('sideNavLeft').classList.remove('open');
+    }
+
+    // Sidebar toggle logic
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebarNav');
+  const overlay = document.getElementById('sidebarOverlay');
+  const isOpen = sidebar.classList.contains('open');
+  
+  if (isOpen) {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  } else {
+    sidebar.classList.add('open');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// Close sidebar on outside click or overlay click
+document.addEventListener('click', function(e) {
+  const sidebar = document.getElementById('sidebarNav');
+  const toggleBtn = document.querySelector('.sidebar-toggle');
+  const overlay = document.getElementById('sidebarOverlay');
+  
+  if (sidebar.classList.contains('open') && 
+      !sidebar.contains(e.target) && 
+      !toggleBtn.contains(e.target)) {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Close sidebar on escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const sidebar = document.getElementById('sidebarNav');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar.classList.contains('open')) {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+});
+
+    // Theme switcher (persistent across pages)
+    const themeSwitch = document.getElementById('themeSwitch');
+    // Apply saved theme on load
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      if (themeSwitch) themeSwitch.checked = true;
+    }
+    if (themeSwitch) {
+      themeSwitch.addEventListener('change', () => {
+        if (themeSwitch.checked) {
+          document.body.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.body.classList.remove('dark-mode');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    }
+
+    // Dynamic active link for sidebar and header nav
+    function setActiveLinks() {
+      const path = window.location.pathname.split('/').pop();
+      document.querySelectorAll('.side-nav-left ul li a, header nav ul li a').forEach(link => {
+        if (link.getAttribute('href') === path || (path === '' && link.getAttribute('href') === 'index.html')) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+    setActiveLinks();
+
+    // Accessibility: trap focus in sidebar when open
+    document.addEventListener('keydown', function(e) {
+      if (document.body.classList.contains('sidebar-open')) {
+        const sidebar = document.getElementById('sideNavLeft');
+        const focusable = sidebar.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              last.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === last) {
+              first.focus();
+              e.preventDefault();
+            }
+          }
+        }
+        if (e.key === 'Escape') {
+          closeSidebar();
+        }
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+  const faders = document.querySelectorAll('.fade-in');
+  const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -40px 0px" };
+  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+  faders.forEach(fader => appearOnScroll.observe(fader));
+});
+
+    // Chatbot logic
+    function toggleChatbot() {
+      const win = document.getElementById('chatbotWindow');
+      win.classList.toggle('open');
+      if (win.classList.contains('open')) {
+        setTimeout(() => document.getElementById('chatbotInput').focus(), 200);
+      }
+    }
+    function sendChat(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatbotInput');
+      const body = document.getElementById('chatbotBody');
+      const msg = input.value.trim();
+      if (!msg) return;
+      // Add user message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'chatbot-msg user';
+      userDiv.textContent = msg;
+      body.appendChild(userDiv);
+      input.value = '';
+      body.scrollTop = body.scrollHeight;
+      // Simulate bot reply
+      setTimeout(() => {
+        const botDiv = document.createElement('div');
+        botDiv.className = 'chatbot-msg bot';
+        const avatar = document.createElement('span');
+        avatar.className = 'chatbot-avatar';
+        // Custom animated icon for bot
+        avatar.innerHTML = '<i class="fas fa-robot fa-spin"></i>';
+        botDiv.appendChild(avatar);
+        const reply = document.createElement('span');
+        reply.innerHTML = getBotReplyWithIcon(msg);
+        botDiv.appendChild(reply);
+        body.appendChild(botDiv);
+        body.scrollTop = body.scrollHeight;
+      }, 700);
+    }
+
+    // Enhanced ShadEl chatbot responses
+    function getBotReplyWithIcon(msg) {
+      msg = msg.toLowerCase();
+      
+      // Pricing related questions
+      if (msg.includes('price') || msg.includes('cost') || msg.includes('package')) {
+        return '<i class="fas fa-tags"></i> Great news! Our super affordable packages start from just <strong>R599</strong> (limited time). Regular pricing: <strong>Static R799-R1,899</strong>, <strong>E-commerce R1,999-R4,499</strong>, <strong>Maintenance R59-R199/month</strong>. Plus amazing discounts available!';
+      }
+      
+      // Static website questions
+      if (msg.includes('static') || msg.includes('basic website')) {
+        return '<i class="fas fa-globe"></i> Our Static Website packages are super affordable: <strong>Starter R799</strong> (3 pages), <strong>Business R1,299</strong> (5 pages), <strong>Professional R1,899</strong> (10 pages). Perfect for small businesses and landing pages!';
+      }
+      
+      // E-commerce questions
+      if (msg.includes('ecommerce') || msg.includes('online store') || msg.includes('shop')) {
+        return '<i class="fas fa-shopping-cart"></i> E-commerce made affordable! <strong>Starter Store R1,999</strong> (10 products), <strong>Business Store R2,999</strong> (50 products), <strong>Enterprise R4,499</strong> (unlimited). Includes PayFast, inventory management, and training!';
+      }
+      
+      // Portfolio questions
+      if (msg.includes('portfolio') || msg.includes('showcase')) {
+        return '<i class="fas fa-briefcase"></i> Showcase your work affordably! <strong>Creative R999</strong> (5 projects), <strong>Professional R1,599</strong> (15 projects), <strong>Studio R2,299</strong> (unlimited). Perfect for artists, photographers, and creatives!';
+      }
+      
+      // Maintenance questions
+      if (msg.includes('maintenance') || msg.includes('support') || msg.includes('update')) {
+        return '<i class="fas fa-shield-alt"></i> Super affordable maintenance! <strong>Essential Care R59/month</strong> (security & backups), <strong>Professional Care R129/month</strong> (includes content updates), <strong>Enterprise Care R199/month</strong> (unlimited updates). Cancel anytime!';
+      }
+      
+      // Discount questions
+      if (msg.includes('discount') || msg.includes('special') || msg.includes('offer')) {
+        return '<i class="fas fa-percentage"></i> Amazing savings available! <strong>Nonprofits 50% OFF</strong>, <strong>Students 35% OFF</strong>, <strong>Bundle deals 30% OFF</strong>, <strong>Referrals R400 cash</strong>. Limited time: ANY website for just <strong>R599</strong>!';
+      }
+      
+      // Technology questions
+      if (msg.includes('technology') || msg.includes('tech') || msg.includes('how')) {
+        return '<i class="fas fa-code"></i> We use modern technologies: HTML5, CSS3, JavaScript, responsive frameworks, SSL encryption, SEO optimization, and integrate with payment gateways like PayFast and Stripe - all included in our affordable packages!';
+      }
+      
+      // Timeline questions
+      if (msg.includes('time') || msg.includes('how long') || msg.includes('delivery')) {
+        return '<i class="fas fa-clock"></i> Quick delivery at affordable prices! Simple sites: 1 week, E-commerce: 2-3 weeks, Complex projects: 3-4 weeks. We keep you updated throughout and deliver on time or give you 10% off!';
+      }
+      
+      // Contact questions
+      if (msg.includes('contact') || msg.includes('reach') || msg.includes('call')) {
+        return '<i class="fas fa-envelope"></i> Ready to get your affordable website? Contact us via the Contact page, WhatsApp, or right here! We respond quickly with custom quotes and can start your project today!';
+      }
+      
+      // Greeting responses
+      if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+        return '<i class="fas fa-hand-peace"></i> Hello! I\'m ShadEl, and I\'m excited to help you get an amazing website at an unbeatable price! Starting from just R599 this month. What type of website do you need?';
+      }
+      
+      // Custom solutions
+      if (msg.includes('custom') || msg.includes('special') || msg.includes('unique')) {
+        return '<i class="fas fa-cogs"></i> Custom solutions at affordable prices! Whether it\'s unique design, special functionality, or industry-specific features, we can build it without breaking the bank. Contact us for a personalized quote!';
+      }
+      
+      // Mobile/responsive questions
+      if (msg.includes('mobile') || msg.includes('responsive') || msg.includes('phone')) {
+        return '<i class="fas fa-mobile-alt"></i> All our affordable websites are fully responsive and mobile-friendly! They look perfect on smartphones, tablets, and desktops. Mobile optimization is included in every package at no extra cost!';
+      }
+      
+      // Payment questions
+      if (msg.includes('payment') || msg.includes('pay') || msg.includes('installment')) {
+        return '<i class="fas fa-credit-card"></i> Flexible payments make it easy! Pay 50/50, 3 monthly installments, or get 5% off for full payment upfront. We accept EFT, cards, PayFast, PayPal. Business accounts get 30-day terms!';
+      }
+      
+      // SEO questions
+      if (msg.includes('seo') || msg.includes('google') || msg.includes('search')) {
+        return '<i class="fas fa-search"></i> SEO included at no extra cost! Basic SEO in static sites, advanced SEO in portfolios, full optimization in e-commerce. Our maintenance plans include ongoing SEO monitoring and improvements!';
+      }
+      
+      // Hosting questions
+      if (msg.includes('hosting') || msg.includes('domain')) {
+        return '<i class="fas fa-server"></i> We help with affordable hosting solutions! Domain registration assistance included, some packages come with free hosting for 3 months. Our maintenance plans can include hosting management too!';
+      }
+      
+      // Default helpful response
+      return '<i class="fas fa-info-circle"></i> I\'m here to help you get an amazing website at an unbeatable price! Our packages start from just R599 (limited time). Ask me about our Static, Portfolio, E-commerce, Community, or Maintenance plans. What interests you most?';
+    }
+  </script>
+
+  <!-- Floating Chatbot -->
+  <div id="chatbot-widget">
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <span><i class="fas fa-robot"></i> ShadEl - Your Web Dev Assistant</span>
+        <button onclick="toggleChatbot()" aria-label="Close chat">×</button>
+      </div>
+      <div class="chatbot-body" id="chatbotBody">
+        <div class="chatbot-msg bot">
+          <i class="fas fa-wave-square"></i> Hi! I'm ShadEl, your web development assistant. I'm here to help with any questions about our services, packages, or pricing!
+        </div>
+      </div>
+      <form class="chatbot-form" onsubmit="sendChat(event)">
+        <input type="text" id="chatbotInput" placeholder="Describe your website vision or ask about our services..." required>
+        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+    <button class="chatbot-btn" onclick="toggleChatbot()" aria-label="Open chat support">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+  </div>
+
+  <!-- AI Web Design Preview Generator Script -->
+  <script src="ai-generator.js"></script>
+  
+  <!-- Dynamic Homepage Adaptation Script -->
+  <script src="js/dynamic-homepage.js"></script>
+  
+  <!-- Visitor Analytics Script -->
+  <script src="js/visitor-analytics.js"></script>
+</body>
+
+</html></html>

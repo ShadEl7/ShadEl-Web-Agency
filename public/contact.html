@@ -1,0 +1,1980 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - ShadEl Web</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- Color palette, fonts, and back-to-top button styles -->
+<style>
+  html, body, input, button, textarea, select {
+    font-family: 'Times New Roman', Times, serif !important;
+  }
+  :root {
+    --primary: #1e293b;
+    --primary-dark: #0f172a;
+    --primary-light: #334155;
+    --sidebar-bg: linear-gradient(135deg, #0f172a 60%, #1e293b 100%);
+    --sidebar-accent: #38bdf8;
+    --bg: #181a20;
+    --surface: #23263a;
+    --surface-alt: #222436;
+    --text: #e5e7eb;
+    --highlight: #38bdf8;
+  }
+  .main-header {
+    background: var(--primary-dark);
+    color: var(--text);
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+    border-bottom: 2px solid var(--primary-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: 48px;
+  }
+  .main-header .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    padding: 0 10px;
+  }
+  
+  /* Client Portal Button in Header */
+  .header-client-portal {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+  
+  .header-client-portal:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    color: white;
+  }
+  
+  .header-client-portal i {
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive adjustments for Client Portal button */
+  @media (max-width: 768px) {
+    .header-client-portal {
+      padding: 5px 8px;
+      font-size: 0.75rem;
+      gap: 0.3rem;
+    }
+    .header-client-portal i {
+      font-size: 0.75rem;
+    }
+    .main-header h1 a, .main-header h1 {
+      font-size: 1.3rem;
+    }
+  }
+  .main-header h1 a, .main-header h1 {
+    color: var(--sidebar-accent);
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px #38bdf855;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  /* Enhanced Sidebar Navigation with Logo in Circle */
+  .sidebar-nav {
+    position: fixed;
+    top: 0; left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #fff;
+    box-shadow: 4px 0 32px rgba(15, 23, 42, 0.4);
+    z-index: 1003;
+    transition: left 0.4s cubic-bezier(.7,.3,.3,1);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(56, 189, 248, 0.2);
+  }
+  .sidebar-nav.open { 
+    left: 0; 
+    animation: slideInLeft 0.4s ease-out;
+  }
+  
+  @keyframes slideInLeft {
+    from { 
+      left: -280px; 
+      opacity: 0; 
+    }
+    to { 
+      left: 0; 
+      opacity: 1; 
+    }
+  }
+  
+  .sidebar-logo-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    padding: 0 1.5rem;
+    position: relative;
+    animation: fadeInDown 0.6s ease-out 0.2s both;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .logo-text {
+    font-size: 1.35rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-logo-circle a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-logo-circle a:hover {
+    transform: translateY(-2px);
+  }
+  
+  .sidebar-logo-img {
+    width: 60px;
+    height: 60px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--sidebar-accent);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .sidebar-logo-img:hover {
+    transform: scale(1.1);
+    border-color: #06b6d4;
+  }
+  
+  .sidebar-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 50%;
+    color: var(--sidebar-accent);
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-close:hover {
+    background: var(--sidebar-accent);
+    color: #0f172a;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-nav nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .sidebar-nav nav ul li {
+    margin: 0.8rem 0;
+    opacity: 0;
+    animation: slideInRight 0.4s ease-out forwards;
+  }
+  
+  .sidebar-nav nav ul li:nth-child(1) { animation-delay: 0.1s; }
+  .sidebar-nav nav ul li:nth-child(2) { animation-delay: 0.2s; }
+  .sidebar-nav nav ul li:nth-child(3) { animation-delay: 0.3s; }
+  .sidebar-nav nav ul li:nth-child(4) { animation-delay: 0.4s; }
+  .sidebar-nav nav ul li:nth-child(5) { animation-delay: 0.5s; }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .sidebar-nav nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sidebar-nav nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .sidebar-nav nav ul li a:hover::before {
+    left: 100%;
+  }
+  
+  .sidebar-nav nav ul li a i {
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  .sidebar-nav nav ul li a:hover,
+  .sidebar-nav nav ul li a.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(6, 182, 212, 0.1));
+    border-left: 4px solid var(--sidebar-accent);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    transform: translateX(5px);
+  }
+  
+  .sidebar-nav nav ul li a:hover i,
+  .sidebar-nav nav ul li a.active i {
+    color: var(--sidebar-accent);
+    transform: scale(1.1);
+  }
+  
+  .sidebar-nav nav ul li a.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(6, 182, 212, 0.2));
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    top: 28px;
+    left: 28px;
+    z-index: 1002;
+    background: linear-gradient(135deg, var(--sidebar-accent), #06b6d4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: pulseGlow 2s infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+      transform: scale(1.05);
+    }
+  }
+  
+  .sidebar-toggle:hover { 
+    background: linear-gradient(135deg, #06b6d4, var(--primary));
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.5);
+    animation: none;
+  }
+  
+  .sidebar-toggle i {
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-toggle:hover i {
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 600px) {
+    .sidebar-nav { width: 90vw; }
+    .sidebar-toggle { left: 12px; top: 12px; }
+  }
+
+  /* Add a subtle background pattern */
+  .sidebar-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Add a bottom section with social links or additional info */
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(56, 189, 248, 0.2);
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.8s both;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .sidebar-footer p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .sidebar-footer .social-links {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .sidebar-footer .social-links a {
+    color: #64748b;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 0.4rem;
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.1);
+  }
+  
+  .sidebar-footer .social-links a:hover {
+    color: var(--sidebar-accent);
+    background: rgba(56, 189, 248, 0.2);
+    transform: translateY(-2px) scale(1.1);
+  }
+
+  /* Add overlay when sidebar is open */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .main-header {
+    background: var(--primary-dark);
+    color: var(--text);
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+    border-bottom: 2px solid var(--primary-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: 48px;
+  }
+  .main-header .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 10px;
+  }
+  .main-header h1 a, .main-header h1 {
+    color: var(--sidebar-accent);
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px #38bdf855;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: var(--text-light);
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  .hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+  }
+  .hero p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text);
+  }
+
+  /* Contact Section */
+  .contact-section {
+    padding: 3rem 0;
+  }
+  .contact-form {
+    background: var(--surface);
+    color: var(--text);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1.5px solid var(--primary-light);
+  }
+  .contact-form h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+  }
+  .form-group label {
+    color: var(--text-light);
+    font-weight: bold;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--surface-alt);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    padding: 0.75rem;
+  }
+  .form-group textarea {
+    resize: vertical;
+    height: 120px;
+  }
+  .form-group button {
+    background: linear-gradient(90deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+    color: #fff;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .form-group button:hover {
+    background: linear-gradient(90deg, var(--primary-dark) 0%, var(--sidebar-accent) 100%);
+    color: #fff;
+  }
+
+  /* Enhanced Review Section Styles */
+  .review-submit-btn {
+    position: relative;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    background-size: 300% 300%;
+    color: #fff !important;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(56, 189, 248, 0.3);
+    animation: gradientShift 4s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .review-submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+  }
+
+  .review-submit-btn:hover::before {
+    left: 100%;
+  }
+
+  .review-submit-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 40px rgba(56, 189, 248, 0.5);
+    letter-spacing: 2px;
+  }
+
+  .review-submit-btn:active {
+    transform: translateY(-1px) scale(1.02);
+    transition: all 0.1s;
+  }
+
+  .review-submit-btn .btn-text {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .review-submit-btn .btn-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .review-submit-btn:hover .btn-icon {
+    transform: translateX(5px) rotate(20deg);
+  }
+
+  /* Enhanced Review Form Container */
+  .review-form-container {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .review-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #38bdf8, #06b6d4, #0891b2, #38bdf8);
+    background-size: 300% 300%;
+    animation: borderGlow 3s ease infinite;
+    border-radius: 20px;
+    z-index: -1;
+    margin: -2px;
+  }
+
+  @keyframes borderGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .review-form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(56, 189, 248, 0.2);
+  }
+
+  /* Enhanced Star Rating */
+  .star-rating-container {
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 15px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+
+  .star-rating {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .star {
+    font-size: 2rem;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .star:hover,
+  .star.active {
+    color: #ffd700;
+    transform: scale(1.2) rotate(15deg);
+    text-shadow: 0 0 15px #ffd700;
+  }
+
+  .star:hover::after,
+  .star.active::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 0.8rem;
+    animation: sparkle 0.6s ease;
+  }
+
+  @keyframes sparkle {
+    0% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+    100% { opacity: 0; transform: scale(0) rotate(360deg); }
+  }
+
+  /* Enhanced Input Fields with Animated Borders */
+  .input-field-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .input-field-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+      #38bdf8, 
+      #06b6d4, 
+      #0891b2, 
+      #38bdf8);
+    background-size: 300% 300%;
+    border-radius: 16px;
+    z-index: -1;
+    padding: 3px;
+    animation: borderGradient 3s ease infinite;
+    transition: all 0.3s ease;
+  }
+
+  .input-field-wrapper:hover::before {
+    animation-duration: 1.5s;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  }
+
+  .input-field-wrapper:focus-within::before {
+    animation-duration: 1s;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+    transform: scale(1.02);
+  }
+
+  @keyframes borderGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .review-input-enhanced {
+    background: rgba(15, 23, 42, 0.98) !important;
+    border: none !important;
+    border-radius: 13px !important;
+    padding: 1.2rem 1.5rem !important;
+    color: #fff !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    width: 100% !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    z-index: 1 !important;
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 0, 0, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .review-input-enhanced:focus {
+    transform: translateY(-1px) !important;
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 0, 0, 0.1),
+      0 4px 20px rgba(56, 189, 248, 0.15) !important;
+    outline: none !important;
+    background: rgba(15, 23, 42, 1) !important;
+  }
+
+  .review-input-enhanced::placeholder {
+    color: rgba(229, 231, 235, 0.5) !important;
+    font-style: italic !important;
+    transition: color 0.3s ease !important;
+  }
+
+  .review-input-enhanced:focus::placeholder {
+    color: rgba(229, 231, 235, 0.7) !important;
+  }
+
+  /* Enhanced Label Styling */
+  .review-label-enhanced {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 1rem !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+    text-shadow: 0 2px 8px rgba(56, 189, 248, 0.3) !important;
+    padding: 0.5rem 0.8rem !important;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(6, 182, 212, 0.15)) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .review-label-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .review-label-enhanced:hover::before {
+    left: 100%;
+  }
+
+  .review-label-enhanced:hover {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(6, 182, 212, 0.25)) !important;
+    border-color: rgba(56, 189, 248, 0.5) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2) !important;
+  }
+
+  .review-label-enhanced i {
+    font-size: 1.1rem !important;
+    color: var(--sidebar-accent) !important;
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.5)) !important;
+  }
+
+  /* Success Animation */
+  .review-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInSuccess 0.5s ease forwards;
+  }
+
+  @keyframes slideInSuccess {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Pulse animation for header icons */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  /* Slide in animation for testimonial cards */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Calendly Widget */
+  .calendly-inline-widget {
+    background: var(--surface);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: 1.5px solid var(--primary-light);
+  }
+
+  /* Enhanced Footer */
+  footer {
+    background-color: #111827;
+    border-top: 1.5px solid #22304a;
+    border-radius: 0 0 12px 12px;
+    margin-top: 40px;
+    padding: 16px 10px 10px 10px;
+    text-align: center;
+  }
+
+  .footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .footer-container label {
+    color: #ddd;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .newsletter-form {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .newsletter-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .newsletter-form input[type="email"] {
+    padding: 10px 16px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    flex: 1 1 250px;
+    min-width: 200px;
+    background: var(--surface-alt);
+    color: var(--text);
+  }
+
+  .newsletter-form button {
+    padding: 10px 24px;
+    font-size: 1rem;
+    border-radius: 50px;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .newsletter-form button:hover {
+    background-color: var(--primary-dark);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 14px;
+  }
+
+  .social-links a {
+    color: #ccc;
+    font-size: 1.2rem;
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  .social-links a:hover {
+    color: var(--primary-light);
+    transform: scale(1.2);
+  }
+
+  .footer-container p {
+    color: #ccc;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .newsletter-inputs {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .newsletter-form input[type="email"],
+    .newsletter-form button {
+      width: 100%;
+      max-width: 350px;
+    }
+  }
+
+/* Enhanced Chatbot Styles */
+#chatbot-widget {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1002;
+  font-family: 'Times New Roman', Times, serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chatbot-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--sidebar-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #38bdf822;
+  font-size: 2rem;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot-btn:hover { 
+  background: var(--primary); 
+}
+
+.chatbot-window {
+  display: none;
+  flex-direction: column;
+  width: 320px;
+  max-width: 95vw;
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px #0005;
+  margin-bottom: 12px;
+  overflow: hidden;
+  animation: fadeIn 0.3s;
+}
+
+.chatbot-window.open { 
+  display: flex; 
+}
+
+.chatbot-header {
+  background: var(--sidebar-accent);
+  color: #fff;
+  padding: 0.8em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.08rem;
+}
+
+.chatbot-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.chatbot-body {
+  padding: 1em;
+  min-height: 80px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--surface-alt);
+  font-size: 0.98rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.chatbot-msg {
+  padding: 0.6em 1em;
+  border-radius: 12px;
+  margin-bottom: 0.2em;
+  max-width: 85%;
+  word-break: break-word;
+}
+
+.chatbot-msg.user {
+  background: var(--sidebar-accent);
+  color: white;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chatbot-msg.bot {
+  background: #38bdf822;
+  color: var(--sidebar-accent);
+  align-self: flex-start;
+  animation: bounceIn 0.5s;
+}
+
+.chatbot-form {
+  padding: 0.8em;
+  display: flex;
+  gap: 0.5em;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.chatbot-form input {
+  flex: 1;
+  padding: 0.6em;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  color: var(--text);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.95rem;
+}
+
+.chatbot-form button {
+  padding: 0.6em 1em;
+  background: var(--sidebar-accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chatbot-form button:hover {
+  background: var(--primary);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  #chatbot-widget { right: 10px; bottom: 10px; }
+  .chatbot-window {
+    width: 280px;
+    max-height: 350px;
+  }
+}
+
+  /* Testimonials Section */
+  .contact-testimonials {
+    margin: 3rem 0 2rem 0;
+  }
+  .contact-testimonials h2 {
+    color: var(--sidebar-accent);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 0 2px 12px #0008;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 900px;
+  }
+  .testimonial-card {
+    background: linear-gradient(135deg, rgba(35, 38, 58, 0.9), rgba(30, 41, 59, 0.95));
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(56, 189, 248, 0.15);
+    padding: 2rem 1.5rem;
+    color: #e0e6ed;
+    font-size: 1.1rem;
+    text-align: left;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(56, 189, 248, 0.3), rgba(6, 182, 212, 0.3));
+    border-radius: 20px;
+    z-index: -1;
+    margin: -2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .testimonial-card:hover::before {
+    opacity: 1;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(56, 189, 248, 0.3);
+  }
+
+  .testimonial-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+  }
+
+  .testimonial-card .reviewer-name {
+    font-weight: 700;
+    color: var(--sidebar-accent);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .testimonial-card .review-date {
+    font-size: 0.9rem;
+    color: rgba(229, 231, 235, 0.7);
+    font-style: italic;
+  }
+
+  .testimonial-card .star-display {
+    font-size: 1.3rem;
+    color: #ffd700;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-card .review-text {
+    line-height: 1.6;
+    color: #e0e6ed;
+    font-style: italic;
+    position: relative;
+  }
+
+  .testimonial-card .review-text::before {
+    content: '"';
+    font-size: 3rem;
+    color: rgba(56, 189, 248, 0.3);
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    font-family: serif;
+  }
+
+  .testimonial-card .review-text::after {
+    content: '"';
+    font-size: 3rem;
+    color: rgba(56, 189, 248, 0.3);
+    position: absolute;
+    bottom: -20px;
+    right: -5px;
+    font-family: serif;
+  }
+
+  /* Remove default header styles and light backgrounds */
+  .contact-form,
+  .calendly-inline-widget {
+    background: none;
+  }
+
+  @media (max-width: 600px) {
+  .container,
+  .contact-section {
+    width: 98%;
+    padding: 0 1vw;
+  }
+  .contact-form {
+    padding: 1rem;
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <h1>
+        <a href="index.html" aria-label="ShadEl Web Home">
+          <i class="fas fa-code" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+          ShadEl Web
+        </a>
+      </h1>
+      <a href="client-login.html" class="header-client-portal">
+        <i class="fas fa-user-shield"></i>
+        Client Portal
+      </a>
+    </div>
+  </header>
+  
+  <!-- Enhanced Sidebar Navigation -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  <aside class="sidebar-nav" id="sidebarNav">
+    <div class="sidebar-logo-circle">
+      <a href="index.html" aria-label="ShadEl Web Home">
+        <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img">
+        <span class="logo-text">ShadEl Web</span>
+      </a>
+    </div>
+    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar">
+      <i class="fas fa-times"></i>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html" id="nav-about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="services.html" id="nav-services"><i class="fas fa-cogs"></i> Services</a></li>
+        <li><a href="portfolio.html" id="nav-portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <li><a href="quote-estimator.html" id="nav-quote"><i class="fas fa-calculator"></i> Smart Quote</a></li>
+        <li><a href="contact.html" id="nav-contact" class="active"><i class="fas fa-phone"></i> Contact</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Enhanced Sidebar Footer with Social Links -->
+    <div class="sidebar-footer">
+      <p>Professional Web Development Since 2023</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/shadel" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://instagram.com/shadeldev" target="_blank" aria-label="Instagram" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com/shadeldev" target="_blank" aria-label="GitHub" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://facebook.com/shadeldev" target="_blank" aria-label="Facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://m.me/shadeldev" target="_blank" aria-label="Messenger" title="Messenger">
+          <i class="fab fa-facebook-messenger"></i>
+        </a>
+      </div>
+    </div>
+  </aside>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open sidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <main role="main">
+  <section class="hero">
+    <h2>Contact Us</h2>
+    <p>We'd love to hear about your project. Fill out the form below and let's get started.</p>
+    <div class="contact-direct-box" style="background: #f1f5f9; border-radius: 12px; box-shadow: 0 2px 8px #38bdf822; border-left: none; border-top: 4px solid #38bdf8; padding: 1.5em 2em; margin: 2em auto 1.5em; max-width: 420px; color: #1e293b; text-align: center;">
+      <div style="font-size: 1.15em; font-weight: 600; margin-bottom: 0.5em; letter-spacing: 1px; color: #0f172a;">
+        <i class="fas fa-user-circle" style="color:#38bdf8; margin-right:6px;"></i> Contact Directly
+      </div>
+      <div style="margin-bottom: 0.5em;">
+        <i class="fas fa-envelope" style="color:#38bdf8; margin-right:6px;"></i>
+        <a href="mailto:skashgray@gmail.com" style="color:#1e293b; font-weight:500; text-decoration:underline;">skashgray@gmail.com</a>
+      </div>
+      <div>
+        <i class="fas fa-phone" style="color:#38bdf8; margin-right:6px;"></i>
+        <a href="tel:+27699100214" style="color:#1e293b; font-weight:500; text-decoration:underline;">+27 69 910 0214</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container contact-section">
+    <form class="contact-form" id="contactForm">
+      <h3>Send a Message</h3>
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="Name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="Email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="Phone" />
+      </div>
+      <div class="form-group">
+        <label for="contactEmail">Alternate Email (optional)</label>
+        <input type="email" id="contactEmail" name="ContactEmail" />
+      </div>
+      <div class="form-group">
+        <label for="projectType">Project Type</label>
+        <select id="projectType" name="ProjectType" required>
+          <option value="">Select a type</option>
+          <option value="Website">Website</option>
+          <option value="Web App">Web App</option>
+          <option value="E-commerce">E-commerce</option>
+          <option value="UI/UX Design">UI/UX Design</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="budget">Budget</label>
+        <div style="display: flex; gap: 8px;">
+          <select id="currency" name="Currency" required style="max-width: 100px;">
+            <option value="USD">$ USD</option>
+            <option value="EUR">â‚¬ EUR</option>
+            <option value="GBP">Â£ GBP</option>
+            <option value="INR">â‚¹ INR</option>
+            <option value="AUD">$ AUD</option>
+            <option value="CAD">$ CAD</option>
+            <option value="NGN">â‚¦ NGN</option>
+            <option value="ZAR">R ZAR</option>
+            <option value="JPY">Â¥ JPY</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="number" id="budget" name="Budget" placeholder="Amount" min="0" required style="flex:1;" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="Message" required></textarea>
+      </div>
+      <div class="form-group" style="text-align: center;">
+        <button type="submit">Send Message</button>
+      </div>
+      <div id="formStatus" aria-live="polite" style="text-align:center; color:green; margin-top:10px;"></div>
+    </form>
+    <div style="margin: 2rem auto 0; max-width: 600px; text-align: center;">
+      <section class="contact-testimonials">
+        <h2 style="margin-bottom: 2rem; font-size: 2.2rem; text-align: center;">
+          <i class="fas fa-star" style="color: #ffd700; margin-right: 0.5rem; animation: pulse 2s infinite;"></i>
+          Share Your Experience
+          <i class="fas fa-heart" style="color: #ff6b6b; margin-left: 0.5rem; animation: pulse 2s infinite;"></i>
+        </h2>
+        <div class="review-form-container" style="max-width: 500px; margin: 0 auto 3rem auto;">
+          <form id="reviewForm">
+            <div style="margin-bottom: 2rem;">
+              <label for="reviewName" class="review-label-enhanced">
+                <i class="fas fa-user"></i>
+                Your Name
+              </label>
+              <div class="input-field-wrapper">
+                <input type="text" id="reviewName" name="name" required 
+                       class="review-input-enhanced" 
+                       placeholder="Enter your full name...">
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+              <label for="reviewText" class="review-label-enhanced">
+                <i class="fas fa-comment-dots"></i>
+                Your Review
+              </label>
+              <div class="input-field-wrapper">
+                <textarea id="reviewText" name="review" rows="4" required 
+                          class="review-input-enhanced"
+                          placeholder="Tell us about your experience..."
+                          style="resize: vertical; min-height: 120px;"></textarea>
+              </div>
+            </div>
+            
+            <div class="star-rating-container">
+              <label class="review-label-enhanced" style="justify-content: center;">
+                <i class="fas fa-star"></i>
+                Rate Your Experience
+              </label>
+              <div class="star-rating">
+                <span class="star active" data-value="1">★</span>
+                <span class="star active" data-value="2">★</span>
+                <span class="star active" data-value="3">★</span>
+                <span class="star active" data-value="4">★</span>
+                <span class="star active" data-value="5">★</span>
+              </div>
+              <input type="hidden" id="reviewRating" name="rating" value="5" required>
+            </div>
+            
+            <button type="submit" class="review-submit-btn" style="width: 100%; margin-top: 1.5rem;">
+              <span class="btn-text">
+                <i class="fas fa-paper-plane btn-icon"></i>
+                Submit Review
+              </span>
+            </button>
+          </form>
+        </div>
+        
+        <!-- Reviews Display Section -->
+        <div style="margin-top: 4rem;">
+          <h2 style="text-align: center; margin-bottom: 2.5rem; font-size: 2.2rem;">
+            <i class="fas fa-comments" style="color: var(--sidebar-accent); margin-right: 0.5rem;"></i>
+            What Our Clients Say
+            <i class="fas fa-quote-right" style="color: #ffd700; margin-left: 0.5rem;"></i>
+          </h2>
+          <div id="reviewsList" class="testimonials-grid"></div>
+        </div>
+      </section>
+    </div>
+  </section>
+  </main>
+
+  <!-- Enhanced Footer with Newsletter -->
+  <footer>
+    <div class="footer-container">
+      <form class="newsletter-form" onsubmit="return false;">
+        <label for="newsletter-email">Stay updated with our latest projects and insights</label>
+        <div class="newsletter-inputs">
+          <input type="email" id="newsletter-email" placeholder="Enter your email address" required>
+          <button type="submit" onclick="alert('Thank you for subscribing! We will keep you updated.')">Subscribe</button>
+        </div>
+      </form>
+      
+      <div class="social-links">
+        <a href="https://linkedin.com/in/shadel" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://instagram.com/shadeldev" target="_blank" aria-label="Instagram" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com/shadeldev" target="_blank" aria-label="GitHub" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://facebook.com/shadeldev" target="_blank" aria-label="Facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://m.me/shadeldev" target="_blank" aria-label="Messenger" title="Messenger">
+          <i class="fab fa-facebook-messenger"></i>
+        </a>
+      </div>
+      
+      <p>&copy; 2023 ShadEl Web. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Enhanced Chatbot Widget -->
+  <div id="chatbot-widget">
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <span>ShadEl Web Assistant</span>
+        <button onclick="toggleChatbot()" aria-label="Close chat">×</button>
+      </div>
+      <div class="chatbot-body" id="chatbotBody">
+        <div class="chatbot-msg bot">
+          <strong>Hello!</strong><br>
+          Ready to start your project? I'm here to help with:
+          <br>• Project inquiries and quotes
+          <br>• Service information
+          <br>• Timeline discussions
+          <br>• Technical questions
+          <br><br>Feel free to ask anything or use the contact form above!
+        </div>
+      </div>
+      <form class="chatbot-form" onsubmit="sendMessage(event)">
+        <input type="text" id="chatbotInput" placeholder="Ask about our services..." maxlength="200">
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <button class="chatbot-btn" onclick="toggleChatbot()" aria-label="Open chat assistant">
+      💬
+    </button>
+  </div>
+
+<script>
+  // Enhanced Sidebar toggle logic with overlay
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebarNav');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    sidebar.classList.toggle('open');
+    
+    if (sidebar.classList.contains('open')) {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Focus management for accessibility
+      const firstFocusable = sidebar.querySelector('a, button');
+      if (firstFocusable) firstFocusable.focus();
+    } else {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  
+  function closeSidebar() {
+    const sidebar = document.getElementById('sidebarNav');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
+  // Enhanced keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    const sidebar = document.getElementById('sidebarNav');
+    
+    // Close sidebar with Escape key
+    if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+      closeSidebar();
+      document.querySelector('.sidebar-toggle').focus();
+    }
+    
+    // Trap focus within sidebar when open
+    if (sidebar.classList.contains('open') && e.key === 'Tab') {
+      const focusable = sidebar.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const firstFocusable = focusable[0];
+      const lastFocusable = focusable[focusable.length - 1];
+      
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          lastFocusable.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          firstFocusable.focus();
+          e.preventDefault();
+        }
+      }
+    }
+  });
+
+  // Enhanced Chatbot functionality
+  function toggleChatbot() {
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const isOpen = chatbotWindow.classList.contains('open');
+    
+    if (isOpen) {
+      chatbotWindow.classList.remove('open');
+    } else {
+      chatbotWindow.classList.add('open');
+      // Auto-focus input when opening
+      setTimeout(() => {
+        const input = document.getElementById('chatbotInput');
+        if (input) input.focus();
+      }, 100);
+    }
+  }
+  
+  function sendMessage(event) {
+    event.preventDefault();
+    const input = document.getElementById('chatbotInput');
+    const chatBody = document.getElementById('chatbotBody');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // Add user message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chatbot-msg user';
+    userMsg.textContent = message;
+    chatBody.appendChild(userMsg);
+    
+    // Clear input
+    input.value = '';
+    
+    // Simulate bot response with delay
+    setTimeout(() => {
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chatbot-msg bot';
+      botMsg.innerHTML = getBotReplyWithIcon(message);
+      chatBody.appendChild(botMsg);
+      
+      // Auto-scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }, 800);
+    
+    // Auto-scroll to bottom for user message
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+  
+  function getBotReplyWithIcon(message) {
+    const msg = message.toLowerCase();
+    
+    // Contact-specific responses
+    if (msg.includes('contact') || msg.includes('reach') || msg.includes('email') || msg.includes('phone')) {
+      return '📞 <strong>Contact Information</strong><br>You can reach us directly at <strong>skashgray@gmail.com</strong> or call <strong>+27 69 910 0214</strong>. We respond within 24 hours and offer free consultations!';
+    }
+    
+    if (msg.includes('quote') || msg.includes('price') || msg.includes('cost') || msg.includes('budget')) {
+      return '💰 <strong>Free Quote</strong><br>Fill out the contact form above with your project details and we\'ll send you a personalized quote within 24 hours. Basic sites start from $500, advanced projects from $1,200.';
+    }
+    
+    if (msg.includes('timeline') || msg.includes('time') || msg.includes('deadline') || msg.includes('how long')) {
+      return '⏱️ <strong>Project Timeline</strong><br>Simple websites: 1-2 weeks<br>Complex sites: 3-4 weeks<br>E-commerce: 4-6 weeks<br>We provide regular updates and stick to agreed deadlines.';
+    }
+    
+    if (msg.includes('service') || msg.includes('what do you do') || msg.includes('services')) {
+      return '🛠️ <strong>Our Services</strong><br>• Custom Website Development<br>• E-commerce Solutions<br>• Web Applications<br>• UI/UX Design<br>• Website Maintenance<br>• SEO Optimization';
+    }
+    
+    if (msg.includes('technology') || msg.includes('tech') || msg.includes('stack')) {
+      return '⚡ <strong>Technology Stack</strong><br>We use modern technologies: React, Node.js, HTML5, CSS3, JavaScript ES6+, MongoDB, Stripe API, and responsive frameworks for optimal performance.';
+    }
+    
+    if (msg.includes('portfolio') || msg.includes('examples') || msg.includes('work')) {
+      return '🎨 <strong>Our Work</strong><br>Check out our Portfolio page to see our recent projects including e-commerce sites, business websites, and web applications. Each project showcases our quality and attention to detail.';
+    }
+    
+    if (msg.includes('meeting') || msg.includes('consultation') || msg.includes('discuss')) {
+      return '🤝 <strong>Free Consultation</strong><br>We offer free consultation calls to discuss your project. Use the Calendly booking system above or contact us directly to schedule a meeting that works for you.';
+    }
+    
+    if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+      return '👋 <strong>Hello there!</strong><br>Welcome to our contact page! I can help you with information about pricing, timelines, services, or getting started with your project. What would you like to know?';
+    }
+    
+    // Default response
+    return '🤔 <strong>Great question!</strong><br>I can help you with information about our services, pricing, timelines, or getting started with your project. Feel free to fill out the contact form above or ask me anything specific!';
+  }
+</script>
+
+  <!-- ======= SIDEBAR START ======= -->
+  <!-- Sidebar Navigation -->
+  <!-- ======= SIDEBAR END ======= -->
+
+  <script>
+    // Handle URL parameters for special deals
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const deal = urlParams.get('deal');
+      const discount = urlParams.get('discount');
+      const dealType = urlParams.get('type');
+      const packageType = urlParams.get('package');
+      const price = urlParams.get('price');
+      
+      // If coming from any special deal, pre-fill and highlight the form
+      if (deal) {
+        const form = document.getElementById('contactForm');
+        const dealBanner = document.createElement('div');
+        
+        let bannerContent = '';
+        let bannerStyle = 'background: linear-gradient(45deg, #38bdf8, #0ea5e9); color: white;';
+        
+        // Customize banner based on deal type
+        switch(deal) {
+          case 'summer2025':
+            bannerStyle = 'background: linear-gradient(45deg, #ff6b6b, #ffa500); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ðŸ”¥ Summer 2025 Special Deal!</h4>
+              <p style="margin: 0; font-size: 1.1rem;">ANY Website for just <strong>R${price || '599'}</strong> (Save R200+)</p>
+              <small style="opacity: 0.9;">Limited time offer - expires end of August 2025</small>
+            `;
+            break;
+          case 'nonprofit':
+            bannerStyle = 'background: linear-gradient(45deg, #10b981, #059669); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ðŸ›ï¸ Nonprofit Heroes Discount</h4>
+              <p style="margin: 0; font-size: 1.1rem;"><strong>${discount}% OFF</strong> for Nonprofits, Churches & Schools</p>
+              <small style="opacity: 0.9;">Please have your registration certificate ready</small>
+            `;
+            break;
+          case 'student':
+            bannerStyle = 'background: linear-gradient(45deg, #f59e0b, #d97706); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ðŸŽ“ Student & Startup Power</h4>
+              <p style="margin: 0; font-size: 1.1rem;"><strong>${discount}% OFF</strong> for Students & New Startups</p>
+              <small style="opacity: 0.9;">Please have your Student ID or business registration ready</small>
+            `;
+            break;
+          case 'bundle':
+            bannerStyle = 'background: linear-gradient(45deg, #8b5cf6, #7c3aed); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ï¿½ Website + Care Bundle</h4>
+              <p style="margin: 0; font-size: 1.1rem;"><strong>${discount}% OFF</strong> Website + 6 Months Maintenance</p>
+              <small style="opacity: 0.9;">Save hundreds when you bundle!</small>
+            `;
+            break;
+          case 'referral':
+            bannerStyle = 'background: linear-gradient(45deg, #ec4899, #db2777); color: white;';
+            bannerContent = `
+              <h4 style="margin: 0 0 0.5rem 0; color: white;">ðŸ’° Referral Cash Rewards</h4>
+              <p style="margin: 0; font-size: 1.1rem;">Earn <strong>R400 Cash</strong> + Your friend gets ${discount}% OFF</p>
+              <small style="opacity: 0.9;">Unlimited referrals accepted!</small>
+            `;
+            break;
+        }
+        
+        dealBanner.style.cssText = `
+          ${bannerStyle}
+          padding: 1rem;
+          border-radius: 8px;
+          margin-bottom: 1.5rem;
+          text-align: center;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+        dealBanner.innerHTML = bannerContent;
+        form.insertBefore(dealBanner, form.firstChild);
+        
+        // Pre-fill form fields
+        document.getElementById('projectType').value = 'Website';
+        
+        // Pre-fill message with deal details
+        const messageTextarea = document.getElementById('message');
+        if (messageTextarea) {
+          let message = '';
+          switch(deal) {
+            case 'summer2025':
+              message = `Hi! I'm interested in claiming the Summer 2025 special deal for ANY website at R${price || '599'}. Please provide more details about this offer.`;
+              break;
+            case 'nonprofit':
+              message = `Hi! I'm interested in the ${discount}% nonprofit discount. I represent a [NGO/Church/School/Community Group] and can provide our registration certificate.`;
+              break;
+            case 'student':
+              message = `Hi! I'm interested in the ${discount}% student/startup discount. I'm a [student/startup founder] and can provide verification.`;
+              break;
+            case 'bundle':
+              message = `Hi! I'm interested in the Website + Care Bundle with ${discount}% off. Please tell me more about this package deal.`;
+              break;
+            case 'referral':
+              message = `Hi! I'm interested in your referral program where I can earn R400 cash for referring friends. Please tell me more about how this works.`;
+              break;
+          }
+          messageTextarea.value = message;
+        }
+        
+        // Scroll to form smoothly
+        setTimeout(() => {
+          form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 500);
+      }
+    });
+
+    // Example JS for demo only (replace with real backend integration)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('formStatus').textContent = "Thank you! We'll be in touch soon.";
+      this.reset();
+    });
+
+    // Enhanced Star rating logic
+    const stars = document.querySelectorAll('.star-rating .star');
+    const ratingInput = document.getElementById('reviewRating');
+    
+    function updateStarDisplay(rating) {
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+    
+    stars.forEach(star => {
+      star.addEventListener('mouseenter', function() {
+        const value = parseInt(this.dataset.value);
+        updateStarDisplay(value);
+      });
+      
+      star.addEventListener('mouseleave', function() {
+        const currentRating = parseInt(ratingInput.value);
+        updateStarDisplay(currentRating);
+      });
+      
+      star.addEventListener('click', function() {
+        const value = parseInt(this.dataset.value);
+        ratingInput.value = value;
+        updateStarDisplay(value);
+        
+        // Add click animation
+        this.style.transform = 'scale(1.4) rotate(30deg)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+      });
+    });
+    
+    // Initialize star display
+    updateStarDisplay(parseInt(ratingInput.value));
+    // Review form logic (localStorage for demo)
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewsList = document.getElementById('reviewsList');
+    function renderReviews() {
+      const reviews = JSON.parse(localStorage.getItem('shadel_reviews') || '[]');
+      reviewsList.innerHTML = '';
+      if (reviews.length === 0) {
+        reviewsList.innerHTML = `
+          <div style="
+            text-align: center; 
+            padding: 3rem 2rem; 
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(6, 182, 212, 0.1)); 
+            border-radius: 20px; 
+            border: 2px dashed rgba(56, 189, 248, 0.3);
+            grid-column: 1 / -1;
+          ">
+            <i class="fas fa-star" style="font-size: 3rem; color: #ffd700; margin-bottom: 1rem; opacity: 0.7;"></i>
+            <h3 style="color: var(--sidebar-accent); margin-bottom: 0.5rem;">No reviews yet</h3>
+            <p style="color: rgba(229, 231, 235, 0.8);">Be the first to share your experience!</p>
+          </div>
+        `;
+        return;
+      }
+      reviews.forEach((r, index) => {
+        const card = document.createElement('div');
+        card.className = 'testimonial-card';
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.style.animation = 'slideInUp 0.6s ease forwards';
+        
+        const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+        const reviewDate = r.date || 'Recently';
+        
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="reviewer-name">
+              <i class="fas fa-user-circle"></i>
+              ${r.name}
+            </div>
+            <div class="review-date">${reviewDate}</div>
+          </div>
+          <div class="star-display">${stars}</div>
+          <div class="review-text">${r.review}</div>
+        `;
+        reviewsList.appendChild(card);
+      });
+    }
+    reviewForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const submitBtn = this.querySelector('.review-submit-btn');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const originalText = btnText.innerHTML;
+      
+      // Button loading state
+      btnText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      submitBtn.disabled = true;
+      
+      const name = reviewForm.name.value.trim();
+      const review = reviewForm.review.value.trim();
+      const rating = parseInt(reviewForm.rating.value);
+      
+      if (!name || !review || !rating) {
+        btnText.innerHTML = originalText;
+        submitBtn.disabled = false;
+        return;
+      }
+      
+      // Simulate submission delay for better UX
+      setTimeout(() => {
+        const reviews = JSON.parse(localStorage.getItem('shadel_reviews') || '[]');
+        reviews.unshift({ name, review, rating, date: new Date().toLocaleDateString() });
+        localStorage.setItem('shadel_reviews', JSON.stringify(reviews));
+        
+        // Success state
+        btnText.innerHTML = '<i class="fas fa-check"></i> Review Submitted!';
+        submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        
+        // Show success message
+        const successMsg = document.createElement('div');
+        successMsg.className = 'review-success';
+        successMsg.innerHTML = `
+          <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+          Thank you ${name}! Your review has been submitted successfully.
+        `;
+        this.appendChild(successMsg);
+        
+        // Reset form after delay
+        setTimeout(() => {
+          reviewForm.reset();
+          ratingInput.value = 5;
+          updateStarDisplay(5);
+          renderReviews();
+          
+          // Reset button
+          btnText.innerHTML = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.background = '';
+          
+          // Remove success message
+          if (successMsg.parentNode) {
+            successMsg.remove();
+          }
+        }, 3000);
+      }, 1500);
+    });
+    renderReviews();
+  </script>
+
+  <!-- Font Awesome (required for icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+</body>
+</html>
+

@@ -1,0 +1,2002 @@
+﻿<!-- Portfolio Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio - ShadEl Web</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+    --primary: #1e293b;
+    --primary-dark: #0f172a;
+    --primary-light: #334155;
+    --sidebar-bg: linear-gradient(135deg, #0f172a 60%, #1e293b 100%);
+    --sidebar-accent: #38bdf8;
+    --bg: #181a20;
+    --surface: #23263a;
+    --surface-alt: #222436;
+    --text: #e5e7eb;
+    --highlight: #38bdf8;
+  }
+    /* Shared CSS from other pages */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Times New Roman', Times, serif; /* Changed font */
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .main-header {
+      background: var(--primary-dark); /* Ensures dark header */
+      color: var(--text);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+      border-bottom: 2px solid var(--primary-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      min-height: 48px;
+    }
+    .main-header .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 48px;
+      padding: 0 10px;
+      position: relative;
+    }
+    
+    /* Client Portal Button in Header */
+    .header-client-portal {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    
+    .header-client-portal:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+      color: white;
+    }
+    
+    .header-client-portal i {
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive adjustments for Client Portal button */
+    @media (max-width: 768px) {
+      .header-client-portal {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        gap: 0.3rem;
+      }
+      .header-client-portal i {
+        font-size: 0.75rem;
+      }
+      .main-header h1 a, .main-header h1 {
+        font-size: 1.3rem;
+      }
+    }
+    .main-header h1 a, .main-header h1 {
+      color: var(--sidebar-accent);
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #38bdf855;
+      margin: 0;
+      padding: 10px 0;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+    nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Only header nav should be horizontal, sidebar nav is vertical below */
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+    nav a:hover, nav a.active {
+      background: var(--primary-light);
+    }
+    .main-header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .page-title {
+      text-align: center;
+      background: linear-gradient(135deg, #23263a 60%, #2b71f0 100%); /* Complimenting dark blue gradient */
+      color: #e5e7eb;
+      padding: 4rem 1rem;
+      border-bottom: 2px solid #38bdf8;
+    }
+    .page-title h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .portfolio-section {
+      padding: 3rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: linear-gradient(135deg, #f8fafc 60%, #e0e7ef 100%);
+      border-radius: 18px;
+      box-shadow: 0 6px 24px rgba(30,41,59,0.12);
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.7,.3,.3,1), box-shadow 0.3s;
+      border: 1.5px solid #e0e7ef;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(56,189,248,0.18);
+      border-color: #38bdf8;
+    }
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid #38bdf8;
+      filter: brightness(0.98) contrast(1.05);
+      transition: filter 0.3s;
+    }
+    .project-card:hover img {
+      filter: brightness(1.05) contrast(1.1) saturate(1.1);
+    }
+    .project-card .card-content {
+      padding: 1.3rem 1.1rem 1.2rem 1.1rem;
+      background: rgba(255,255,255,0.95);
+    }
+    .project-card h3 {
+      color: #2563eb;
+      margin-bottom: 0.7rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .project-card p {
+      color: #334155;
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+    .tech-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.85rem 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tech-list li {
+      background: linear-gradient(90deg, #e0f2fe 60%, #bae6fd 100%);
+      color: #2563eb;
+      font-size: 0.88rem;
+      padding: 0.28rem 0.85rem;
+      border-radius: 16px;
+      font-weight: 500;
+      box-shadow: 0 1px 4px #38bdf822;
+      border: 1px solid #bae6fd;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      background: linear-gradient(90deg, #38bdf8 60%, #2563eb 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.55em 1.2em;
+      border-radius: 24px;
+      text-decoration: none;
+      margin-top: 1.1em;
+      box-shadow: 0 2px 8px #38bdf822;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover, .btn:focus {
+      background: linear-gradient(90deg, #2563eb 60%, #38bdf8 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px #2563eb33;
+      transform: scale(1.05);
+    }
+    .btn i {
+      font-size: 1.1em;
+      margin-left: 0.3em;
+      transition: transform 0.2s;
+    }
+    .btn:hover i {
+      transform: translateY(-2px) scale(1.15);
+    }
+
+    /* AI Portfolio Interaction Styles */
+    .project-card {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .project-card.ai-active {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(56,189,248,0.25);
+      border-color: #38bdf8;
+    }
+
+    .ai-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .ai-overlay.show {
+      display: flex;
+      opacity: 1;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ai-modal {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 800px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      border: 2px solid var(--highlight);
+      animation: modalSlideIn 0.4s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        transform: translateY(-50px) scale(0.9);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .ai-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--highlight);
+    }
+
+    .ai-modal-title {
+      color: var(--highlight);
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .ai-close-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .ai-close-btn:hover {
+      background: var(--highlight);
+      color: var(--primary);
+      transform: scale(1.1);
+    }
+
+    .ai-project-details {
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .ai-section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--surface-alt);
+      border-radius: 12px;
+      border-left: 4px solid var(--highlight);
+    }
+
+    .ai-section h3 {
+      color: var(--highlight);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ai-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .ai-tech-tag {
+      background: linear-gradient(90deg, var(--highlight), #2563eb);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .ai-qa-section {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--primary-dark);
+      border-radius: 12px;
+    }
+
+    .ai-qa-header {
+      color: var(--highlight);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .ai-question-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--highlight);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-family: inherit;
+      margin-bottom: 1rem;
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .ai-ask-btn {
+      background: linear-gradient(90deg, var(--highlight), #2563eb);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .ai-ask-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .ai-ask-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .ai-answer {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--surface-alt);
+      border-radius: 8px;
+      border-left: 4px solid var(--highlight);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .ai-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--highlight);
+      margin: 1rem 0;
+    }
+
+    .ai-spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid transparent;
+      border-top: 2px solid var(--highlight);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    footer {
+      margin-top: auto;
+      background: var(--primary-dark);
+      color: #e5e7eb;
+      padding: 1.5rem 0 1rem 0;
+      border-top: 1.5px solid #22304a;
+      border-radius: 0 0 12px 12px;
+      text-align: center;
+      box-shadow: 0 -2px 8px #0003;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-content p {
+      margin: 0;
+      font-size: 0.98rem;
+      color: #b6e3ff;
+    }
+    .footer-content .social-icons a {
+      color: var(--sidebar-accent);
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+      text-decoration: none;
+    }
+    .footer-content .social-icons a:hover {
+      color: #fff;
+    }
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      background: linear-gradient(135deg, #0d6efd, #6610f2);
+      color: #fff;
+      border: none;
+      outline: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      box-shadow: 0 2px 8px rgba(13,110,253,0.15);
+      cursor: pointer;
+      font-size: 1.7rem; /* Make the icon larger */
+      transition: background 0.2s, transform 0.2s;
+      align-items: center;
+      justify-content: center;
+      display: flex; /* Ensure icon is centered */
+      padding: 0;
+    }
+    #backToTop i {
+      pointer-events: none;
+      font-size: 1.3em; /* Make arrow icon larger */
+      line-height: 1;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #backToTop:hover {
+      background: #0b5ed7;
+      transform: translateY(-4px) scale(1.07);
+    }
+    @media (max-width: 768px) {
+      .main-header .container { flex-direction: column; gap: 1rem; }
+      #backToTop {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+
+    /* ======= SIDEBAR START ======= */
+    /* REMOVE ALL OLD SIDEBAR CSS BELOW THIS LINE AND REPLACE WITH NEW SETTINGS */
+
+    /* Sidebar Navigation with Logo in Circle */
+  .sidebar-nav {
+    position: fixed;
+    top: 0; left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #fff;
+    box-shadow: 4px 0 32px rgba(15, 23, 42, 0.4);
+    z-index: 1003;
+    transition: left 0.4s cubic-bezier(.7,.3,.3,1);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(56, 189, 248, 0.2);
+  }
+  .sidebar-nav.open { 
+    left: 0; 
+    animation: slideInLeft 0.4s ease-out;
+  }
+  
+  @keyframes slideInLeft {
+    from { 
+      left: -280px; 
+      opacity: 0; 
+    }
+    to { 
+      left: 0; 
+      opacity: 1; 
+    }
+  }
+  
+  .sidebar-logo-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    padding: 0 1.5rem;
+    position: relative;
+    animation: fadeInDown 0.6s ease-out 0.2s both;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .logo-text {
+    font-size: 1.35rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-logo-circle a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-logo-circle a:hover {
+    transform: translateY(-2px);
+  }
+  
+  .sidebar-logo-img {
+    width: 60px;
+    height: 60px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--sidebar-accent);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .sidebar-logo-img:hover {
+    transform: scale(1.1);
+    border-color: #06b6d4;
+  }
+  
+  .sidebar-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 50%;
+    color: var(--sidebar-accent);
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-close:hover {
+    background: var(--sidebar-accent);
+    color: #0f172a;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-nav nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .sidebar-nav nav ul li {
+    margin: 0.8rem 0;
+    opacity: 0;
+    animation: slideInRight 0.4s ease-out forwards;
+  }
+  
+  .sidebar-nav nav ul li:nth-child(1) { animation-delay: 0.1s; }
+  .sidebar-nav nav ul li:nth-child(2) { animation-delay: 0.2s; }
+  .sidebar-nav nav ul li:nth-child(3) { animation-delay: 0.3s; }
+  .sidebar-nav nav ul li:nth-child(4) { animation-delay: 0.4s; }
+  .sidebar-nav nav ul li:nth-child(5) { animation-delay: 0.5s; }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .sidebar-nav nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sidebar-nav nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .sidebar-nav nav ul li a:hover::before {
+    left: 100%;
+  }
+  
+  .sidebar-nav nav ul li a i {
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  .sidebar-nav nav ul li a:hover,
+  .sidebar-nav nav ul li a.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(6, 182, 212, 0.1));
+    border-left: 4px solid var(--sidebar-accent);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    transform: translateX(5px);
+  }
+  
+  .sidebar-nav nav ul li a:hover i,
+  .sidebar-nav nav ul li a.active i {
+    color: var(--sidebar-accent);
+    transform: scale(1.1);
+  }
+  
+  .sidebar-nav nav ul li a.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(6, 182, 212, 0.2));
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    top: 28px;
+    left: 28px;
+    z-index: 1002;
+    background: linear-gradient(135deg, var(--sidebar-accent), #06b6d4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: pulseGlow 2s infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+      transform: scale(1.05);
+    }
+  }
+  
+  .sidebar-toggle:hover { 
+    background: linear-gradient(135deg, #06b6d4, var(--primary));
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.5);
+    animation: none;
+  }
+  
+  .sidebar-toggle i {
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-toggle:hover i {
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 600px) {
+    .sidebar-nav { width: 90vw; }
+    .sidebar-toggle { left: 12px; top: 12px; }
+  }
+
+  /* Add a subtle background pattern */
+  .sidebar-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Add a bottom section with social links or additional info */
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(56, 189, 248, 0.2);
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.8s both;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .sidebar-footer p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .sidebar-footer .social-links {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .sidebar-footer .social-links a {
+    color: #64748b;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 0.4rem;
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.1);
+  }
+  
+  .sidebar-footer .social-links a:hover {
+    color: var(--sidebar-accent);
+    background: rgba(56, 189, 248, 0.2);
+    transform: translateY(-2px) scale(1.1);
+  }
+
+  /* Add overlay when sidebar is open */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+    /* Footer */
+    footer {
+      background-color: #111827;
+      border-top: 1.5px solid #22304a;
+      border-radius: 0 0 12px 12px;
+      margin-top: 40px;
+      padding: 16px 10px 10px 10px;
+      text-align: center;
+    }
+
+    .footer-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-container label {
+      color: #ddd;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .newsletter-form {
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .newsletter-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .newsletter-form input[type="email"] {
+      padding: 10px 16px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 50px;
+      flex: 1 1 250px;
+      min-width: 200px;
+      background: var(--surface-alt);
+      color: var(--text);
+    }
+
+    .newsletter-form button {
+      padding: 10px 24px;
+      font-size: 1rem;
+      border-radius: 50px;
+      border: none;
+      background-color: var(--primary);
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .newsletter-form button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-links a {
+      color: #ccc;
+      font-size: 1.2rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary-light);
+      transform: scale(1.2);
+    }
+
+    .footer-container p {
+      color: #ccc;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .newsletter-inputs {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .newsletter-form input[type="email"],
+      .newsletter-form button {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+
+/* Chatbot Styles */
+#chatbot-widget {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1002;
+  font-family: 'Times New Roman', Times, serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chatbot-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--sidebar-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #38bdf822;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.chatbot-btn:hover { 
+  background: var(--primary);
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px #38bdf844;
+}
+
+.chatbot-btn i {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.chatbot-window {
+  display: none;
+  flex-direction: column;
+  width: 320px;
+  max-width: 95vw;
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px #0005;
+  margin-bottom: 12px;
+  overflow: hidden;
+  animation: fadeIn 0.3s;
+}
+
+.chatbot-window.open { 
+  display: flex; 
+}
+
+.chatbot-header {
+  background: var(--sidebar-accent);
+  color: #fff;
+  padding: 0.8em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.08rem;
+}
+
+.chatbot-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.chatbot-body {
+  padding: 1em;
+  min-height: 80px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--surface-alt);
+  font-size: 0.98rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.chatbot-msg {
+  padding: 0.6em 1em;
+  border-radius: 12px;
+  margin-bottom: 0.2em;
+  max-width: 85%;
+  word-break: break-word;
+}
+
+.chatbot-msg.user {
+  background: var(--sidebar-accent);
+  color: white;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chatbot-msg.bot {
+  background: #38bdf822;
+  color: var(--sidebar-accent);
+  align-self: flex-start;
+  animation: bounceIn 0.5s;
+}
+
+.chatbot-form {
+  padding: 0.8em;
+  display: flex;
+  gap: 0.5em;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.chatbot-form input {
+  flex: 1;
+  padding: 0.6em;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  color: var(--text);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.95rem;
+}
+
+.chatbot-form button {
+  padding: 0.6em 1em;
+  background: var(--sidebar-accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chatbot-form button:hover {
+  background: var(--primary);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  #chatbot-widget { right: 10px; bottom: 10px; }
+  .chatbot-window {
+    width: 280px;
+    max-height: 350px;
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Header Start -->
+<header class="main-header">
+  <div class="container">
+    <h1>
+      <a href="index.html" aria-label="ShadEl Web Home">
+        <i class="fas fa-code" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+        ShadEl Web
+      </a>
+    </h1>
+    <a href="client-login.html" class="header-client-portal">
+      <i class="fas fa-user-shield"></i>
+      Client Portal
+    </a>
+  </div>
+</header>
+<!-- Header End -->
+
+  <section class="page-title">
+    <h2><i class="fas fa-robot" style="margin-right: 0.5rem; color: #38bdf8;"></i>AI-Powered Portfolio</h2>
+    <p>Click any project to explore with our AI assistant. Ask questions about technologies, challenges, and implementation details.</p>
+  </section>
+
+  <main>
+    <section class="portfolio-section container" aria-label="Portfolio Projects">
+      <article class="project-card" data-project="ecommerce" onclick="openProjectAI(this)">
+        <a href="#" aria-label="View Ecommerce Website" onclick="event.preventDefault()">
+          <img src="download (3).png" alt="Screenshot of Ecommerce Website">
+        </a>
+        <div class="card-content">
+          <h3>Ecommerce Website</h3>
+          <p>Online store with secure payment and product management for retailers.</p>
+          <ul class="tech-list">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>VS Code</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/her-essence-website/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <button class="btn" onclick="event.stopPropagation(); openProjectAI(this.closest('.project-card'))" style="margin-left: 0.5rem; background: linear-gradient(90deg, #10b981, #059669);">
+            <span>Ask AI</span>
+            <i class="fas fa-robot" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+      <article class="project-card" data-project="church" onclick="openProjectAI(this)">
+        <a href="#" aria-label="View Church Website" onclick="event.preventDefault()">
+          <img src="holy-spirit-catholic-church.jpg" alt="Screenshot of Church Website">
+        </a>
+        <div class="card-content">
+          <h3>Church Website</h3>
+          <p>Modern church site with events, sermons, and donation features.</p>
+          <ul class="tech-list">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>PHP</li>
+            <li>VS Code</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/Restoration-Tabernacle/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <button class="btn" onclick="event.stopPropagation(); openProjectAI(this.closest('.project-card'))" style="margin-left: 0.5rem; background: linear-gradient(90deg, #10b981, #059669);">
+            <span>Ask AI</span>
+            <i class="fas fa-robot" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+      <article class="project-card" data-project="choir" onclick="openProjectAI(this)">
+        <a href="#" aria-label="View Choir Website" onclick="event.preventDefault()">
+          <img src="download.png" alt="Screenshot of Choir Website">
+        </a>
+        <div class="card-content">
+          <h3>Choir Website</h3>
+          <p>Showcase for choir groups with media gallery and event calendar.</p>
+          <ul class="tech-list">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>PHP</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/Choir-Website/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <button class="btn" onclick="event.stopPropagation(); openProjectAI(this.closest('.project-card'))" style="margin-left: 0.5rem; background: linear-gradient(90deg, #10b981, #059669);">
+            <span>Ask AI</span>
+            <i class="fas fa-robot" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+      <article class="project-card" data-project="recruitment" onclick="openProjectAI(this)">
+        <a href="#" aria-label="View Recruitment Platform" onclick="event.preventDefault()">
+          <img src="download (1).png" alt="Screenshot of Recruitment Platform">
+        </a>
+        <div class="card-content">
+          <h3>Recruitment Platform</h3>
+          <p>Job board and application management for employers and candidates.</p>
+          <ul class="tech-list">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>PHP</li>
+            <li>JavaScript</li>
+            <li>VS Code</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/Baroque/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <button class="btn" onclick="event.stopPropagation(); openProjectAI(this.closest('.project-card'))" style="margin-left: 0.5rem; background: linear-gradient(90deg, #10b981, #059669);">
+            <span>Ask AI</span>
+            <i class="fas fa-robot" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+      <article class="project-card" data-project="takeaway" onclick="openProjectAI(this)">
+        <a href="#" aria-label="View Online Takeaway Site" onclick="event.preventDefault()">
+          <img src="download (2).png" alt="Screenshot of Online Takeaway Site">
+        </a>
+        <div class="card-content">
+          <h3>Online Takeaway Site</h3>
+          <p>Order food online with menu browsing and delivery tracking.</p>
+          <ul class="tech-list">
+            <li>HTML5</li>
+            <li>SCSS</li>
+            <li>JavaScript</li>
+            <li>Bootstrap</li>
+          </ul>
+          <a class="btn" href="https://shadel7.github.io/Naomi/" target="_blank" rel="noopener">
+            <span>View Project</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <button class="btn" onclick="event.stopPropagation(); openProjectAI(this.closest('.project-card'))" style="margin-left: 0.5rem; background: linear-gradient(90deg, #10b981, #059669);">
+            <span>Ask AI</span>
+            <i class="fas fa-robot" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+        <article class="project-card" data-project="holloway-workshop">
+          <a href="https://shadel7.github.io/Holloway-Workshop/" target="_blank" aria-label="View Holloway Workshop Landing Page">
+            <img src="Screenshot_5-9-2025_20591_shadel7.github.io.jpeg" alt="Screenshot of Holloway Workshop Landing Page" onerror="this.src='download.png'">
+          </a>
+          <div class="card-content">
+            <h3>Holloway Workshop</h3>
+            <p>Landing page for Holloway Workshop, featuring a clean, modern design for a local business.</p>
+            <ul class="tech-list">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+            </ul>
+            <a class="btn" href="https://shadel7.github.io/Holloway-Workshop/" target="_blank" rel="noopener">
+              <span>View Project</span>
+              <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+        <article class="project-card" data-project="rrr-office-solutions">
+          <a href="https://shadel7.github.io/RRR-Office-Solutions/" target="_blank" aria-label="View RRR Office Solutions Landing Page">
+            <img src="Screenshot_5-9-2025_21011_shadel7.github.io.jpeg" alt="Screenshot of RRR Office Solutions Landing Page" onerror="this.src='download.png'">
+          </a>
+          <div class="card-content">
+            <h3>RRR Office Solutions</h3>
+            <p>Landing page for RRR Office Solutions, designed for a professional office services provider.</p>
+            <ul class="tech-list">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+            </ul>
+            <a class="btn" href="https://shadel7.github.io/RRR-Office-Solutions/" target="_blank" rel="noopener">
+              <span>View Project</span>
+              <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+    </section>
+  </main>
+
+  <!-- Enhanced Sidebar Navigation -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<aside class="sidebar-nav" id="sidebarNav">
+  <div class="sidebar-logo-circle">
+    <a href="index.html" aria-label="ShadEl Web Home">
+      <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img">
+      <span class="logo-text">ShadEl Web</span>
+    </a>
+  </div>
+  <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar">
+    <i class="fas fa-times"></i>
+  </button>
+  <nav>
+    <ul>
+      <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html" id="nav-about"><i class="fas fa-user"></i> About</a></li>
+      <li><a href="services.html" id="nav-services"><i class="fas fa-cogs"></i> Services</a></li>
+      <li><a href="portfolio.html" id="nav-portfolio" class="active"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+      <li><a href="quote-estimator.html" id="nav-quote"><i class="fas fa-calculator"></i> Smart Quote</a></li>
+      <li><a href="contact.html" id="nav-contact"><i class="fas fa-phone"></i> Contact</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Enhanced Sidebar Footer with Social Links -->
+  <div class="sidebar-footer">
+    <p>Professional Web Development since 2023</p>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/shadel" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://instagram.com/shadeldev" target="_blank" aria-label="Instagram" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://github.com/shadeldev" target="_blank" aria-label="GitHub" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://facebook.com/shadeldev" target="_blank" aria-label="Facebook" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://m.me/shadeldev" target="_blank" aria-label="Messenger" title="Messenger">
+        <i class="fab fa-facebook-messenger"></i>
+      </a>
+    </div>
+  </div>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open sidebar">
+  <i class="fas fa-bars"></i>
+</button>
+
+  <!-- Enhanced Footer with Newsletter -->
+<footer>
+  <div class="footer-container">
+    <form class="newsletter-form" onsubmit="return false;">
+      <label for="newsletter-email">Stay updated with our latest projects and insights</label>
+      <div class="newsletter-inputs">
+        <input type="email" id="newsletter-email" placeholder="Enter your email address" required>
+        <button type="submit" onclick="alert('Thank you for subscribing! We will keep you updated.')">Subscribe</button>
+      </div>
+    </form>
+    
+    <div class="social-links">
+      <a href="https://linkedin.com/in/shadel" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://instagram.com/shadeldev" target="_blank" aria-label="Instagram" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://github.com/shadeldev" target="_blank" aria-label="GitHub" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://facebook.com/shadeldev" target="_blank" aria-label="Facebook" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://m.me/shadeldev" target="_blank" aria-label="Messenger" title="Messenger">
+        <i class="fab fa-facebook-messenger"></i>
+      </a>
+    </div>
+    
+    <p>&copy; 2023 ShadEl Web. All rights reserved.</p>
+  </div>
+</footer>
+<!-- Footer End -->
+
+  <!-- Enhanced Chatbot Widget -->
+  <div id="chatbot-widget">
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <span>ShadEl Web Assistant</span>
+        <button onclick="toggleChatbot()" aria-label="Close chat">×</button>
+      </div>
+      <div class="chatbot-body" id="chatbotBody">
+        <div class="chatbot-msg bot">
+          <strong>Hello!</strong><br>
+          I'm here to help you learn about our portfolio and services. Feel free to ask about:
+          <br>• Our projects and technologies
+          <br>• Development process
+          <br>• Pricing and timelines
+          <br>• Any specific requirements
+        </div>
+      </div>
+      <form class="chatbot-form" onsubmit="sendMessage(event)">
+        <input type="text" id="chatbotInput" placeholder="Ask about our projects..." maxlength="200">
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <button class="chatbot-btn" onclick="toggleChatbot()" aria-label="Open chat assistant">
+      <i class="fas fa-robot"></i>
+    </button>
+  </div>
+
+  <script>
+    // Enhanced JavaScript functionality
+    
+    // Enhanced Sidebar toggle logic with overlay
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarNav');
+      const overlay = document.getElementById('sidebarOverlay');
+      
+      sidebar.classList.toggle('open');
+      
+      if (sidebar.classList.contains('open')) {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        // Focus management for accessibility
+        const firstFocusable = sidebar.querySelector('a, button');
+        if (firstFocusable) firstFocusable.focus();
+      } else {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+    
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebarNav');
+      const overlay = document.getElementById('sidebarOverlay');
+      
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // Enhanced keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      const sidebar = document.getElementById('sidebarNav');
+      
+      // Close sidebar with Escape key
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        closeSidebar();
+        document.querySelector('.sidebar-toggle').focus();
+      }
+      
+      // Trap focus within sidebar when open
+      if (sidebar.classList.contains('open') && e.key === 'Tab') {
+        const focusable = sidebar.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstFocusable = focusable[0];
+        const lastFocusable = focusable[focusable.length - 1];
+        
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusable) {
+            lastFocusable.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastFocusable) {
+            firstFocusable.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+
+    // Enhanced Chatbot functionality
+    function toggleChatbot() {
+      const chatbotWindow = document.getElementById('chatbotWindow');
+      const isOpen = chatbotWindow.classList.contains('open');
+      
+      if (isOpen) {
+        chatbotWindow.classList.remove('open');
+      } else {
+        chatbotWindow.classList.add('open');
+        // Auto-focus input when opening
+        setTimeout(() => {
+          const input = document.getElementById('chatbotInput');
+          if (input) input.focus();
+        }, 100);
+      }
+    }
+    
+    function sendMessage(event) {
+      event.preventDefault();
+      const input = document.getElementById('chatbotInput');
+      const chatBody = document.getElementById('chatbotBody');
+      const message = input.value.trim();
+      
+      if (!message) return;
+      
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'chatbot-msg user';
+      userMsg.textContent = message;
+      chatBody.appendChild(userMsg);
+      
+      // Clear input
+      input.value = '';
+      
+      // Simulate bot response with delay
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'chatbot-msg bot';
+        botMsg.innerHTML = getBotReplyWithIcon(message);
+        chatBody.appendChild(botMsg);
+        
+        // Auto-scroll to bottom
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 800);
+      
+      // Auto-scroll to bottom for user message
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+    
+    function getBotReplyWithIcon(message) {
+      const msg = message.toLowerCase();
+      
+      // Portfolio-specific responses
+      if (msg.includes('portfolio') || msg.includes('project') || msg.includes('work')) {
+        return '<strong>Our Portfolio</strong><br>We showcase diverse projects including e-commerce sites, church websites, and business solutions. Each project uses modern technologies like React, Node.js, and responsive design. Check out our live examples above!';
+      }
+      
+      if (msg.includes('technology') || msg.includes('tech') || msg.includes('stack')) {
+        return '<strong>Technology Stack</strong><br>We work with: React, Node.js, MongoDB, Stripe API, HTML5, CSS3, JavaScript ES6+, and responsive frameworks. We choose the best tech for each project.';
+      }
+      
+      if (msg.includes('ecommerce') || msg.includes('store') || msg.includes('shop')) {
+        return '<strong>E-commerce Solutions</strong><br>Our e-commerce sites feature secure payments via Stripe, product management, inventory tracking, and mobile-responsive design. Perfect for retailers looking to go online!';
+      }
+      
+      if (msg.includes('church') || msg.includes('religious') || msg.includes('nonprofit')) {
+        return '<strong>Religious & Nonprofit Sites</strong><br>We create meaningful websites for churches and nonprofits with donation systems, event management, sermon archives, and community features. Built with care and purpose.';
+      }
+      
+      if (msg.includes('mobile') || msg.includes('responsive')) {
+        return '<strong>Mobile-First Design</strong><br>All our websites are fully responsive and mobile-optimized. We ensure perfect performance across all devices - desktop, tablet, and smartphone.';
+      }
+      
+      if (msg.includes('price') || msg.includes('cost') || msg.includes('budget')) {
+        return '<strong>Pricing Information</strong><br>Our project pricing depends on complexity and requirements. Basic sites start from $500, advanced e-commerce from $1,200. Contact us for a personalized quote!';
+      }
+      
+      if (msg.includes('time') || msg.includes('deadline') || msg.includes('how long')) {
+        return '<strong>Project Timeline</strong><br>Typical timelines: Simple sites (1-2 weeks), Complex sites (3-4 weeks), E-commerce (4-6 weeks). We provide regular updates and stick to agreed deadlines.';
+      }
+      
+      if (msg.includes('contact') || msg.includes('reach') || msg.includes('get in touch')) {
+        return '<strong>Get In Touch</strong><br>Ready to start your project? Visit our Contact page or email us directly. We respond within 24 hours and offer free consultations for all projects.';
+      }
+      
+      if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+        return '<strong>Hello there!</strong><br>Welcome to our portfolio! I can help you learn about our projects, technologies, pricing, and services. What would you like to know?';
+      }
+      
+      // Default response
+      return '<strong>Great question!</strong><br>I can help you with information about our portfolio projects, technologies we use, pricing, timelines, and getting started. Could you be more specific about what you\'d like to know?';
+    }
+
+    // Theme switcher (persistent across pages)
+    const themeSwitch = document.getElementById('themeSwitch');
+    // Apply saved theme on load
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      if (themeSwitch) themeSwitch.checked = true;
+    }
+    if (themeSwitch) {
+      themeSwitch.addEventListener('change', () => {
+        if (themeSwitch.checked) {
+          document.body.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.body.classList.remove('dark-mode');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    }
+
+    // Dynamic active link for sidebar and header nav
+    function setActiveLinks() {
+      const path = window.location.pathname.split('/').pop();
+      document.querySelectorAll('.side-nav-left ul li a, header nav ul li a').forEach(link => {
+        if (link.getAttribute('href') === path || (path === '' && link.getAttribute('href') === 'index.html')) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+    setActiveLinks();
+
+    // Accessibility: trap focus in sidebar when open
+    document.addEventListener('keydown', function(e) {
+      if (document.body.classList.contains('sidebar-open')) {
+        const sidebar = document.getElementById('sideNavLeft');
+        const focusable = sidebar.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              last.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === last) {
+              first.focus();
+              e.preventDefault();
+            }
+          }
+        }
+        if (e.key === 'Escape') {
+          closeSidebar();
+        }
+      }
+    });
+  </script>
+
+  <!-- AI Portfolio Modal -->
+  <div class="ai-overlay" id="aiOverlay">
+    <div class="ai-modal">
+      <div class="ai-modal-header">
+        <h2 class="ai-modal-title" id="aiModalTitle">
+          <i class="fas fa-robot"></i> AI Project Assistant
+        </h2>
+        <button class="ai-close-btn" onclick="closeProjectAI()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="ai-project-details" id="aiProjectDetails">
+        <!-- Project details will be populated here -->
+      </div>
+      
+      <div class="ai-qa-section">
+        <h3 class="ai-qa-header">
+          <i class="fas fa-comments"></i> Ask About This Project
+        </h3>
+        <textarea 
+          class="ai-question-input" 
+          id="aiQuestionInput" 
+          placeholder="Ask me anything about this project... (e.g., 'What challenges did you face?', 'How does the payment system work?', 'Could you build something similar for my business?')"
+        ></textarea>
+        <button class="ai-ask-btn" id="aiAskBtn" onclick="askProjectQuestion()">
+          <i class="fas fa-magic"></i> Ask AI Assistant
+        </button>
+        <div id="aiAnswer" class="ai-answer" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // AI Portfolio Project Data
+    const projectData = {
+      ecommerce: {
+        title: "E-commerce Website - Her Essence",
+        description: "A comprehensive online retail platform built for a beauty and cosmetics business.",
+        features: [
+          "Product catalog with high-quality image galleries",
+          "Shopping cart and secure checkout system", 
+          "Customer account management and order history",
+          "Responsive design for mobile and desktop",
+          "SEO optimization for better search visibility",
+          "Contact form integration"
+        ],
+        technologies: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "PHP", "MySQL"],
+        challenges: [
+          "Creating an intuitive user experience for product browsing",
+          "Implementing secure payment processing",
+          "Optimizing page load speeds for product images",
+          "Ensuring mobile responsiveness across all devices"
+        ],
+        achievements: [
+          "Fast loading times under 3 seconds",
+          "Mobile-first responsive design",
+          "SEO-optimized structure",
+          "Clean, professional aesthetic"
+        ]
+      },
+      church: {
+        title: "Church Website - Restoration Tabernacle",
+        description: "A modern, welcoming website for a growing church community with integrated event management and donation systems.",
+        features: [
+          "Event calendar and service schedules",
+          "Sermon audio/video streaming",
+          "Online donation system",
+          "Member directory and contact forms",
+          "Prayer request submissions",
+          "Church news and announcements"
+        ],
+        technologies: ["HTML5", "CSS3", "PHP", "JavaScript", "MySQL", "PayPal API"],
+        challenges: [
+          "Creating a warm, welcoming design that reflects the church's values",
+          "Integrating secure donation processing",
+          "Building an easy-to-use content management system for staff",
+          "Ensuring accessibility for all age groups"
+        ],
+        achievements: [
+          "Increased online engagement by 200%",
+          "Streamlined donation process",
+          "Mobile-friendly for all demographics",
+          "Easy content updates for church staff"
+        ]
+      },
+      choir: {
+        title: "Choir Website - Musical Excellence",
+        description: "A dynamic showcase platform for choir groups featuring media galleries and performance scheduling.",
+        features: [
+          "Audio and video performance galleries",
+          "Event calendar for upcoming performances",
+          "Member profiles and bios",
+          "Contact and booking forms",
+          "Social media integration",
+          "Responsive image galleries"
+        ],
+        technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "Bootstrap"],
+        challenges: [
+          "Optimizing audio/video content for web delivery",
+          "Creating an elegant, artistic design aesthetic",
+          "Building intuitive navigation for media content",
+          "Ensuring fast loading despite heavy media content"
+        ],
+        achievements: [
+          "Beautiful, artistic design that reflects musical excellence",
+          "Optimized media delivery system",
+          "Increased booking inquiries by 150%",
+          "Cross-platform compatibility"
+        ]
+      },
+      recruitment: {
+        title: "Recruitment Platform - Baroque Staffing",
+        description: "A comprehensive job board and application management system connecting employers with qualified candidates.",
+        features: [
+          "Job posting and management system",
+          "Candidate application portal", 
+          "Resume upload and parsing",
+          "Advanced search and filtering",
+          "Application tracking system",
+          "Employer dashboard and analytics"
+        ],
+        technologies: ["HTML5", "CSS3", "PHP", "JavaScript", "MySQL", "AJAX"],
+        challenges: [
+          "Building complex database relationships for job matching",
+          "Creating efficient search algorithms",
+          "Implementing secure file upload for resumes",
+          "Designing intuitive user interfaces for both employers and job seekers"
+        ],
+        achievements: [
+          "Successfully matched 500+ candidates with employers",
+          "Advanced filtering system with 95% accuracy",
+          "Secure document management",
+          "Streamlined application process"
+        ]
+      },
+      takeaway: {
+        title: "Online Takeaway - Naomi's Kitchen",
+        description: "A modern food ordering platform with real-time menu management and delivery tracking capabilities.",
+        features: [
+          "Interactive menu with food categories",
+          "Shopping cart with customization options",
+          "Order tracking and status updates",
+          "Customer account management",
+          "Admin panel for menu updates",
+          "Payment integration and receipt system"
+        ],
+        technologies: ["HTML5", "SCSS", "JavaScript", "Bootstrap", "PHP", "API Integration"],
+        challenges: [
+          "Real-time order management and tracking",
+          "Creating appetizing food presentation through design",
+          "Implementing complex order customization options",
+          "Integrating with payment and delivery systems"
+        ],
+        achievements: [
+          "Reduced order processing time by 60%",
+          "Increased average order value by 35%",
+          "Streamlined kitchen workflow",
+          "Customer satisfaction rate of 98%"
+        ]
+      }
+    };
+
+    // AI Portfolio Functions
+    function openProjectAI(projectCard) {
+      const projectType = projectCard.dataset.project;
+      const project = projectData[projectType];
+      
+      if (!project) return;
+      
+      // Update modal content
+      document.getElementById('aiModalTitle').innerHTML = `
+        <i class="fas fa-robot"></i> ${project.title}
+      `;
+      
+      const detailsHtml = `
+        <div class="ai-section">
+          <h3><i class="fas fa-info-circle"></i> Project Overview</h3>
+          <p>${project.description}</p>
+        </div>
+        
+        <div class="ai-section">
+          <h3><i class="fas fa-star"></i> Key Features</h3>
+          <ul>
+            ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <div class="ai-section">
+          <h3><i class="fas fa-code"></i> Technology Stack</h3>
+          <div class="ai-tech-stack">
+            ${project.technologies.map(tech => `<span class="ai-tech-tag">${tech}</span>`).join('')}
+          </div>
+        </div>
+        
+        <div class="ai-section">
+          <h3><i class="fas fa-mountain"></i> Challenges Solved</h3>
+          <ul>
+            ${project.challenges.map(challenge => `<li>${challenge}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <div class="ai-section">
+          <h3><i class="fas fa-trophy"></i> Key Achievements</h3>
+          <ul>
+            ${project.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+      
+      document.getElementById('aiProjectDetails').innerHTML = detailsHtml;
+      
+      // Clear previous Q&A
+      document.getElementById('aiQuestionInput').value = '';
+      document.getElementById('aiAnswer').style.display = 'none';
+      
+      // Show modal
+      const overlay = document.getElementById('aiOverlay');
+      overlay.style.display = 'flex';
+      setTimeout(() => overlay.classList.add('show'), 10);
+      
+      // Add active class to project card
+      document.querySelectorAll('.project-card').forEach(card => card.classList.remove('ai-active'));
+      projectCard.classList.add('ai-active');
+      
+      // Store current project for Q&A
+      window.currentAIProject = projectType;
+    }
+
+    function closeProjectAI() {
+      const overlay = document.getElementById('aiOverlay');
+      overlay.classList.remove('show');
+      setTimeout(() => overlay.style.display = 'none', 300);
+      
+      // Remove active class from all project cards
+      document.querySelectorAll('.project-card').forEach(card => card.classList.remove('ai-active'));
+      window.currentAIProject = null;
+    }
+
+    function askProjectQuestion() {
+      const question = document.getElementById('aiQuestionInput').value.trim();
+      if (!question || !window.currentAIProject) return;
+      
+      const askBtn = document.getElementById('aiAskBtn');
+      const answerDiv = document.getElementById('aiAnswer');
+      
+      // Show loading state
+      askBtn.disabled = true;
+      askBtn.innerHTML = '<div class="ai-loading"><div class="ai-spinner"></div> AI is thinking...</div>';
+      
+      // Simulate AI response (in real implementation, this would call an AI API)
+      setTimeout(() => {
+        const response = generateAIResponse(question, window.currentAIProject);
+        
+        answerDiv.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--highlight);">
+            <i class="fas fa-robot"></i>
+            <strong>AI Assistant Response:</strong>
+          </div>
+          ${response}
+        `;
+        answerDiv.style.display = 'block';
+        
+        // Reset button
+        askBtn.disabled = false;
+        askBtn.innerHTML = '<i class="fas fa-magic"></i> Ask Another Question';
+        
+        // Clear input
+        document.getElementById('aiQuestionInput').value = '';
+      }, 2000);
+    }
+
+    function generateAIResponse(question, projectType) {
+      const project = projectData[projectType];
+      const lowerQuestion = question.toLowerCase();
+      
+      // Simple pattern matching for demo (in real implementation, use AI API)
+      if (lowerQuestion.includes('challenge') || lowerQuestion.includes('difficult') || lowerQuestion.includes('problem')) {
+        return `<p>Great question! The main challenges we faced with the ${project.title} included:</p>
+                <ul>${project.challenges.map(challenge => `<li>${challenge}</li>`).join('')}</ul>
+                <p>We overcame these through careful planning, iterative development, and leveraging modern web technologies.</p>`;
+      }
+      
+      if (lowerQuestion.includes('technology') || lowerQuestion.includes('tech') || lowerQuestion.includes('built') || lowerQuestion.includes('stack')) {
+        return `<p>The ${project.title} was built using a modern technology stack:</p>
+                <p><strong>Technologies used:</strong> ${project.technologies.join(', ')}</p>
+                <p>This combination provides excellent performance, security, and maintainability while ensuring a great user experience.</p>`;
+      }
+      
+      if (lowerQuestion.includes('cost') || lowerQuestion.includes('price') || lowerQuestion.includes('budget') || lowerQuestion.includes('similar')) {
+        return `<p>For a project similar to ${project.title}, the cost typically depends on your specific requirements and complexity.</p>
+                <p><strong>Factors that affect pricing:</strong></p>
+                <ul>
+                  <li>Number of pages and features</li>
+                  <li>Custom design requirements</li>
+                  <li>Third-party integrations needed</li>
+                  <li>Timeline and urgency</li>
+                </ul>
+                <p>I'd be happy to provide a detailed quote based on your specific needs. <a href="contact.html" style="color: var(--highlight);">Contact us</a> for a free consultation!</p>`;
+      }
+      
+      if (lowerQuestion.includes('time') || lowerQuestion.includes('timeline') || lowerQuestion.includes('long') || lowerQuestion.includes('duration')) {
+        return `<p>The development timeline for ${project.title} was approximately 4-6 weeks from start to launch.</p>
+                <p><strong>Typical project phases:</strong></p>
+                <ul>
+                  <li>Discovery & Planning (1 week)</li>
+                  <li>Design & Prototyping (1-2 weeks)</li>
+                  <li>Development & Testing (2-3 weeks)</li>
+                  <li>Launch & Training (1 week)</li>
+                </ul>
+                <p>Timeline can vary based on project complexity and client feedback cycles.</p>`;
+      }
+      
+      if (lowerQuestion.includes('feature') || lowerQuestion.includes('function') || lowerQuestion.includes('work') || lowerQuestion.includes('what')) {
+        return `<p>The ${project.title} includes several key features designed to meet our client's specific needs:</p>
+                <ul>${project.features.map(feature => `<li>${feature}</li>`).join('')}</ul>
+                <p>Each feature was carefully designed and tested to ensure optimal user experience and business value.</p>`;
+      }
+      
+      // Default response
+      return `<p>Thank you for your interest in the ${project.title}! ${project.description}</p>
+              <p>This project showcases our expertise in ${project.technologies.slice(0, 3).join(', ')} and demonstrates our ability to create custom solutions that drive real business results.</p>
+              <p>Would you like to know more about any specific aspect of this project, or are you interested in discussing a similar project for your business? <a href="contact.html" style="color: var(--highlight);">Let's talk!</a></p>`;
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('aiOverlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeProjectAI();
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('aiOverlay').classList.contains('show')) {
+        closeProjectAI();
+      }
+    });
+
+    // Allow Enter key to submit question
+    document.getElementById('aiQuestionInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        askProjectQuestion();
+      }
+    });
+  </script>
+  
+  <!-- Font Awesome CDN (add in <head> if not already present) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+</body>
+</html>
+
+

@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ShadEl Web is a South African-based web development studio offering affordable, custom-built websites that are fast, scalable, and mobile-responsive.">
+  <title>About Us - ShadEl Web</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+
+  <style>
+    /* --- Modern Dark Theme & Enhanced Styles for About Page --- */
+    :root {
+      --primary: #1e293b;
+      --primary-dark: #0f172a;
+      --primary-light: #334155;
+      --sidebar-bg: linear-gradient(135deg, #0f172a 60%, #1e293b 100%);
+      --sidebar-accent: #38bdf8;
+      --bg: #181a20;
+      --surface: #23263a;
+      --surface-alt: #222436;
+      --text: #e5e7eb;
+      --text-light: #38bdf8;
+      --border: #334155;
+      --shadow: 0 4px 16px rgba(30,41,59,0.18);
+      --highlight: #38bdf8;
+      --accent-gradient: linear-gradient(90deg, #38bdf8 0%, #1e293b 100%);
+      --cta-gradient: linear-gradient(120deg, #1e293b 0%, #38bdf8 100%);
+    }
+    html, body, input, button, textarea, select {
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      color: var(--highlight);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #fff;
+      text-shadow: 0 2px 8px #38bdf855;
+    }
+    .container, main.container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    /* Header */
+    .main-header {
+      background: var(--primary-dark);
+      color: var(--text);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+      border-bottom: 2px solid var(--primary-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      /* Reduce header height */
+      min-height: 48px;
+    }
+    .main-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px; /* Reduce from 70px */
+      padding: 0 10px;  /* Less horizontal padding */
+    }
+    .main-header h1 a, .main-header h1 {
+      color: var(--sidebar-accent);
+      font-size: 1.5rem; /* Reduce font size */
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #38bdf855;
+      margin: 0;
+      padding: 10px 0;   /* Reduce vertical padding */
+      text-align: center;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* Sidebar Navigation */
+  .sidebar-nav {
+    position: fixed;
+    top: 0; left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #fff;
+    box-shadow: 4px 0 32px rgba(15, 23, 42, 0.4);
+    z-index: 1003;
+    transition: left 0.4s cubic-bezier(.7,.3,.3,1);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(56, 189, 248, 0.2);
+  }
+  .sidebar-nav.open { 
+    left: 0; 
+    animation: slideInLeft 0.4s ease-out;
+  }
+  
+  @keyframes slideInLeft {
+    from { 
+      left: -280px; 
+      opacity: 0; 
+    }
+    to { 
+      left: 0; 
+      opacity: 1; 
+    }
+  }
+  
+  .sidebar-logo-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    padding: 0 1.5rem;
+    position: relative;
+    animation: fadeInDown 0.6s ease-out 0.2s both;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .logo-circle {
+    background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+    color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    margin-right: 0.8em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .logo-circle:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+  }
+  
+  .logo-circle::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: rotate(45deg);
+    transition: transform 0.6s ease;
+    opacity: 0;
+  }
+  
+  .logo-circle:hover::before {
+    transform: rotate(45deg) translate(50%, 50%);
+    opacity: 1;
+  }
+  
+  .logo-text {
+    font-size: 1.35rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-logo-circle a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-logo-circle a:hover {
+    transform: translateY(-2px);
+  }
+  
+  .sidebar-logo-img {
+    width: 60px;
+    height: 60px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--sidebar-accent);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .sidebar-logo-img:hover {
+    transform: scale(1.1);
+    border-color: #06b6d4;
+  }
+  
+  .sidebar-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 50%;
+    color: var(--sidebar-accent);
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-close:hover {
+    background: var(--sidebar-accent);
+    color: #0f172a;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-nav nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .sidebar-nav nav ul li {
+    margin: 0.8rem 0;
+    opacity: 0;
+    animation: slideInRight 0.4s ease-out forwards;
+  }
+  
+  .sidebar-nav nav ul li:nth-child(1) { animation-delay: 0.1s; }
+  .sidebar-nav nav ul li:nth-child(2) { animation-delay: 0.2s; }
+  .sidebar-nav nav ul li:nth-child(3) { animation-delay: 0.3s; }
+  .sidebar-nav nav ul li:nth-child(4) { animation-delay: 0.4s; }
+  .sidebar-nav nav ul li:nth-child(5) { animation-delay: 0.5s; }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .sidebar-nav nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sidebar-nav nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .sidebar-nav nav ul li a:hover::before {
+    left: 100%;
+  }
+  
+  .sidebar-nav nav ul li a i {
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  .sidebar-nav nav ul li a:hover,
+  .sidebar-nav nav ul li a.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(6, 182, 212, 0.1));
+    border-left: 4px solid var(--sidebar-accent);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    transform: translateX(5px);
+  }
+  
+  .sidebar-nav nav ul li a:hover i,
+  .sidebar-nav nav ul li a.active i {
+    color: var(--sidebar-accent);
+    transform: scale(1.1);
+  }
+  
+  .sidebar-nav nav ul li a.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(6, 182, 212, 0.2));
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    top: 28px;
+    left: 28px;
+    z-index: 1002;
+    background: linear-gradient(135deg, var(--sidebar-accent), #06b6d4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: pulseGlow 2s infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+      transform: scale(1.05);
+    }
+  }
+  
+  .sidebar-toggle:hover { 
+    background: linear-gradient(135deg, #06b6d4, var(--primary));
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.5);
+    animation: none;
+  }
+  
+  .sidebar-toggle i {
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-toggle:hover i {
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 600px) {
+    .sidebar-nav { width: 90vw; }
+    .sidebar-toggle { left: 12px; top: 12px; }
+  }
+
+  /* Add a subtle background pattern */
+  .sidebar-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Add a bottom section with social links or additional info */
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(56, 189, 248, 0.2);
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.8s both;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .sidebar-footer p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .sidebar-footer .social-links {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .sidebar-footer .social-links a {
+    color: #64748b;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 0.4rem;
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.1);
+  }
+  
+  .sidebar-footer .social-links a:hover {
+    color: var(--sidebar-accent);
+    background: rgba(56, 189, 248, 0.2);
+    transform: translateY(-2px) scale(1.1);
+  }
+
+  /* Add overlay when sidebar is open */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+    /* Footer */
+    footer {
+      background-color: #111827;
+      border-top: 1.5px solid #22304a;
+      border-radius: 0 0 12px 12px;
+      margin-top: 40px;
+      padding: 16px 10px 10px 10px;
+      text-align: center;
+    }
+
+    .footer-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-container label {
+      color: #ddd;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .newsletter-form {
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .newsletter-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .newsletter-form input[type="email"] {
+      padding: 10px 16px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 50px;
+      flex: 1 1 250px;
+      min-width: 200px;
+      background: var(--surface-alt);
+      color: var(--text);
+    }
+
+    .newsletter-form button {
+      padding: 10px 24px;
+      font-size: 1rem;
+      border-radius: 50px;
+      border: none;
+      background-color: var(--primary);
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .newsletter-form button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-links a {
+      color: #ccc;
+      font-size: 1.2rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary-light);
+      transform: scale(1.2);
+    }
+
+    .footer-container p {
+      color: #ccc;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .newsletter-inputs {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .newsletter-form input[type="email"],
+      .newsletter-form button {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+
+/* Chatbot Styles */
+#chatbot-widget {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1002;
+  font-family: 'Times New Roman', Times, serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chatbot-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--sidebar-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #38bdf822;
+  font-size: 2rem;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot-btn:hover { 
+  background: var(--primary); 
+}
+
+.chatbot-window {
+  display: none;
+  flex-direction: column;
+  width: 320px;
+  max-width: 95vw;
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px #0005;
+  margin-bottom: 12px;
+  overflow: hidden;
+  animation: fadeIn 0.3s;
+}
+
+.chatbot-window.open { 
+  display: flex; 
+}
+
+.chatbot-header {
+  background: var(--sidebar-accent);
+  color: #fff;
+  padding: 0.8em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.08rem;
+}
+
+.chatbot-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.chatbot-body {
+  padding: 1em;
+  min-height: 80px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--surface-alt);
+  font-size: 0.98rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.chatbot-msg {
+  padding: 0.6em 1em;
+  border-radius: 12px;
+  margin-bottom: 0.2em;
+  max-width: 85%;
+  word-break: break-word;
+}
+
+.chatbot-msg.user {
+  background: var(--sidebar-accent);
+  color: white;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chatbot-msg.bot {
+  background: #38bdf822;
+  color: var(--sidebar-accent);
+  align-self: flex-start;
+  animation: bounceIn 0.5s;
+}
+
+.chatbot-form {
+  padding: 0.8em;
+  display: flex;
+  gap: 0.5em;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.chatbot-form input {
+  flex: 1;
+  padding: 0.6em;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  color: var(--text);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.95rem;
+}
+
+.chatbot-form button {
+  padding: 0.6em 1em;
+  background: var(--sidebar-accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chatbot-form button:hover {
+  background: var(--primary);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  #chatbot-widget { right: 10px; bottom: 10px; }
+  .chatbot-window {
+    width: 280px;
+    max-height: 350px;
+  }
+}
+    /* Section Headings */
+    .about-hero h1,
+    .about-mission h2,
+    .about-team h2,
+    .about-values h2,
+    .about-timeline h2,
+    .about-cta h2 {
+      color: var(--sidebar-accent);
+      margin-bottom: 1rem;
+      font-size: 2.2rem;
+      text-shadow: 0 2px 12px #0008;
+      font-family: 'Times New Roman', Times, serif;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    /* Section Subtext */
+    .about-hero p,
+    .about-mission p,
+    .about-values ul,
+    .about-timeline ul,
+    .about-cta p {
+      font-size: 1.15rem;
+      color: #b6e3ff;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      text-shadow: 0 1px 8px #0006;
+    }
+    /* Values List */
+    .about-values ul {
+      list-style-type: disc;
+      padding-left: 2.5rem;
+      color: #e0e6ed;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .about-values ul li {
+      margin-bottom: 0.7rem;
+      font-weight: 500;
+      font-size: 1.08rem;
+    }
+    .about-values ul li strong {
+      color: var(--sidebar-accent);
+    }
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .team-member {
+      background: var(--surface-alt);
+      padding: 1.5rem 1rem 1.2rem 1rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 6px 24px #38bdf822;
+      border: 1.5px solid var(--sidebar-accent);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .team-member:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 16px 40px #38bdf844;
+      border-color: #fff;
+      z-index: 2;
+    }
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 3px solid var(--sidebar-accent);
+      box-shadow: 0 2px 12px #38bdf822;
+      background: #fff;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .team-member h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+      color: var(--sidebar-accent);
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .team-member p {
+      font-size: 1rem;
+      color: #e0e6ed;
+      margin-bottom: 0.5rem;
+    }
+    .team-member .social-icons a {
+      color: var(--sidebar-accent);
+      margin: 0 0.4rem;
+      font-size: 1.2rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .team-member .social-icons a:hover {
+      color: #fff;
+      transform: scale(1.2);
+    }
+    /* Offerings Grid */
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin: 2.5rem 0 1.5rem 0;
+    }
+    .offering-card {
+      background: var(--surface-alt);
+      border: 2px solid var(--sidebar-accent);
+      border-radius: 18px;
+      box-shadow: 0 6px 24px #38bdf822;
+      padding: 2rem 1.2rem 1.5rem 1.2rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .offering-card i {
+      font-size: 2.2rem;
+      color: var(--sidebar-accent);
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+    }
+    .offering-card h3 {
+      color: var(--sidebar-accent);
+      font-size: 1.18rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .offering-card p {
+      color: #e0e6ed;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .offering-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 16px 40px #38bdf844;
+      border-color: #fff;
+      z-index: 2;
+    }
+    .offerings-usp {
+      background: linear-gradient(90deg, #1e293b 0%, #38bdf8 100%);
+      color: #fff;
+      border-radius: 14px;
+      padding: 1.2rem 1rem;
+      margin: 1.5rem 0 2rem 0;
+      box-shadow: 0 4px 16px #38bdf822;
+      text-align: center;
+    }
+    .offerings-usp h4 {
+      margin-bottom: 0.7rem;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+    .offerings-usp ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+    .offerings-usp li {
+      font-size: 1rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    /* Call to Action Section */
+    .about-cta {
+      background: var(--cta-gradient);
+      background-size: 200% 200%;
+      animation: ctaGradient 10s ease-in-out infinite;
+      color: #fff;
+      padding: 2.5rem 1rem;
+      border-radius: 24px;
+      margin: 40px 0;
+      box-shadow: 0 8px 32px #38bdf822;
+      text-align: center;
+    }
+    @keyframes ctaGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .about-cta h2 {
+      font-size: 2.3rem;
+      margin-bottom: 15px;
+    }
+    .about-cta p {
+      font-size: 1.15rem;
+      margin-bottom: 30px;
+    }
+    .about-cta .btn {
+      background: var(--accent-gradient);
+      color: #fff;
+      padding: 15px 42px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      box-shadow: 0 6px 24px #38bdf822;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      cursor: pointer;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      outline: none;
+      text-shadow: 0 2px 8px rgba(37,99,235,0.08);
+      margin: 0 0.5rem;
+    }
+    .about-cta .btn:hover, .about-cta .btn:focus {
+      background: linear-gradient(90deg, var(--primary-dark) 0%, var(--sidebar-accent) 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 32px rgba(37,99,235,0.18);
+    }
+    /* Footer */
+    footer {
+      margin-top: auto;
+      background: var(--primary-dark);
+      color: #e5e7eb;
+      padding: 1.5rem 0 1rem 0;
+      border-top: 1.5px solid #22304a;
+      border-radius: 0 0 12px 12px;
+      text-align: center;
+      box-shadow: 0 -2px 8px #0003;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-content p {
+      margin: 0;
+      font-size: 0.98rem;
+      color: #b6e3ff;
+    }
+    .footer-content .social-icons a {
+      color: var(--sidebar-accent);
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+    .footer-content .social-icons a:hover {
+      color: #fff;
+    }
+    /* Back to Top Button */
+    #backToTop {
+      display: none;
+      position: fixed;
+      right: 2rem;
+      bottom: 2rem;
+      background: var(--sidebar-accent);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px #38bdf822;
+      cursor: pointer;
+      z-index: 200;
+      font-size: 2rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    #backToTop:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-4px) scale(1.08);
+    }
+    @media (max-width: 768px) {
+      #backToTop {
+        right: 1rem;
+        bottom: 1rem;
+      }
+    }
+    /* Responsive Tweaks */
+    @media (max-width: 900px) {
+      .container, main.container {
+        padding: 0 8px;
+      }
+      .team-grid, .offerings-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .team-grid, .offerings-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .about-cta {
+        padding: 1.2rem 0.5rem;
+        border-radius: 12px;
+      }
+      .about-cta .btn {
+        width: 100%;
+        margin: 0.5rem 0;
+        font-size: 1rem;
+        padding: 12px 0;
+      }
+      .offerings-usp ul {
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container">
+      <h1>
+        <a href="index.html" aria-label="ShadEl Web Home">
+          <i class="fas fa-code" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+          ShadEl Web
+        </a>
+      </h1>
+    </div>
+  </header>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar-nav" id="sidebarNav">
+    <div class="sidebar-logo-circle">
+      <a href="index.html" aria-label="ShadEl Web Home">
+        <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img">
+        <span class="logo-text">ShadEl Web</span>
+      </a>
+    </div>
+    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar"><i class="fas fa-times"></i></button>
+    <nav>
+      <ul>
+        <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html" id="nav-about" class="active"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="services.html" id="nav-services"><i class="fas fa-cogs"></i> Services</a></li>
+        <li><a href="portfolio.html" id="nav-portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <li><a href="quote-estimator.html" id="nav-quote"><i class="fas fa-calculator"></i> Smart Quote</a></li>
+        <li><a href="contact.html" id="nav-contact"><i class="fas fa-phone"></i> Contact</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Professional Web Development<br>Since 2023</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </aside>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open sidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Back to top" title="Back to top" style="display:none;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Main About Content -->
+  <main class="container">
+    <section class="about-hero">
+      <h1>
+        <i class="fas fa-code" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+        About ShadEl Web
+      </h1>
+      <p>
+        ShadEl Web is a budding web development studio focused on creating stunning, functional, and results-driven websites for small businesses, entrepreneurs, and organizations.
+      </p>
+      <p>
+        We believe a website is more than just an online presence — it's a tool to grow your brand, connect with your audience, and achieve your goals. By combining creativity, technical skills, and a personal touch, we bring your vision to life and set you apart from the competition.
+      </p>
+    </section>
+    <section class="about-mission">
+      <h2>
+        <i class="fas fa-bullseye" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+        Our Mission
+      </h2>
+      <p>
+        Our mission is simple yet powerful:
+      </p>
+      <p>
+        To help businesses of all sizes shine online through creative, functional, and affordable digital solutions.
+      </p>
+      <p>
+        We aim to be the go-to partner for brands who want more than just a website — they want a trusted ally in their digital journey.
+      </p>
+    </section>
+    <section class="about-offerings">
+      <h2>
+        <i class="fas fa-gift" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+        What We Offer
+      </h2>
+      <div class="offerings-grid">
+        <div class="offering-card">
+          <i class="fas fa-laptop-code"></i>
+          <h3>Custom Website Development</h3>
+          <p>Tailored solutions for businesses and individuals, built to your unique needs.</p>
+        </div>
+        <div class="offering-card">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Responsive Design</h3>
+          <p>Mobile-friendly and accessible websites that look great on any device.</p>
+        </div>
+        <div class="offering-card">
+          <i class="fas fa-shopping-cart"></i>
+          <h3>E-commerce Solutions</h3>
+          <p>Online stores with secure payment integration and seamless shopping experiences.</p>
+        </div>
+        <div class="offering-card">
+          <i class="fas fa-search"></i>
+          <h3>SEO Optimization</h3>
+          <p>Boost your site's visibility and ranking with proven SEO strategies.</p>
+        </div>
+        <div class="offering-card">
+          <i class="fas fa-tools"></i>
+          <h3>Website Maintenance</h3>
+          <p>Ongoing support, updates, and security to keep your site running smoothly.</p>
+        </div>
+      </div>
+      <div class="offerings-usp">
+        <h4>Why Choose Us?</h4>
+        <p>At ShadEl Web, we may be new, but we're driven by fresh ideas, modern trends, and a dedication to delivering results. We bring:</p>
+        <ul>
+          <li><i class="fas fa-user-friends"></i> Personalized Service – Every project is tailored to your unique goals</li>
+          <li><i class="fas fa-mobile-alt"></i> Modern & Responsive Designs – Your site will look great on any device</li>
+          <li><i class="fas fa-hand-holding-usd"></i> Affordable, Transparent Pricing – High-quality work without hidden costs</li>
+          <li><i class="fas fa-star"></i> A Passion for Excellence – We treat your business like it's our own</li>
+        </ul>
+        <p>We're not just building websites — we're building long-term relationships with our clients.</p>
+      </div>
+    </section>
+    <section class="about-values">
+      <h2>
+        <i class="fas fa-heart" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+        Our Values
+      </h2>
+      <ul>
+        <li><strong>Innovation:</strong> We embrace new technologies and creative solutions.</li>
+        <li><strong>Integrity:</strong> We are honest and transparent in all our dealings.</li>
+        <li><strong>Customer Focus:</strong> Your satisfaction is our top priority.</li>
+        <li><strong>Quality:</strong> We deliver only the best results.</li>
+      </ul>
+    </section>
+    <section class="about-team">
+      <h2>
+        <i class="fas fa-users" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+        Meet the Team
+      </h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="images/team1.jpg" alt="Shad El, Founder & Lead Developer">
+          <h3>Shad El</h3>
+          <p>Founder & Lead Developer</p>
+          <div class="social-icons">
+            <a href="https://linkedin.com/in/shadel" target="_blank" aria-label="Shad El on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/shadeldev" target="_blank" aria-label="Shad El on GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="images/team2.jpg" alt="Jane Doe, UI/UX Designer">
+          <h3>Jane Doe</h3>
+          <p>UI/UX Designer</p>
+          <div class="social-icons">
+            <a href="https://linkedin.com/in/janedoe" target="_blank" aria-label="Jane Doe on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="images/team3.jpg" alt="John Smith, Backend Developer">
+          <h3>John Smith</h3>
+          <p>Backend Developer</p>
+          <div class="social-icons">
+            <a href="https://github.com/johnsmith" target="_blank" aria-label="John Smith on GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <label>Subscribe to our Newsletter</label>
+      <form action="#" class="newsletter-form">
+        <div class="newsletter-inputs">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </div>
+      </form>
+      <div class="social-links">
+        <a href="https://www.facebook.com/ash.gray.94214/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/shadel.dev" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://m.me/shadel.dev" target="_blank" aria-label="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="https://github.com/dashboard" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/shadrac-bonzali-885543163/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <p>&copy; 2023 ShadEl Web. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Sidebar toggle logic
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebarNav');
+  const overlay = document.getElementById('sidebarOverlay');
+  const isOpen = sidebar.classList.contains('open');
+  
+  if (isOpen) {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  } else {
+    sidebar.classList.add('open');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// Close sidebar on outside click or overlay click
+document.addEventListener('click', function(e) {
+  const sidebar = document.getElementById('sidebarNav');
+  const toggleBtn = document.querySelector('.sidebar-toggle');
+  const overlay = document.getElementById('sidebarOverlay');
+  
+  if (sidebar.classList.contains('open') && 
+      !sidebar.contains(e.target) && 
+      !toggleBtn.contains(e.target)) {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Close sidebar on escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const sidebar = document.getElementById('sidebarNav');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar.classList.contains('open')) {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+});
+    // Back to top button functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const backToTopButton = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopButton.style.display = 'flex';
+        } else {
+          backToTopButton.style.display = 'none';
+        }
+      });
+      backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+    renderReviews();
+
+    // Chatbot logic
+    function toggleChatbot() {
+      const win = document.getElementById('chatbotWindow');
+      win.classList.toggle('open');
+      if (win.classList.contains('open')) {
+        setTimeout(() => document.getElementById('chatbotInput').focus(), 200);
+      }
+    }
+    function sendChat(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatbotInput');
+      const body = document.getElementById('chatbotBody');
+      const msg = input.value.trim();
+      if (!msg) return;
+      // Add user message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'chatbot-msg user';
+      userDiv.textContent = msg;
+      body.appendChild(userDiv);
+      input.value = '';
+      body.scrollTop = body.scrollHeight;
+      // Simulate bot reply
+      setTimeout(() => {
+        const botDiv = document.createElement('div');
+        botDiv.className = 'chatbot-msg bot';
+        const avatar = document.createElement('span');
+        avatar.className = 'chatbot-avatar';
+        // Custom animated icon for bot
+        avatar.innerHTML = '<i class="fas fa-robot fa-spin"></i>';
+        botDiv.appendChild(avatar);
+        const reply = document.createElement('span');
+        reply.innerHTML = getBotReplyWithIcon(msg);
+        botDiv.appendChild(reply);
+        body.appendChild(botDiv);
+        body.scrollTop = body.scrollHeight;
+      }, 700);
+    }
+
+    // Enhanced ShadEl chatbot responses
+    function getBotReplyWithIcon(msg) {
+      msg = msg.toLowerCase();
+      
+      // Pricing related questions
+      if (msg.includes('price') || msg.includes('cost') || msg.includes('package')) {
+        return '<i class="fas fa-tags"></i> Great news! Our super affordable packages start from just <strong>R599</strong> (limited time). Regular pricing: <strong>Static R799-R1,899</strong>, <strong>E-commerce R1,999-R4,499</strong>, <strong>Maintenance R59-R199/month</strong>. Plus amazing discounts available!';
+      }
+      
+      // Static website questions
+      if (msg.includes('static') || msg.includes('basic website')) {
+        return '<i class="fas fa-globe"></i> Our Static Website packages are super affordable: <strong>Starter R799</strong> (3 pages), <strong>Business R1,299</strong> (5 pages), <strong>Professional R1,899</strong> (10 pages). Perfect for small businesses and landing pages!';
+      }
+      
+      // E-commerce questions
+      if (msg.includes('ecommerce') || msg.includes('online store') || msg.includes('shop')) {
+        return '<i class="fas fa-shopping-cart"></i> E-commerce made affordable! <strong>Starter Store R1,999</strong> (10 products), <strong>Business Store R2,999</strong> (50 products), <strong>Enterprise R4,499</strong> (unlimited). Includes PayFast, inventory management, and training!';
+      }
+      
+      // Portfolio questions
+      if (msg.includes('portfolio') || msg.includes('showcase')) {
+        return '<i class="fas fa-briefcase"></i> Showcase your work affordably! <strong>Creative R999</strong> (5 projects), <strong>Professional R1,599</strong> (15 projects), <strong>Studio R2,299</strong> (unlimited). Perfect for artists, photographers, and creatives!';
+      }
+      
+      // Maintenance questions
+      if (msg.includes('maintenance') || msg.includes('support') || msg.includes('update')) {
+        return '<i class="fas fa-shield-alt"></i> Super affordable maintenance! <strong>Essential Care R59/month</strong> (security & backups), <strong>Professional Care R129/month</strong> (includes content updates), <strong>Enterprise Care R199/month</strong> (unlimited updates). Cancel anytime!';
+      }
+      
+      // Discount questions
+      if (msg.includes('discount') || msg.includes('special') || msg.includes('offer')) {
+        return '<i class="fas fa-percentage"></i> Amazing savings available! <strong>Nonprofits 50% OFF</strong>, <strong>Students 35% OFF</strong>, <strong>Bundle deals 30% OFF</strong>, <strong>Referrals R400 cash</strong>. Limited time: ANY website for just <strong>R599</strong>!';
+      }
+      
+      // Technology questions
+      if (msg.includes('technology') || msg.includes('tech') || msg.includes('how')) {
+        return '<i class="fas fa-code"></i> We use modern technologies: HTML5, CSS3, JavaScript, responsive frameworks, SSL encryption, SEO optimization, and integrate with payment gateways like PayFast and Stripe - all included in our affordable packages!';
+      }
+      
+      // Timeline questions
+      if (msg.includes('time') || msg.includes('how long') || msg.includes('delivery')) {
+        return '<i class="fas fa-clock"></i> Quick delivery at affordable prices! Simple sites: 1 week, E-commerce: 2-3 weeks, Complex projects: 3-4 weeks. We keep you updated throughout and deliver on time or give you 10% off!';
+      }
+      
+      // Contact questions
+      if (msg.includes('contact') || msg.includes('reach') || msg.includes('call')) {
+        return '<i class="fas fa-envelope"></i> Ready to get your affordable website? Contact us via the Contact page, WhatsApp, or right here! We respond quickly with custom quotes and can start your project today!';
+      }
+      
+      // Greeting responses
+      if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+        return '<i class="fas fa-hand-peace"></i> Hello! I\'m ShadEl, and I\'m excited to help you get an amazing website at an unbeatable price! Starting from just R599 this month. What type of website do you need?';
+      }
+      
+      // Custom solutions
+      if (msg.includes('custom') || msg.includes('special') || msg.includes('unique')) {
+        return '<i class="fas fa-cogs"></i> Custom solutions at affordable prices! Whether it\'s unique design, special functionality, or industry-specific features, we can build it without breaking the bank. Contact us for a personalized quote!';
+      }
+      
+      // Mobile/responsive questions
+      if (msg.includes('mobile') || msg.includes('responsive') || msg.includes('phone')) {
+        return '<i class="fas fa-mobile-alt"></i> All our affordable websites are fully responsive and mobile-friendly! They look perfect on smartphones, tablets, and desktops. Mobile optimization is included in every package at no extra cost!';
+      }
+      
+      // Payment questions
+      if (msg.includes('payment') || msg.includes('pay') || msg.includes('installment')) {
+        return '<i class="fas fa-credit-card"></i> Flexible payments make it easy! Pay 50/50, 3 monthly installments, or get 5% off for full payment upfront. We accept EFT, cards, PayFast, PayPal. Business accounts get 30-day terms!';
+      }
+      
+      // SEO questions
+      if (msg.includes('seo') || msg.includes('google') || msg.includes('search')) {
+        return '<i class="fas fa-search"></i> SEO included at no extra cost! Basic SEO in static sites, advanced SEO in portfolios, full optimization in e-commerce. Our maintenance plans include ongoing SEO monitoring and improvements!';
+      }
+      
+      // Hosting questions
+      if (msg.includes('hosting') || msg.includes('domain')) {
+        return '<i class="fas fa-server"></i> We help with affordable hosting solutions! Domain registration assistance included, some packages come with free hosting for 3 months. Our maintenance plans can include hosting management too!';
+      }
+      
+      // Default helpful response
+      return '<i class="fas fa-info-circle"></i> I\'m here to help you get an amazing website at an unbeatable price! Our packages start from just R599 (limited time). Ask me about our Static, Portfolio, E-commerce, Community, or Maintenance plans. What interests you most?';
+    }
+  </script>
+
+  <!-- Floating Chatbot -->
+  <div id="chatbot-widget">
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <span><i class="fas fa-robot"></i> ShadEl - Your Web Dev Assistant</span>
+        <button onclick="toggleChatbot()" aria-label="Close chat">×</button>
+      </div>
+      <div class="chatbot-body" id="chatbotBody">
+        <div class="chatbot-msg bot">
+          <i class="fas fa-wave-square"></i> Hi! I'm ShadEl, your web development assistant. I'm here to help with any questions about our services, packages, or pricing!
+        </div>
+      </div>
+      <form class="chatbot-form" onsubmit="sendChat(event)">
+        <input type="text" id="chatbotInput" placeholder="Type your message..." required>
+        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+    <button class="chatbot-btn" onclick="toggleChatbot()" aria-label="Open chat support">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+  </div>
+
+</body>
+</html>

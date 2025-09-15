@@ -1,0 +1,3552 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Professional web development services - Custom websites, maintenance, and digital solutions for your business." />
+  <title>Services - ShadEl Web | Professional Web Development</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    /* Use Times New Roman for the whole page */
+    html, body, input, button, textarea, select {
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+
+    /* Modern dark color palette - consistent with home page */
+    :root {
+      --primary: #1e293b;
+      --primary-dark: #0f172a;
+      --primary-light: #334155;
+      --sidebar-bg: linear-gradient(135deg, #0f172a 60%, #1e293b 100%);
+      --sidebar-accent: #38bdf8;
+      --bg: #181a20;
+      --surface: #23263a;
+      --surface-alt: #222436;
+      --text: #e5e7eb;
+      --text-light: #38bdf8;
+      --border: #334155;
+      --shadow: 0 4px 16px rgba(30,41,59,0.18);
+      --highlight: #38bdf8;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      color: var(--sidebar-accent);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: var(--primary-light);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    .container { 
+      width: 95%; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 2rem 0; 
+    }
+
+    /* Header Bar - consistent with home page */
+    header, footer {
+      background: var(--primary-dark);
+      color: var(--text);
+      padding: 2.5rem 0;
+      text-align: center;
+      letter-spacing: 1px;
+      border-radius: 0 0 18px 18px;
+      box-shadow: var(--shadow);
+      border-bottom: 2px solid var(--primary-light);
+    }
+
+    h1, h2, h3 { 
+      color: var(--sidebar-accent); 
+      font-family: 'Times New Roman', Times, serif; 
+    }
+
+    header h1 { 
+      font-size: 3.2rem;
+      margin: 0; 
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #38bdf855;
+    }
+
+    main { 
+      width: 100%; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+    }
+
+    /* Hero Section - consistent with home page style */
+    .hero {
+      background: linear-gradient(120deg, #eaf3ff 0%, #cbe0ff 100%);
+      background-size: 200% 200%;
+      animation: heroGradient 8s ease-in-out infinite;
+      color: var(--primary);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 2.2rem 1.2rem 2rem 1.2rem;
+      margin: 2.2rem 0 2rem 0;
+      text-align: center;
+      max-width: 900px;
+      width: 100%;
+      font-family: 'Times New Roman', Times, serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes heroGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero h2 { 
+      color: var(--primary); 
+      font-size: 2.25rem; 
+      margin-bottom: 0.7rem; 
+      letter-spacing: 1px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px #38bdf822;
+    }
+
+    .hero p { 
+      color: #444; 
+      font-size: 1.125rem; 
+      margin-bottom: 1.2rem; 
+    }
+
+    .hero a {
+      margin-top: 1.2rem;
+      background: linear-gradient(90deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+      color: #fff;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+      font-size: 1.1rem;
+      letter-spacing: 0.2px;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .hero a:hover {
+      background: linear-gradient(90deg, var(--primary-dark) 0%, var(--sidebar-accent) 100%);
+      color: #fff;
+    }
+
+    /* Service Cards - Enhanced for better readability */
+    .card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 32px rgba(56, 189, 248, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--sidebar-accent), var(--primary));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(56, 189, 248, 0.2);
+      border-color: var(--sidebar-accent);
+    }
+
+    .card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8em;
+      color: var(--sidebar-accent);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .card h3 i {
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+
+    .card p {
+      margin-bottom: 1.2rem;
+      color: #e0e6ed;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .card ul {
+      margin-bottom: 1.5rem;
+      padding-left: 0;
+      color: var(--text);
+      font-size: 1rem;
+      list-style: none;
+    }
+
+    .card ul li {
+      margin-bottom: 0.8em;
+      padding-left: 1.8em;
+      position: relative;
+      color: var(--text);
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .card ul li::before {
+          content: "✓";
+          position: absolute;
+          left: 0;
+          color: var(--sidebar-accent);
+          font-weight: bold;
+          font-size: 1.1em;
+        }
+
+    .card a {
+      margin-top: auto;
+      background: linear-gradient(135deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 1.05rem;
+      letter-spacing: 0.3px;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .card a:hover::before {
+      left: 100%;
+    }
+
+    .card a:hover {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--sidebar-accent) 100%);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Price styling improvements */
+    .price-highlight {
+      font-size: 1.4rem !important;
+      font-weight: 800 !important;
+      color: var(--sidebar-accent) !important;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(56, 189, 248, 0.05));
+      padding: 0.8rem 1.2rem !important;
+      border-radius: 12px;
+      margin: 1rem 0 !important;
+      text-align: center;
+      border: 2px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .price-details {
+      font-size: 0.95rem !important;
+      color: rgba(224, 230, 237, 0.9) !important;
+      line-height: 1.6 !important;
+      padding: 0.8rem 1rem !important;
+      background: rgba(30, 41, 59, 0.3);
+      border-radius: 8px;
+      border-left: 3px solid var(--sidebar-accent);
+    }
+
+    /* Modern Pricing Section - improved and consistent */
+    .pricing-section-modern {
+      margin: 4rem auto;
+      background: var(--surface);
+      border-radius: 24px;
+      box-shadow: 0 12px 48px rgba(56, 189, 248, 0.08);
+      padding: 3rem 2rem;
+      font-family: inherit;
+      position: relative;
+      border: 1px solid var(--border);
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .pricing-section-modern::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--sidebar-accent), var(--primary));
+      border-radius: 24px 24px 0 0;
+    }
+
+    .modern-tabs {
+      display: flex;
+      background: var(--surface-alt);
+      border-radius: 50px;
+      padding: 8px;
+      margin-bottom: 3rem;
+      position: relative;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--border);
+    }
+
+    .modern-tab {
+      flex: 1;
+      padding: 16px 24px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 3;
+      white-space: nowrap;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .modern-tab:hover {
+      color: var(--sidebar-accent);
+      transform: translateY(-1px);
+    }
+
+    .modern-tab.active {
+      color: #fff;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .modern-tab-slider {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: calc(50% - 8px);
+      height: calc(100% - 16px);
+      background: linear-gradient(135deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+      border-radius: 40px;
+      z-index: 1;
+      transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    }
+
+    .modern-pricing-content {
+      width: 100%;
+      min-height: 400px;
+      position: relative;
+      padding-top: 1rem;
+    }
+
+    /* Add visual separator between tabs and content */
+    .modern-pricing-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sidebar-accent), transparent);
+      opacity: 0.5;
+    }
+
+    /* Ensure grids are properly managed */
+    #modern-packages {
+      display: grid !important;
+    }
+
+    #modern-maintenance {
+      display: none;
+    }
+
+    #modern-maintenance.show {
+      display: grid !important;
+    }
+
+    #modern-maintenance.active {
+      display: grid !important;
+    }
+
+    .modern-pricing-grid {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: stretch;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modern-pricing-grid.active {
+      display: grid !important;
+    }
+
+    .modern-pricing-grid.show {
+      display: grid !important;
+    }
+
+    /* Fix for initial display - show packages by default */
+    .modern-pricing-grid:first-of-type {
+      display: grid !important;
+    }
+
+    /* Services Grid Layout */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    /* Badge for service cards */
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: 16px;
+      background: linear-gradient(90deg, #ff6b6b, #ee5a52);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Pricing section title */
+    .pricing-main-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--sidebar-accent);
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .pricing-main-title span {
+      position: relative;
+      display: inline-block;
+    }
+
+    .pricing-main-title span::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sidebar-accent), var(--primary));
+      border-radius: 2px;
+    }
+
+    .modern-pricing-grid.show {
+      display: grid;
+    }
+
+    /* Services Grid Layout - Refined for better readability */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 3rem auto;
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 1rem;
+    }
+
+    /* Content sections with better spacing - centered */
+    .content-section {
+      margin: 4rem auto;
+      max-width: 1200px;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      color: var(--sidebar-accent);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--sidebar-accent), var(--primary));
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      color: var(--text);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Badge for service cards */
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: 16px;
+      background: linear-gradient(90deg, #ff6b6b, #ee5a52);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Pricing section title */
+    .pricing-main-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--sidebar-accent);
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .pricing-main-title span {
+      position: relative;
+      display: inline-block;
+    }
+
+    .pricing-main-title span::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sidebar-accent), var(--primary));
+      border-radius: 2px;
+    }
+    .modern-pricing-card {
+      background: linear-gradient(135deg, var(--surface-alt) 0%, var(--surface) 100%);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      position: relative;
+      border: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 400px;
+      transition: all 0.3s ease;
+      overflow: visible;
+    }
+
+    .modern-pricing-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 48px rgba(56, 189, 248, 0.25);
+      border-color: var(--sidebar-accent);
+    }
+
+    .modern-pricing-card.popular {
+      border-color: var(--sidebar-accent);
+      transform: scale(1.05);
+      background: linear-gradient(135deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+      color: #fff;
+    }
+
+    .modern-pricing-card.popular:hover {
+      transform: translateY(-8px) scale(1.07);
+    }
+
+    .modern-pricing-icon {
+      font-size: 2.5rem;
+      color: var(--sidebar-accent);
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.2);
+    }
+
+    .modern-pricing-card.popular .modern-pricing-icon {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .modern-pricing-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      color: var(--sidebar-accent);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    .modern-pricing-card.popular h3 {
+      color: #fff;
+    }
+
+    .modern-pricing-card .price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--sidebar-accent);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .modern-pricing-card.popular .price {
+      color: #fff;
+    }
+
+    .modern-pricing-card ul {
+      margin: 1rem 0;
+      padding-left: 0;
+      color: var(--text);
+      font-size: 1rem;
+      text-align: left;
+      width: 100%;
+      list-style: none;
+    }
+
+    .modern-pricing-card ul li {
+      margin-bottom: 0.5em;
+      padding-left: 1.5em;
+      position: relative;
+      font-weight: 500;
+    }
+
+    .modern-pricing-card ul li:before {
+          content: "✓";
+          position: absolute;
+          left: 0;
+          color: var(--sidebar-accent);
+          font-weight: bold;
+        }
+
+    .modern-pricing-card.popular ul li:before {
+      color: #fff;
+    }
+
+    /* Visually hidden utility class */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Footer styling - Enhanced and centered */
+    footer {
+      background: var(--primary-dark);
+      color: var(--text);
+      padding: 3rem 0 2rem 0;
+      text-align: center;
+      border-top: 3px solid var(--sidebar-accent);
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .footer-content p {
+      margin: 0;
+      font-size: 1rem;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .social-icons a {
+      color: var(--text);
+      font-size: 1.8rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 10px;
+      border-radius: 50%;
+      background: var(--surface-alt);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #fff;
+      transform: translateY(-3px) scale(1.1);
+      background: var(--sidebar-accent);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Specific social media hover colors */
+    .social-icons a[href*="facebook"]:hover {
+      background: #1877f2;
+    }
+
+    .social-icons a[href*="instagram"]:hover {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    .social-icons a[href*="messenger"]:hover {
+      background: #00b2ff;
+    }
+
+    .social-icons a[href*="linkedin"]:hover {
+      background: #0077b5;
+    }
+
+    .social-icons a[href*="github"]:hover {
+      background: #333;
+    }
+
+    /* Enhanced Responsive Design for Better Content Digestion */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem 0.5rem;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .hero {
+        padding: 2rem 1rem;
+        margin: 1.5rem 0;
+      }
+      
+      .hero h2 {
+        font-size: 1.6rem;
+        line-height: 1.3;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .section-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .modern-pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+        margin: 2rem auto;
+      }
+      
+      .card {
+        padding: 1.5rem;
+        border-radius: 16px;
+      }
+      
+      .card h3 {
+        font-size: 1.3rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+      }
+      
+      .card p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      
+      .card ul li {
+        font-size: 0.95rem;
+        margin-bottom: 0.7em;
+        line-height: 1.5;
+      }
+      
+      .content-section {
+        margin: 2.5rem auto;
+        padding: 0 0.5rem;
+      }
+      
+      .section-header {
+        margin-bottom: 2rem;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 0 1rem;
+      }
+      
+      .compare-table-wrapper {
+        overflow-x: auto;
+        margin: 0 -0.5rem;
+        padding: 0 0.5rem;
+      }
+      
+      .compare-table {
+        min-width: 600px;
+        font-size: 0.9rem;
+      }
+      
+      .lead-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
+      }
+      
+      .newsletter-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+      }
+      
+      .newsletter-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+      }
+      
+      .newsletter-form input[type="email"] {
+        min-width: auto;
+        width: 100%;
+      }
+      
+      .newsletter-form button {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .enhanced-lead,
+      .enhanced-newsletter,
+      .enhanced-faq,
+      .pricing-section-modern {
+        margin: 2rem 0.5rem;
+      }
+      
+      .modern-tabs {
+        max-width: 380px;
+        padding: 6px;
+        margin-bottom: 2rem;
+      }
+      
+      .modern-tab {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        min-height: 44px;
+      }
+      
+      .modern-tab-slider {
+        top: 6px;
+        left: 6px;
+        width: calc(50% - 6px);
+        height: calc(100% - 12px);
+      }
+    }
+
+    /* Additional mobile optimizations */
+    @media (max-width: 480px) {
+      .hero h2 {
+        font-size: 1.4rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .card {
+        padding: 1.2rem;
+      }
+      
+      .card h3 {
+        font-size: 1.2rem;
+      }
+      
+      .compare-table {
+        font-size: 0.85rem;
+      }
+      
+      .compare-table th,
+      .compare-table td {
+        padding: 0.5rem 0.4rem;
+      }
+    }
+
+    /* Modern Floating Chatbot */
+    .chatbot-widget {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .chatbot-trigger {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(56, 189, 248, 0.3);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chatbot-trigger:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 48px rgba(56, 189, 248, 0.4);
+    }
+
+    .chatbot-window {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 350px;
+      height: 500px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      border: 2px solid var(--sidebar-accent);
+    }
+
+    .chatbot-window.open {
+      display: flex;
+    }
+
+    .chatbot-header {
+      background: linear-gradient(135deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #f8fafc;
+    }
+
+    .chatbot-message {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .chatbot-message.bot {
+      justify-content: flex-start;
+    }
+
+    .chatbot-message.user {
+      justify-content: flex-end;
+    }
+
+    .message-bubble {
+      max-width: 80%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .chatbot-message.bot .message-bubble {
+      background: var(--sidebar-accent);
+      color: white;
+      border-bottom-left-radius: 6px;
+    }
+
+    .chatbot-message.user .message-bubble {
+      background: var(--primary);
+      color: white;
+      border-bottom-right-radius: 6px;
+    }
+
+    .chatbot-input-area {
+      padding: 20px;
+      border-top: 1px solid #e2e8f0;
+      background: white;
+    }
+
+    .chatbot-input-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .chatbot-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 25px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .chatbot-input:focus {
+      border-color: var(--sidebar-accent);
+    }
+
+    .chatbot-send {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--sidebar-accent);
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .chatbot-send:hover {
+      background: var(--primary);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .chatbot-window {
+        width: 90vw;
+        height: 70vh;
+        right: 5vw;
+      }
+    }
+    .compare-section {
+      margin: 2.2rem 0 2rem 0;
+      background: var(--surface);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 1.2rem 1rem;
+      max-width: 900px;
+      width: 100%;
+    }
+    .compare-section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--sidebar-accent);
+      font-size: 1.2rem;
+    }
+    .compare-table-wrapper { overflow-x: auto; }
+    .compare-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--surface-alt);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #38bdf822;
+      font-size: 1.01rem;
+    }
+    .compare-table th, .compare-table td {
+      padding: 0.7em 0.7em;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-table th {
+      background: var(--primary-dark);
+      color: var(--sidebar-accent);
+      font-weight: 700;
+      font-size: 1.02rem;
+    }
+    .compare-table td, .compare-table th { min-width: 90px; }
+    .compare-table .highlight { color: var(--success); font-weight: 600; }
+    .compare-table tr:last-child td, .compare-table tr:last-child th { border-bottom: none; }
+    /* Lead Magnet */
+    .enhanced-lead {
+      background: linear-gradient(135deg, var(--sidebar-accent) 0%, var(--primary) 100%);
+      color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(56, 189, 248, 0.25);
+      margin: 3rem auto;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1000px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .enhanced-lead::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Content spacing improvements */
+    .content-section {
+      margin: 4rem auto;
+      max-width: 1200px;
+      padding: 0 1rem;
+    }
+
+    .content-section + .content-section {
+      margin-top: 5rem;
+    }
+
+    /* Main content wrapper - perfectly centered */
+    .main-content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 200px);
+    }
+    .lead-content {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      width: 100%;
+      max-width: 700px;
+    }
+    .lead-icon {
+      font-size: 2.2rem;
+      background: #fff2;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px #38bdf822;
+    }
+    .lead-download-btn {
+      margin-top: 0.7rem;
+      background: #fff;
+      color: var(--sidebar-accent);
+      font-weight: 700;
+      padding: 0.5em 1.2em;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #38bdf822;
+      font-size: 0.98rem;
+      letter-spacing: 0.5px;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lead-download-btn:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+    /* Newsletter */
+    .enhanced-newsletter {
+      margin: 3rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 1000px;
+      width: 100%;
+      padding: 0 1rem;
+    }
+    .newsletter-card {
+      background: var(--surface);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 800px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .newsletter-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(56, 189, 248, 0.15);
+      border-color: var(--sidebar-accent);
+    }
+    .newsletter-icon {
+      font-size: 2.5rem;
+      color: var(--sidebar-accent);
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.2);
+      flex-shrink: 0;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .newsletter-form input[type="email"] {
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      font-size: 1rem;
+      background: var(--surface-alt);
+      color: var(--text);
+      outline: none;
+      min-width: 250px;
+      flex: 1;
+      transition: border-color 0.3s ease;
+    }
+    .newsletter-form input[type="email"]:focus {
+      border-color: var(--sidebar-accent);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+    }
+    .newsletter-form button {
+      background: var(--sidebar-accent);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    }
+    .newsletter-form button:hover {
+      background: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+    }
+    /* FAQ Section */
+    .enhanced-faq {
+      background: var(--surface);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 1.2rem 1rem;
+      margin: 2rem 0 1.5rem 0;
+      max-width: 900px;
+      width: 100%;
+    }
+    .enhanced-faq h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--sidebar-accent);
+      font-size: 1.2rem;
+    }
+    .faq-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 700px;
+    }
+    .faq-q {
+      cursor: pointer;
+      background: var(--surface-alt);
+      color: var(--sidebar-accent);
+      padding: 0.7em 1em;
+      border-radius: 10px;
+      margin-bottom: 0.4em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px #38bdf822;
+    }
+    .faq-q.open, .faq-q:hover {
+      background: var(--sidebar-accent);
+      color: #fff;
+    }
+    .faq-a {
+      display: none;
+      background: #1e293b;
+      color: #e0e6ed;
+      padding: 0.7em 1em;
+      border-radius: 0 0 10px 10px;
+      margin-bottom: 0.7em;
+      font-size: 0.97rem;
+      box-shadow: 0 2px 8px #38bdf822;
+    }
+    .faq-q.open + .faq-a {
+      display: block;
+    }
+    /* Header Start */
+    .main-header {
+      background: var(--primary-dark);
+      color: var(--text);
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.18);
+      border-bottom: 16px solid var(--primary-dark); /* Increased border thickness */
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      min-height: 48px;
+    }
+    .main-header .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 48px;
+      padding: 0 10px;
+      position: relative;
+    }
+    
+    /* Client Portal Button in Header */
+    .header-client-portal {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    
+    .header-client-portal:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+      color: white;
+    }
+    
+    .header-client-portal i {
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive adjustments for Client Portal button */
+    @media (max-width: 768px) {
+      .header-client-portal {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        gap: 0.3rem;
+      }
+      .header-client-portal i {
+        font-size: 0.75rem;
+      }
+      .main-header h1 a, .main-header h1 {
+        font-size: 1.3rem;
+      }
+    }
+    .main-header h1 a, .main-header h1 {
+      color: var(--sidebar-accent);
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #38bdf855;
+      margin: 0;
+      padding: 10px 0;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+    /* Sidebar Navigation */
+  .sidebar-nav {
+    position: fixed;
+    top: 0; left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #fff;
+    box-shadow: 4px 0 32px rgba(15, 23, 42, 0.4);
+    z-index: 1003;
+    transition: left 0.4s cubic-bezier(.7,.3,.3,1);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(56, 189, 248, 0.2);
+  }
+  .sidebar-nav.open { 
+    left: 0; 
+    animation: slideInLeft 0.4s ease-out;
+  }
+  
+  @keyframes slideInLeft {
+    from { 
+      left: -280px; 
+      opacity: 0; 
+    }
+    to { 
+      left: 0; 
+      opacity: 1; 
+    }
+  }
+  
+  .sidebar-logo-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    padding: 0 1.5rem;
+    position: relative;
+    animation: fadeInDown 0.6s ease-out 0.2s both;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .logo-text {
+    font-size: 1.35rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-logo-circle a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-logo-circle a:hover {
+    transform: translateY(-2px);
+  }
+  
+  .sidebar-logo-img {
+    width: 60px;
+    height: 60px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--sidebar-accent);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .sidebar-logo-img:hover {
+    transform: scale(1.1);
+    border-color: #06b6d4;
+  }
+  
+  .sidebar-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 50%;
+    color: var(--sidebar-accent);
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-close:hover {
+    background: var(--sidebar-accent);
+    color: #0f172a;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  }
+  
+  .sidebar-nav nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .sidebar-nav nav ul li {
+    margin: 0.8rem 0;
+    opacity: 0;
+    animation: slideInRight 0.4s ease-out forwards;
+  }
+  
+  .sidebar-nav nav ul li:nth-child(1) { animation-delay: 0.1s; }
+  .sidebar-nav nav ul li:nth-child(2) { animation-delay: 0.2s; }
+  .sidebar-nav nav ul li:nth-child(3) { animation-delay: 0.3s; }
+  .sidebar-nav nav ul li:nth-child(4) { animation-delay: 0.4s; }
+  .sidebar-nav nav ul li:nth-child(5) { animation-delay: 0.5s; }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .sidebar-nav nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sidebar-nav nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .sidebar-nav nav ul li a:hover::before {
+    left: 100%;
+  }
+  
+  .sidebar-nav nav ul li a i {
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  .sidebar-nav nav ul li a:hover,
+  .sidebar-nav nav ul li a.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(6, 182, 212, 0.1));
+    border-left: 4px solid var(--sidebar-accent);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    transform: translateX(5px);
+  }
+  
+  .sidebar-nav nav ul li a:hover i,
+  .sidebar-nav nav ul li a.active i {
+    color: var(--sidebar-accent);
+    transform: scale(1.1);
+  }
+  
+  .sidebar-nav nav ul li a.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(6, 182, 212, 0.2));
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    top: 28px;
+    left: 28px;
+    z-index: 1002;
+    background: linear-gradient(135deg, var(--sidebar-accent), #06b6d4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: pulseGlow 2s infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+      transform: scale(1.05);
+    }
+  }
+  
+  .sidebar-toggle:hover { 
+    background: linear-gradient(135deg, #06b6d4, var(--primary));
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.5);
+    animation: none;
+  }
+  
+  .sidebar-toggle i {
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-toggle:hover i {
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 600px) {
+    .sidebar-nav { width: 90vw; }
+    .sidebar-toggle { left: 12px; top: 12px; }
+  }
+
+  /* Add a subtle background pattern */
+  .sidebar-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Add a bottom section with social links or additional info */
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(56, 189, 248, 0.2);
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.8s both;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .sidebar-footer p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .sidebar-footer .social-links {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .sidebar-footer .social-links a {
+    color: #64748b;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 0.4rem;
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.1);
+  }
+  
+  .sidebar-footer .social-links a:hover {
+    color: var(--sidebar-accent);
+    background: rgba(56, 189, 248, 0.2);
+    transform: translateY(-2px) scale(1.1);
+  }
+
+  /* Add overlay when sidebar is open */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+    /* Footer */
+    footer {
+      background-color: #111827;
+      border-top: 1.5px solid #22304a;
+      border-radius: 0 0 12px 12px;
+      margin-top: 40px;
+      padding: 16px 10px 10px 10px;
+      text-align: center;
+    }
+
+    .footer-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-container label {
+      color: #ddd;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .newsletter-form {
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .newsletter-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .newsletter-form input[type="email"] {
+      padding: 10px 16px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 50px;
+      flex: 1 1 250px;
+      min-width: 200px;
+      background: var(--surface-alt);
+      color: var(--text);
+    }
+
+    .newsletter-form button {
+      padding: 10px 24px;
+      font-size: 1rem;
+      border-radius: 50px;
+      border: none;
+      background-color: var(--primary);
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .newsletter-form button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-links a {
+      color: #ccc;
+      font-size: 1.2rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary-light);
+      transform: scale(1.2);
+    }
+
+    .footer-container p {
+      color: #ccc;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .newsletter-inputs {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .newsletter-form input[type="email"],
+      .newsletter-form button {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+    
+    /* Floating Chatbot */
+    #chatbot-widget {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 1002;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .chatbot-btn {
+      background: var(--sidebar-accent);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      font-size: 2rem;
+      box-shadow: 0 2px 12px #38bdf822;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .chatbot-btn:hover { background: var(--primary); }
+    .chatbot-window {
+      display: none;
+      flex-direction: column;
+      width: 320px;
+      max-width: 95vw;
+      background: var(--surface);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px #0005;
+      margin-bottom: 12px;
+      overflow: hidden;
+      animation: fadeIn 0.3s;
+    }
+    .chatbot-window.open { display: flex; }
+    .chatbot-header {
+      background: var(--sidebar-accent);
+      color: #fff;
+      padding: 0.8em 1em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.08rem;
+    }
+    .chatbot-header button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .chatbot-body {
+      padding: 1em;
+      min-height: 80px;
+      max-height: 220px;
+      overflow-y: auto;
+      background: var(--surface-alt);
+      font-size: 0.98rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7em;
+    }
+    .chatbot-msg {
+      padding: 0.6em 1em;
+      border-radius: 12px;
+      margin-bottom: 0.2em;
+      max-width: 85%;
+      word-break: break-word;
+    }
+    .chatbot-msg.bot {
+      background: #38bdf822;
+      color: var(--sidebar-accent);
+      align-self: flex-start;
+      animation: bounceIn 0.5s;
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      80% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+    .chatbot-msg.user {
+      background: var(--sidebar-accent);
+      color: #fff;
+      align-self: flex-end;
+      animation: slideInRight 0.5s;
+    }
+    @keyframes slideInRight {
+      0% { transform: translateX(60px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+    .chatbot-form {
+      display: flex;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .chatbot-form input[type="text"] {
+      flex: 1;
+      border: none;
+      padding: 0.7em 1em;
+      font-size: 1rem;
+      background: transparent;
+      color: #fff;
+      outline: none;
+    }
+    .chatbot-form button {
+      background: var(--sidebar-accent);
+      color: #fff;
+      border: none;
+      border-radius: 0 0 0 0;
+      padding: 0 1em;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chatbot-form button:hover { background: var(--primary); }
+    @media (max-width: 600px) {
+      #chatbot-widget { right: 10px; bottom: 10px; }
+      .chatbot-window { width: 98vw; }
+    }
+
+    /* Simple Toggle Button Styles */
+    .toggle-btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 2px solid var(--border);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toggle-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--sidebar-accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .toggle-btn.active {
+      background: var(--sidebar-accent);
+      border-color: var(--sidebar-accent);
+      color: white;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .toggle-btn i {
+      font-size: 1.2rem;
+    }
+
+    /* Section Content Styles */
+    .section-content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      max-height: 0;
+    }
+
+    .section-content.active {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: none;
+      overflow: visible;
+    }
+
+    /* Pricing Section Content Styles (separate from general content sections) */
+    .pricing-section-content {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      width: 100%;
+    }
+
+    .pricing-section-content.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Pricing container to prevent layout shifts */
+    #pricing-container {
+      position: relative;
+      min-height: 650px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Service Card Styles */
+    .packages-container,
+    .maintenance-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      max-width: 1200px;
+      width: 100%;
+      justify-items: center;
+      align-items: stretch;
+    }
+
+    /* Force 3 columns for packages, 3 for maintenance on larger screens */
+    @media (min-width: 1200px) {
+      .packages-container {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        margin: 2rem auto;
+        gap: 2rem;
+      }
+      
+      .maintenance-container {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1000px;
+        margin: 2rem auto;
+        gap: 2rem;
+      }
+    }
+
+    @media (min-width: 900px) and (max-width: 1199px) {
+      .packages-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      
+      .maintenance-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 899px) {
+      .packages-container,
+      .maintenance-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(30px);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 500px;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .service-card.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(56, 189, 248, 0.2);
+      border-color: var(--sidebar-accent);
+    }
+
+    .service-card.featured {
+      background: linear-gradient(135deg, var(--sidebar-accent) 0%, #0284c7 100%);
+      color: white;
+      border-color: var(--sidebar-accent);
+      border-width: 2px;
+    }
+
+    .service-card.featured .features li {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .service-card .badge {
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      background: linear-gradient(45deg, #f59e0b, #d97706);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--sidebar-accent), #0284c7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem auto;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .service-icon i {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .service-card h3 {
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .service-card.featured h3 {
+      color: white;
+    }
+
+    .service-card .price {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--sidebar-accent);
+      margin-bottom: 1rem;
+    }
+
+    .service-card.featured .price {
+      color: white;
+    }
+
+    .service-card p {
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+
+    .service-card.featured p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .pricing-tiers {
+      background: rgba(56, 189, 248, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .tier {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      font-size: 0.9rem;
+    }
+
+    .tier:last-child {
+      border-bottom: none;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+
+    .features li {
+      padding: 0.5rem 0;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .highlight-box {
+      background: rgba(56, 189, 248, 0.1);
+      border: 2px solid rgba(56, 189, 248, 0.3);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      color: var(--sidebar-accent);
+    }
+
+    .btn-primary {
+      background: var(--sidebar-accent);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      display: block;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      margin-top: auto;
+    }
+
+    .btn-primary:hover {
+      background: #0284c7;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.3);
+      color: white;
+    }
+
+    /* Discount Grid Styles */
+    .discounts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    @media (min-width: 1200px) {
+      .discounts-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1400px;
+        margin: 2rem auto;
+      }
+    }
+
+    @media (min-width: 900px) and (max-width: 1199px) {
+      .discounts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .discount-card {
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .discount-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .discount-card.nonprofit {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.3);
+    }
+
+    .discount-card.student {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      box-shadow: 0 8px 32px rgba(245, 158, 11, 0.3);
+    }
+
+    .discount-card.bundle {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+    }
+
+    .discount-card.referral {
+      background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+      box-shadow: 0 8px 32px rgba(236, 72, 153, 0.3);
+    }
+
+    .discount-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .discount-card h3 {
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .discount-percent {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .discount-card p {
+      opacity: 0.95;
+      margin-bottom: 1rem;
+    }
+
+    .discount-details {
+      background: rgba(255,255,255,0.2);
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .toggle-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .packages-container,
+      .maintenance-container {
+        grid-template-columns: 1fr !important;
+        padding: 0 0.5rem;
+        gap: 1.5rem;
+      }
+
+      .discounts-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .payment-methods-grid {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .service-card {
+        padding: 1.5rem;
+      }
+      
+      .service-icon {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .service-icon i {
+        font-size: 1.5rem;
+      }
+
+      .pricing-tiers {
+        font-size: 0.85rem;
+      }
+
+      .features {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Desktop - ensure payment methods show 4 per row */
+    @media (min-width: 1000px) {
+      .payment-methods-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .service-card {
+        padding: 1.2rem;
+        margin: 0;
+      }
+
+      .service-card h3 {
+        font-size: 1.3rem;
+      }
+
+      .service-card .price {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Start -->
+  <header class="main-header">
+    <div class="container">
+      <h1>
+        <a href="index.html" aria-label="ShadEl Web Home">
+          <i class="fas fa-code" style="color:var(--sidebar-accent);margin-right:0.5rem;"></i>
+          ShadEl Web
+        </a>
+      </h1>
+      <a href="client-login.html" class="header-client-portal">
+        <i class="fas fa-user-shield"></i>
+        Client Portal
+      </a>
+    </div>
+  </header>
+  <!-- Header End -->
+  <div class="main-content">
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <h2 id="hero-heading">Professional Web Development Services</h2>
+      <p>Transform your business with a stunning, mobile-friendly website that drives results. From simple landing pages to complex e-commerce solutions - we've got you covered with cutting-edge technology and modern design.</p>
+      <a href="#pricing">View Our Packages</a>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview content-section" aria-labelledby="overview-heading">
+      <div class="section-header">
+        <h2 id="overview-heading" class="section-title">
+          What We Offer
+        </h2>
+        <p class="section-subtitle">
+          Discover our comprehensive range of professional web services designed to elevate your digital presence and drive business success.
+        </p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <div style="background: var(--surface); padding: 2rem 1.5rem; border-radius: 16px; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s; border: 1px solid var(--border);" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; color: var(--sidebar-accent); margin-bottom: 1.5rem;">🎨</div>
+          <h3 style="color: var(--sidebar-accent); margin-bottom: 1rem; font-size: 1.3rem;">Modern Design</h3>
+          <p style="color: var(--text); line-height: 1.6;">Beautiful, responsive designs that work perfectly on all devices and captivate your audience</p>
+        </div>
+        <div style="background: var(--surface); padding: 2rem 1.5rem; border-radius: 16px; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s; border: 1px solid var(--border);" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; color: var(--sidebar-accent); margin-bottom: 1.5rem;">⚡</div>
+          <h3 style="color: var(--sidebar-accent); margin-bottom: 1rem; font-size: 1.3rem;">Lightning Fast</h3>
+          <p style="color: var(--text); line-height: 1.6;">Optimized for speed and performance to keep visitors engaged and improve search rankings</p>
+        </div>
+        <div style="background: var(--surface); padding: 2rem 1.5rem; border-radius: 16px; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s; border: 1px solid var(--border);" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; color: var(--sidebar-accent); margin-bottom: 1.5rem;">🔒</div>
+          <h3 style="color: var(--sidebar-accent); margin-bottom: 1rem; font-size: 1.3rem;">Secure & Safe</h3>
+          <p style="color: var(--text); line-height: 1.6;">Built with security best practices, SSL encryption, and regular updates for peace of mind</p>
+        </div>
+        <div style="background: var(--surface); padding: 2rem 1.5rem; border-radius: 16px; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s; border: 1px solid var(--border);" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div style="font-size: 3rem; color: var(--sidebar-accent); margin-bottom: 1.5rem;">📱</div>
+          <h3 style="color: var(--sidebar-accent); margin-bottom: 1rem; font-size: 1.3rem;">Mobile Ready</h3>
+          <p style="color: var(--text); line-height: 1.6;">Perfect display and functionality on smartphones, tablets, and desktop computers</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Simple Pricing Section -->
+    <section class="content-section" id="pricing">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-tag"></i> Our Services & Pricing</h2>
+        <p class="section-subtitle">
+          Affordable, comprehensive web solutions for every business in South Africa
+        </p>
+      </div>
+      
+      <!-- Toggle Buttons -->
+      <div style="display: flex; justify-content: center; margin: 2rem 0; gap: 1rem;">
+        <button class="toggle-btn active" onclick="showSection('packages')" id="packages-btn">
+          <i class="fas fa-box"></i> Website Packages
+        </button>
+        <button class="toggle-btn" onclick="showSection('maintenance')" id="maintenance-btn">
+          <i class="fas fa-tools"></i> Maintenance Plans
+        </button>
+      </div>
+
+      <!-- Pricing Content Container - prevents layout shifts -->
+      <div id="pricing-container" style="min-height: 600px; position: relative; overflow: hidden;">
+        <!-- Website Packages Section -->
+        <div class="pricing-section-content active" id="packages-section">
+          <div class="packages-container">
+          
+          <!-- Static Website Package -->
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h3>Static Website</h3>
+            <div class="price">From R260,20</div>
+            <p>Perfect for small businesses and portfolios</p>
+            
+            <div class="pricing-tiers">
+              <div class="tier">💼 <strong>Starter:</strong> R260,20 - 3 pages, contact form</div>
+              <div class="tier">💼 <strong>Business:</strong> R790,50 - 5 pages, gallery, SEO</div>
+              <div class="tier">💼 <strong>Professional:</strong> R1,000 - 10 pages, blog, analytics</div>
+            </div>
+            
+            <ul class="features">
+              <li>✓ Mobile responsive design</li>
+              <li>✓ Professional modern layout</li>
+              <li>✓ Contact form integration</li>
+              <li>✓ Social media links</li>
+              <li>✓ Basic SEO optimization</li>
+              <li>✓ 1 week free support</li>
+            </ul>
+            <a href="contact.html" class="btn-primary">Get Started</a>
+          </div>
+
+          <!-- Portfolio Website -->
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h3>Portfolio Website</h3>
+            <div class="price">From R867,09</div>
+            <p>Showcase your work beautifully</p>
+            
+            <div class="pricing-tiers">
+              <div class="tier">💼 <strong>Creative:</strong> R867,09 - 5 projects, testimonials</div>
+              <div class="tier">💼 <strong>Professional:</strong> R1 560,78 - 15 projects, blog</div>
+              <div class="tier">🏢 <strong>Studio:</strong> R2,299 - Unlimited projects, video</div>
+            </div>
+            
+            <ul class="features">
+              <li>✓ Stunning project galleries</li>
+              <li>✓ Client testimonials section</li>
+              <li>✓ Skills showcase</li>
+              <li>✓ Professional bio page</li>
+              <li>✓ Advanced SEO</li>
+              <li>✓ 2 weeks free support</li>
+            </ul>
+            <a href="contact.html" class="btn-primary">Get Started</a>
+          </div>
+
+          <!-- Community/Nonprofit -->
+          <div class="service-card featured">
+            <div class="badge">Best Value</div>
+            <div class="service-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Community/Nonprofit</h3>
+            <div class="price">From R1,199</div>
+            <p>Special pricing for good causes</p>
+            
+            <div class="pricing-tiers">
+              <div class="tier">🏛️ <strong>Community:</strong> R1,199 (50% OFF) - Directory, events</div>
+              <div class="tier">🤝 <strong>Organization:</strong> R1,899 (45% OFF) - Volunteer portal</div>
+              <div class="tier">🌍 <strong>Network:</strong> R2,699 (40% OFF) - Member login, forum</div>
+            </div>
+            
+            <ul class="features">
+              <li>✓ Member directory</li>
+              <li>✓ Event calendar & RSVP</li>
+              <li>✓ Donation integration</li>
+              <li>✓ Volunteer management</li>
+              <li>✓ News & updates blog</li>
+              <li>✓ 3 months free support</li>
+            </ul>
+            <a href="contact.html" class="btn-primary">Get Started</a>
+          </div>
+
+          <!-- E-commerce Store -->
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3>E-commerce Store</h3>
+            <div class="price">From R1,999</div>
+            <p>Complete online store solution</p>
+            
+            <div class="pricing-tiers">
+              <div class="tier">🏪 <strong>Starter Store:</strong> R1,999 - 10 products, PayFast</div>
+              <div class="tier">🏬 <strong>Business Store:</strong> R2,999 - 50 products, inventory</div>
+              <div class="tier">🏢 <strong>Enterprise Store:</strong> R4,499 - Unlimited, analytics</div>
+            </div>
+            
+            <ul class="features">
+              <li>✓ Product catalog & cart</li>
+              <li>✓ PayFast & Stripe integration</li>
+              <li>✓ Inventory management</li>
+              <li>✓ Order tracking</li>
+              <li>✓ Customer accounts</li>
+              <li>✓ E-commerce training included</li>
+            </ul>
+            <a href="contact.html" class="btn-primary">Get Started</a>
+          </div>
+
+          <!-- Job Portal -->
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3>Job Portal</h3>
+            <div class="price">From R2,499</div>
+            <p>Complete recruitment platform</p>
+            
+            <div class="pricing-tiers">
+              <div class="tier">📋 <strong>Basic:</strong> R2,499 - Job listings, applications</div>
+              <div class="tier">📊 <strong>Pro:</strong> R3,799 - CV database, dashboard</div>
+              <div class="tier">🏢 <strong>Enterprise:</strong> R5,999 - Multi-branch, matching</div>
+            </div>
+            
+            <ul class="features">
+              <li>✓ Job posting & management</li>
+              <li>✓ Candidate applications</li>
+              <li>✓ CV/Resume database</li>
+              <li>✓ Employer dashboard</li>
+              <li>✓ Application tracking</li>
+              <li>✓ Free recruitment training</li>
+            </ul>
+            <a href="contact.html" class="btn-primary">Get Started</a>
+          </div>
+
+          <!-- Restaurant/Food Delivery -->
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h3>Restaurant/Food Delivery</h3>
+            <div class="price">From R2,299</div>
+            <p>Online ordering system</p>
+            
+            <div class="pricing-tiers">
+              <div class="tier">🍽️ <strong>Menu:</strong> R2,299 - Menu, booking</div>
+              <div class="tier">🚚 <strong>Delivery:</strong> R3,499 - Ordering, tracking</div>
+              <div class="tier">🏢 <strong>Full Restaurant:</strong> R4,999 - Multi-location</div>
+            </div>
+            
+            <ul class="features">
+              <li>✓ Digital menu & pricing</li>
+              <li>✓ Online ordering system</li>
+              <li>✓ Payment integration</li>
+              <li>✓ Delivery tracking</li>
+              <li>✓ Table booking</li>
+              <li>✓ Free menu setup</li>
+            </ul>
+            <a href="contact.html" class="btn-primary">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maintenance Plans Section -->
+      <div class="pricing-section-content" id="maintenance-section" style="display: none;">
+        <div class="maintenance-container">
+          
+          <!-- Essential Care -->
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Essential Care</h3>
+            <div class="price">R59/month</div>
+            <p>Basic security and backup</p>
+            
+            <div class="highlight-box">
+              Perfect for Static & Portfolio Sites
+            </div>
+            
+            <ul class="features">
+              <li>✓ Weekly automated backups</li>
+              <li>✓ Security monitoring & updates</li>
+              <li>✓ SSL certificate management</li>
+              <li>✓ Uptime monitoring (99.9%)</li>
+              <li>✓ Basic SEO health check</li>
+              <li>✓ Monthly performance report</li>
+              <li>✓ Email support (48hr response)</li>
+              <li>✓ Cancel anytime - no contract</li>
+            </ul>
+            <a href="contact.html" class="btn-primary">Get Started</a>
+          </div>
+
+          <!-- Professional Care -->
+          <div class="service-card featured">
+            <div class="badge">Most Popular</div>
+            <div class="service-icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3>Professional Care</h3>
+            <div class="price">R129/month</div>
+            <p>Content updates + optimization</p>
+            
+            <div class="highlight-box">
+              Great for Growing Businesses
+            </div>
+            
+            <ul class="features">
+              <li>✓ Everything in Essential Plan</li>
+              <li>✓ 2 hours monthly content updates</li>
+              <li>✓ Image optimization & upload</li>
+              <li>✓ Plugin & software updates</li>
+              <li>✓ SEO optimization tweaks</li>
+              <li>✓ Contact form management</li>
+              <li>✓ Priority support (24hr response)</li>
+              <li>✓ Quarterly website review</li>
+              <li>✓ Free minor design changes</li>
+            </ul>
+            <a href="contact.html" class="btn-primary">Get Started</a>
+          </div>
+
+          <!-- Enterprise Care -->
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Enterprise Care</h3>
+            <div class="price">R199/month</div>
+            <p>Complete website management</p>
+            
+            <div class="highlight-box">
+              For E-commerce & Large Sites
+            </div>
+            
+            <ul class="features">
+              <li>✓ Everything in Professional Plan</li>
+              <li>✓ Unlimited content updates</li>
+              <li>✓ Advanced SEO & analytics</li>
+              <li>✓ Social media integration</li>
+              <li>✓ Email marketing setup</li>
+              <li>✓ Product/inventory updates</li>
+              <li>✓ Conversion optimization</li>
+              <li>✓ Phone & WhatsApp support</li>
+              <li>✓ Monthly strategy consultation</li>
+              <li>✓ 24/7 emergency support</li>
+            </ul>
+            <a href="contact.html" class="btn-primary">Get Started</a>
+          </div>
+        </div>
+      </div>
+      </div> <!-- End pricing container -->
+    </section>
+
+    <!-- Special Offers & Discounts Section -->
+    <section class="content-section">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-percentage"></i> Amazing Savings & Discounts</h2>
+        <p class="section-subtitle">
+          We believe great websites should be affordable for everyone. Check out our incredible savings!
+        </p>
+      </div>
+      
+      <div class="discounts-grid">
+        
+        <!-- Nonprofit Mega Discount -->
+        <div class="discount-card nonprofit">
+          <div class="discount-icon">💝</div>
+          <h3>Nonprofit Heroes</h3>
+          <div class="discount-percent">50% OFF</div>
+          <p>Making the world better should be affordable!</p>
+          <div class="discount-details">
+            <strong>For:</strong> NGOs, Churches, Schools, Community Groups<br>
+            <strong>Need:</strong> Valid registration certificate
+          </div>
+          <a href="contact.html?deal=nonprofit&discount=50&type=nonprofit" style="display: inline-block; margin-top: 1rem; background: var(--sidebar-accent); color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#0ea5e9'" onmouseout="this.style.backgroundColor='var(--sidebar-accent)'">Apply Now</a>
+        </div>
+
+        <!-- Student Super Saver -->
+        <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #fff; padding: 2rem; border-radius: 16px; text-align: center; box-shadow: 0 8px 32px rgba(245, 158, 11, 0.3);">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
+          <h3 style="color: #fff; margin-bottom: 1rem;">Student & Startup Power</h3>
+          <div style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;">35% OFF</div>
+          <p style="opacity: 0.95; margin-bottom: 1rem;">Building your future starts here!</p>
+          <div style="background: rgba(255,255,255,0.2); padding: 0.8rem; border-radius: 8px; font-size: 0.9rem;">
+            <strong>For:</strong> Students, New Startups (under 1 year)<br>
+            <strong>Need:</strong> Student ID or business registration
+          </div>
+          <a href="contact.html?deal=student&discount=35&type=student-startup" style="display: inline-block; margin-top: 1rem; background: #fff; color: #f59e0b; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Apply Now</a>
+        </div>
+
+        <!-- Bundle Bonanza -->
+        <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: #fff; padding: 2rem; border-radius: 16px; text-align: center; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">📦</div>
+          <h3 style="color: #fff; margin-bottom: 1rem;">Website + Care Bundle</h3>
+          <div style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;">30% OFF</div>
+          <p style="opacity: 0.95; margin-bottom: 1rem;">Website + 6 months maintenance</p>
+          <div style="background: rgba(255,255,255,0.2); padding: 0.8rem; border-radius: 8px; font-size: 0.9rem;">
+            <strong>Save hundreds</strong> when you bundle<br>
+            Any website + maintenance plan
+          </div>
+          <a href="contact.html?deal=bundle&discount=30&type=website-maintenance" style="display: inline-block; margin-top: 1rem; background: #fff; color: #8b5cf6; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Get Bundle</a>
+        </div>
+
+        <!-- Referral Rewards -->
+        <div style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); color: #fff; padding: 2rem; border-radius: 16px; text-align: center; box-shadow: 0 8px 32px rgba(236, 72, 153, 0.3);">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">💰</div>
+          <h3 style="color: #fff; margin-bottom: 1rem;">Referral Cash Rewards</h3>
+          <div style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;">R400 Cash</div>
+          <p style="opacity: 0.95; margin-bottom: 1rem;">+ Your friend gets 15% off their website!</p>
+          <div style="background: rgba(255,255,255,0.2); padding: 0.8rem; border-radius: 8px; font-size: 0.9rem;">
+            <strong>How:</strong> Refer  They save 15%  You get R400<br>
+            <strong>Unlimited</strong> referrals accepted!
+          </div>
+          <a href="contact.html?deal=referral&discount=15&type=referral-program" style="display: inline-block; margin-top: 1rem; background: #fff; color: #ec4899; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Start Referring</a>
+      </div>
+    </section>
+
+      <!-- Limited Time Offers Banner -->
+      <div style="background: linear-gradient(45deg, #ff6b6b, #ffa500); color: #fff; padding: 1.5rem; border-radius: 12px; margin: 2rem 0; text-align: center; animation: pulse 2s infinite;">
+        <h3 style="color: #fff; margin-bottom: 0.5rem;"><i class="fas fa-fire"></i> LIMITED TIME: Summer 2025 Special!</h3>
+        <p style="margin: 0; font-size: 1.1rem; opacity: 0.95;">Get ANY website for <strong>R599</strong> (normally from R799) - Valid until end of August!</p>
+        <a href="contact.html?deal=summer2025&package=any-website&price=599" style="display: inline-block; margin-top: 1rem; background: #fff; color: #ff6b6b; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'">Claim This Deal!</a>
+      </div>
+    </section>
+
+    <!-- Payment Options -->
+    <section class="content-section">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-credit-card"></i> Easy & Flexible Payments</h2>
+        <p class="section-subtitle">
+          Pay the way that works for you - we've made it simple and affordable for everyone.
+        </p>
+      </div>
+      
+      <!-- Payment Methods Row -->
+      <div style="background: var(--surface); padding: 2rem; border-radius: 16px; margin: 2rem 0; border: 1px solid var(--border); box-shadow: var(--shadow);">
+        <h3 style="color: var(--sidebar-accent); margin-bottom: 1.5rem; text-align: center; font-size: 1.4rem;"><i class="fas fa-wallet"></i> We Accept All Major Payment Methods</h3>
+        
+        <div class="payment-methods-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+          <div style="display: flex; align-items: center; padding: 1rem; background: var(--surface-alt); border-radius: 8px; border: 1px solid var(--border);">
+            <i class="fas fa-university" style="color: var(--sidebar-accent); margin-right: 1rem; font-size: 1.5rem;"></i>
+            <div>
+              <h4 style="color: var(--sidebar-accent); margin: 0; font-size: 1rem;">EFT Transfer</h4>
+              <p style="color: var(--text); margin: 0; font-size: 0.9rem;">Instant & secure</p>
+            </div>
+          </div>
+          
+          <div style="display: flex; align-items: center; padding: 1rem; background: var(--surface-alt); border-radius: 8px; border: 1px solid var(--border);">
+            <i class="fas fa-credit-card" style="color: var(--sidebar-accent); margin-right: 1rem; font-size: 1.5rem;"></i>
+            <div>
+              <h4 style="color: var(--sidebar-accent); margin: 0; font-size: 1rem;">Credit/Debit Cards</h4>
+              <p style="color: var(--text); margin: 0; font-size: 0.9rem;">Visa, MasterCard</p>
+            </div>
+          </div>
+          
+          <div style="display: flex; align-items: center; padding: 1rem; background: var(--surface-alt); border-radius: 8px; border: 1px solid var(--border);">
+            <i class="fas fa-mobile-alt" style="color: var(--sidebar-accent); margin-right: 1rem; font-size: 1.5rem;"></i>
+            <div>
+              <h4 style="color: var(--sidebar-accent); margin: 0; font-size: 1rem;">PayFast</h4>
+              <p style="color: var(--text); margin: 0; font-size: 0.9rem;">Local SA payment</p>
+            </div>
+          </div>
+          
+          <div style="display: flex; align-items: center; padding: 1rem; background: var(--surface-alt); border-radius: 8px; border: 1px solid var(--border);">
+            <i class="fab fa-paypal" style="color: var(--sidebar-accent); margin-right: 1rem; font-size: 1.5rem;"></i>
+            <div>
+              <h4 style="color: var(--sidebar-accent); margin: 0; font-size: 1rem;">PayPal</h4>
+              <p style="color: var(--text); margin: 0; font-size: 0.9rem;">International</p>
+            </div>
+          </div>
+        </div>
+        
+        <div style="text-align: center; padding: 1rem; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+          <p style="color: var(--sidebar-accent); margin: 0; font-weight: 600;"><i class="fas fa-shield-check"></i> All payments are 100% secure and encrypted</p>
+        </div>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+        
+        <!-- Flexible Payment Plans -->
+        <div style="background: linear-gradient(135deg, var(--sidebar-accent) 0%, var(--primary) 100%); color: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 8px 32px rgba(56, 189, 248, 0.3);">
+          <h3 style="color: #fff; margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-calendar-check"></i> Choose Your Payment Plan</h3>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <h4 style="color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center;"><i class="fas fa-bolt" style="margin-right: 0.5rem;"></i> Quick Start (Most Popular)</h4>
+            <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem; margin: 0; padding-left: 1.5rem;">Pay 50% to start, 50% when complete</p>
+          </div>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <h4 style="color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center;"><i class="fas fa-clock" style="margin-right: 0.5rem;"></i> Spread It Out</h4>
+            <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem; margin: 0; padding-left: 1.5rem;">3 equal monthly payments<br><small style="opacity: 0.8;">(For projects over R1,500)</small></p>
+          </div>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <h4 style="color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center;"><i class="fas fa-building" style="margin-right: 0.5rem;"></i> Business Terms</h4>
+            <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem; margin: 0; padding-left: 1.5rem;">30-day payment terms<br><small style="opacity: 0.8;">(Registered businesses only)</small></p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+            <strong style="color: #fff;"> Pro Tip:</strong><br>
+            <span style="color: rgba(255,255,255,0.9); font-size: 0.9rem;">Pay in full upfront and get 5% extra discount!</span>
+          </div>
+        </div>
+
+        <!-- No Hidden Costs -->
+        <div style="background: var(--surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--shadow);">
+          <h3 style="color: var(--sidebar-accent); margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-eye"></i> 100% Transparent Pricing</h3>
+          
+          <div style="text-align: center; margin-bottom: 1.5rem;">
+            <div style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+              <h4 style="color: #10b981; margin: 0 0 0.5rem 0;"><i class="fas fa-check-circle"></i> What's INCLUDED</h4>
+              <ul style="list-style: none; padding: 0; margin: 0; text-align: left;">
+                <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i> All design & development</li>
+                <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i> Mobile responsive</li>
+                <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i> SEO optimization</li>
+                <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i> Free revisions</li>
+                <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i> Training & handover</li>
+              </ul>
+            </div>
+            
+            <div style="background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 1rem; border-radius: 8px;">
+              <h4 style="color: #ef4444; margin: 0 0 0.5rem 0;"><i class="fas fa-times-circle"></i> NO Hidden Costs</h4>
+              <p style="margin: 0; text-align: center; font-size: 0.95rem;">No setup fees, no surprise charges, no annual contracts!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Money-Back Guarantee -->
+      <div style="background: linear-gradient(45deg, #10b981, #059669); color: #fff; padding: 2rem; border-radius: 16px; margin: 2rem 0; text-align: center; box-shadow: 0 8px 32px rgba(16, 185, 129, 0.3);">
+        <h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.5rem;"><i class="fas fa-shield-check"></i> Our Rock-Solid Guarantees</h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;"><i class="fas fa-heart"></i></div>
+            <h4 style="color: #fff; margin-bottom: 0.5rem;">100% Satisfaction</h4>
+            <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin: 0;">Unlimited revisions until you love it</p>
+          </div>
+          
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;"><i class="fas fa-money-bill-wave"></i></div>
+            <h4 style="color: #fff; margin-bottom: 0.5rem;">14-Day Money Back</h4>
+            <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin: 0;">Full refund if not happy</p>
+          </div>
+          
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;"><i class="fas fa-clock"></i></div>
+            <h4 style="color: #fff; margin-bottom: 0.5rem;">On-Time Promise</h4>
+            <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin: 0;">Delivered on schedule or 10% off</p>
+          </div>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+          <p style="margin: 0; font-weight: 600;">Your success is our success - we're committed to making you happy!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="content-section">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-balance-scale"></i> Compare Packages</h2>
+        <p class="section-subtitle">
+          See exactly what's included in each package to make the best choice for your business needs.
+        </p>
+      </div>
+      <div aria-labelledby="compare-heading" class="compare-section">
+        <div class="compare-table-wrapper">
+        <table class="compare-table">
+          <caption class="visually-hidden">Comparison of website packages and features</caption>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th><i class="fas fa-globe"></i><br>Static</th>
+              <th><i class="fas fa-briefcase"></i><br>Portfolio</th>
+              <th><i class="fas fa-users"></i><br>Community/Nonprofit</th>
+              <th><i class="fas fa-shopping-cart"></i><br>Ecommerce</th>
+              <th><i class="fas fa-briefcase"></i><br>Job Portal</th>
+              <th><i class="fas fa-utensils"></i><br>Food Delivery</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#222436;color:#38bdf8;font-weight:600;"><th colspan="7">Core Features</th></tr>
+            <tr><th>Responsive Design</th><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><th>SEO Optimization</th><td>Basic</td><td>Advanced</td><td>Advanced</td><td>Full</td><td>Full</td><td>Full</td></tr>
+            <tr><th>Contact/Inquiry Form</th><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr style="background:#222436;color:#38bdf8;font-weight:600;"><th colspan="7">Specialized Features</th></tr>
+            <tr><th>Gallery/Portfolio</th><td>✗</td><td>✓</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td></tr>
+            <tr><th>Member Profiles/Community</th><td>✗</td><td>✗</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td></tr>
+            <tr><th>Event Calendar</th><td>✗</td><td>✗</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td></tr>
+            <tr><th>Online Store/Ordering</th><td>✗</td><td>✗</td><td>✗</td><td>✓</td><td>✗</td><td>✓</td></tr>
+            <tr><th>Payment Integration</th><td>✗</td><td>✗</td><td>✗</td><td>✓</td><td>✗</td><td>✓</td></tr>
+            <tr><th>Admin Dashboard</th><td>✗</td><td>✗</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><th>Job Listings/Applications</th><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✓</td><td>✗</td></tr>
+            <tr><th>Delivery Tracking</th><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✓</td></tr>
+            <tr style="background:#222436;color:#38bdf8;font-weight:600;"><th colspan="7">Bonuses & Support</th></tr>
+            <tr><th>Free Hosting/Setup</th><td>✗</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><th>Support Duration</th><td>1 week</td><td>2 months</td><td>3 months</td><td>3 months</td><td>3 months</td><td>3 months</td></tr>
+            <tr><th>Discounts/Extras</th><td>Basic</td><td>Portfolio showcase</td><td>Nonprofit discounts</td><td>10% off for new businesses</td><td>Free training</td><td>Free menu setup</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+    <!-- Lead Magnet (Free Download) -->
+    <section class="lead-magnet enhanced-lead" aria-labelledby="bonus-heading">
+      <div class="lead-content">
+        <div class="lead-icon">
+          <i class="fas fa-gift"></i>
+        </div>
+        <div>
+          <h2 id="bonus-heading"> Free Bonus!</h2>
+          <p>Download our free PDF checklist:<br>
+            <strong>"What Every Website Needs to Succeed"</strong>
+          </p>
+          <a href="files/website_success_checklist.pdf" download class="lead-download-btn">
+            <i class="fas fa-download"></i> Download Checklist
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Newsletter Signup -->
+    <section class="newsletter enhanced-newsletter" aria-labelledby="newsletter-heading">
+      <div class="newsletter-card">
+        <div class="newsletter-icon">
+          <i class="fas fa-envelope-open-text"></i>
+        </div>
+        <div style="flex: 1;">
+          <h2 id="newsletter-heading" style="margin-bottom: 0.8rem; color: var(--sidebar-accent); font-size: 1.4rem;">Join Our Newsletter</h2>
+          <p style="margin-bottom: 1rem; color: var(--text); font-size: 1.05rem; line-height: 1.5;">Get tips, news & exclusive offers for your business website delivered straight to your inbox.</p>
+          <form action="#" method="post" aria-label="Newsletter signup" class="newsletter-form">
+            <label for="newsletter-email" class="visually-hidden">Email address</label>
+            <input type="email" id="newsletter-email" name="EMAIL" placeholder="Enter your email address" required style="flex: 1; min-width: 200px;" />
+            <button type="submit" style="white-space: nowrap;"><i class="fas fa-paper-plane"></i> Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="faq-section enhanced-faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+      <ul class="faq-list">
+        <li>
+          <div class="faq-q"><i class="fas fa-chevron-right"></i> How long does it take to build a website?</div>
+          <div class="faq-a">Most websites are completed in 13 weeks, depending on complexity and your feedback speed. Large or custom projects may take longer, but we always keep you updated.</div>
+        </li>
+        <li>
+          <div class="faq-q"><i class="fas fa-chevron-right"></i> Do you offer hosting and domain registration?</div>
+          <div class="faq-a">Yes, we can recommend reliable local hosting, register your domain, or manage it for you as part of our maintenance plans.</div>
+        </li>
+        <li>
+          <div class="faq-q"><i class="fas fa-chevron-right"></i> Can I update my website myself?</div>
+          <div class="faq-a">Absolutely! All sites come with easy instructions. For ongoing changes, our affordable maintenance plans are best.</div>
+        </li>
+        <li>
+          <div class="faq-q"><i class="fas fa-chevron-right"></i> What if I need something custom?</div>
+          <div class="faq-a">We offer custom solutions for any business or nonprofit. <a href="contact.html">Contact us</a> for a tailored quote.</div>
+        </li>
+        <li>
+          <div class="faq-q"><i class="fas fa-chevron-right"></i> Do you provide support after launch?</div>
+          <div class="faq-a">Yes! All packages include free support for a set period. You can extend support with our maintenance plans for peace of mind.</div>
+        </li>
+        <li>
+          <div class="faq-q"><i class="fas fa-chevron-right"></i> What payment methods do you accept?</div>
+          <div class="faq-a">We accept EFT, credit/debit cards, and PayFast for South African clients. International payments are also supported.</div>
+        </li>
+      </ul>
+    </section>
+  </div>
+  <!-- Footer Start -->
+  <footer>
+    <div class="footer-container">
+      <label>Subscribe to our Newsletter</label>
+      <form action="#" class="newsletter-form">
+        <div class="newsletter-inputs">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </div>
+      </form>
+      <div class="social-links">
+        <a href="https://www.facebook.com/ash.gray.94214/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/shadel.dev" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://m.me/shadel.dev" target="_blank" aria-label="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="https://github.com/dashboard" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/shadrac-bonzali-885543163/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <p>&copy; 2023 ShadEl Web. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- Footer End -->
+
+  <!-- Sidebar Navigation (same as main page) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar-nav" id="sidebarNav">
+    <div class="sidebar-logo-circle">
+      <a href="index.html" aria-label="Shad Dev Home">
+        <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img">
+        <span class="logo-text">ShadEl Web</span>
+      </a>
+    </div>
+    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar"><i class="fas fa-times"></i></button>
+    <nav>
+      <ul>
+        <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html" id="nav-about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="services.html" id="nav-services" class="active"><i class="fas fa-cogs"></i> Services</a></li>
+        <li><a href="portfolio.html" id="nav-portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <li><a href="quote-estimator.html" id="nav-quote"><i class="fas fa-calculator"></i> Smart Quote</a></li>
+        <li><a href="contact.html" id="nav-contact"><i class="fas fa-phone"></i> Contact</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Professional Web Development<br>Since 2023</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </aside>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open sidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Floating Chatbot -->
+  <div id="chatbot-widget">
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <span><i class="fas fa-robot"></i> ShadEl - Your Web Dev Assistant</span>
+        <button onclick="toggleChatbot()" aria-label="Close chat"></button>
+      </div>
+      <div class="chatbot-body" id="chatbotBody">
+        <div class="chatbot-msg bot">
+          <i class="fas fa-wave-square"></i> Hi! I'm ShadEl, your web development assistant. I'm here to help with any questions about our services, packages, or pricing!
+        </div>
+      </div>
+      <form class="chatbot-form" onsubmit="sendChat(event)">
+        <input type="text" id="chatbotInput" placeholder="Type your message..." required>
+        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+    <button class="chatbot-btn" onclick="toggleChatbot()" aria-label="Open chat support">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+  </div>
+
+  <script>
+    // Animate service cards on scroll
+    function revealCards() {
+      document.querySelectorAll('.card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+          card.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealCards);
+    window.addEventListener('DOMContentLoaded', revealCards);
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', function() {
+        this.classList.toggle('open');
+        const answer = this.nextElementSibling;
+        if (answer.style.display === 'block') {
+          answer.style.display = 'none';
+        } else {
+          answer.style.display = 'block';
+        }
+      });
+    });
+
+    // Simple tab switching function with smooth animations
+    function showSection(sectionName) {
+      // Remove active class from all buttons
+      const buttons = document.querySelectorAll('.toggle-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // Hide all pricing sections
+      const pricingSections = document.querySelectorAll('#packages-section, #maintenance-section');
+      pricingSections.forEach(section => {
+        section.classList.remove('active');
+        section.style.display = 'none';
+        section.style.opacity = '0';
+      });
+      
+      // Show selected section
+      const targetSection = document.getElementById(sectionName + '-section');
+      const targetButton = document.getElementById(sectionName + '-btn');
+      
+      if (targetSection && targetButton) {
+        // Show section immediately
+        targetSection.style.display = 'block';
+        targetSection.style.opacity = '0';
+        
+        // Fade in with slight delay
+        setTimeout(() => {
+          targetSection.style.opacity = '1';
+          targetSection.classList.add('active');
+          animateCards(targetSection);
+        }, 100);
+        
+        targetButton.classList.add('active');
+      }
+    }
+
+    // Animate cards one by one
+    function animateCards(container) {
+      const cards = container.querySelectorAll('.service-card');
+      cards.forEach((card, index) => {
+        card.classList.remove('animate-in');
+        setTimeout(() => {
+          card.classList.add('animate-in');
+        }, index * 150);
+      });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Show packages section by default
+      showSection('packages');
+      
+      // Smooth scroll reveal for other elements
+      function revealOnScroll() {
+        document.querySelectorAll('.service-card').forEach(card => {
+          const rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
+            card.classList.add('animate-in');
+          }
+        });
+      }
+
+      // Initial reveal and scroll listener
+      setTimeout(revealOnScroll, 500);
+      window.addEventListener('scroll', revealOnScroll);
+    });
+
+    // Sidebar toggle logic
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebarNav');
+  const overlay = document.getElementById('sidebarOverlay');
+  const isOpen = sidebar.classList.contains('open');
+  
+  if (isOpen) {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  } else {
+    sidebar.classList.add('open');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// Close sidebar on outside click or overlay click
+document.addEventListener('click', function(e) {
+  const sidebar = document.getElementById('sidebarNav');
+  const toggleBtn = document.querySelector('.sidebar-toggle');
+  const overlay = document.getElementById('sidebarOverlay');
+  
+  if (sidebar.classList.contains('open') && 
+      !sidebar.contains(e.target) && 
+      !toggleBtn.contains(e.target)) {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Close sidebar on escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const sidebar = document.getElementById('sidebarNav');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar.classList.contains('open')) {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+});
+
+    // Chatbot logic
+    function toggleChatbot() {
+      const win = document.getElementById('chatbotWindow');
+      win.classList.toggle('open');
+      if (win.classList.contains('open')) {
+        setTimeout(() => document.getElementById('chatbotInput').focus(), 200);
+      }
+    }
+    function sendChat(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatbotInput');
+      const body = document.getElementById('chatbotBody');
+      const msg = input.value.trim();
+      if (!msg) return;
+      // Add user message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'chatbot-msg user';
+      userDiv.textContent = msg;
+      body.appendChild(userDiv);
+      input.value = '';
+      body.scrollTop = body.scrollHeight;
+      // Simulate bot reply
+      setTimeout(() => {
+        const botDiv = document.createElement('div');
+        botDiv.className = 'chatbot-msg bot';
+        const avatar = document.createElement('span');
+        avatar.className = 'chatbot-avatar';
+        // Custom animated icon for bot
+        avatar.innerHTML = '<i class="fas fa-robot fa-spin"></i>';
+        botDiv.appendChild(avatar);
+        const reply = document.createElement('span');
+        reply.innerHTML = getBotReplyWithIcon(msg);
+        botDiv.appendChild(reply);
+        body.appendChild(botDiv);
+        body.scrollTop = body.scrollHeight;
+      }, 700);
+    }
+    
+    // Enhanced ShadEl chatbot responses
+    function getBotReplyWithIcon(msg) {
+      msg = msg.toLowerCase();
+      
+      // Pricing related questions
+      if (msg.includes('price') || msg.includes('cost') || msg.includes('package')) {
+        return '<i class="fas fa-tags"></i> Great news! Our super affordable packages start from just <strong>R599</strong> (limited time). Regular pricing: <strong>Static R799-R1,899</strong>, <strong>E-commerce R1,999-R4,499</strong>, <strong>Maintenance R59-R199/month</strong>. Plus amazing discounts available!';
+      }
+      
+      // Static website questions
+      if (msg.includes('static') || msg.includes('basic website')) {
+        return '<i class="fas fa-globe"></i> Our Static Website packages are super affordable: <strong>Starter R799</strong> (3 pages), <strong>Business R1,299</strong> (5 pages), <strong>Professional R1,899</strong> (10 pages). Perfect for small businesses and landing pages!';
+      }
+      
+      // E-commerce questions
+      if (msg.includes('ecommerce') || msg.includes('online store') || msg.includes('shop')) {
+        return '<i class="fas fa-shopping-cart"></i> E-commerce made affordable! <strong>Starter Store R1,999</strong> (10 products), <strong>Business Store R2,999</strong> (50 products), <strong>Enterprise R4,499</strong> (unlimited). Includes PayFast, inventory management, and training!';
+      }
+      
+      // Portfolio questions
+      if (msg.includes('portfolio') || msg.includes('showcase')) {
+        return '<i class="fas fa-briefcase"></i> Showcase your work affordably! <strong>Creative R999</strong> (5 projects), <strong>Professional R1,599</strong> (15 projects), <strong>Studio R2,299</strong> (unlimited). Perfect for artists, photographers, and creatives!';
+      }
+      
+      // Maintenance questions
+      if (msg.includes('maintenance') || msg.includes('support') || msg.includes('update')) {
+        return '<i class="fas fa-shield-alt"></i> Super affordable maintenance! <strong>Essential Care R59/month</strong> (security & backups), <strong>Professional Care R129/month</strong> (includes content updates), <strong>Enterprise Care R199/month</strong> (unlimited updates). Cancel anytime!';
+      }
+      
+      // Contact questions
+      if (msg.includes('contact') || msg.includes('reach') || msg.includes('call')) {
+        return '<i class="fas fa-envelope"></i> Ready to get your affordable website? Contact us via the Contact page, WhatsApp, or right here! We respond quickly with custom quotes and can start your project today!';
+      }
+      
+      // Greeting responses
+      if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+        return '<i class="fas fa-hand-peace"></i> Hello! I\'m ShadEl, and I\'m excited to help you get an amazing website at an unbeatable price! Starting from just R599 this month. What type of website do you need?';
+      }
+      
+      // Default helpful response
+      return '<i class="fas fa-info-circle"></i> I\'m here to help you get an amazing website at an unbeatable price! Our packages start from just R599 (limited time). Ask me about our Static, Portfolio, E-commerce, or Maintenance plans. What interests you most?';
+    }
+    
+    function getBotReply(msg) {
+      return getBotReplyWithIcon(msg);
+    }
+
+    // Enhanced ShadEl chatbot responses for services
+    function getBotReplyWithIcon(msg) {
+      msg = msg.toLowerCase();
+      
+      // Pricing related questions
+      if (msg.includes('price') || msg.includes('cost') || msg.includes('package')) {
+        return '<i class="fas fa-tags"></i> Great news! Our super affordable packages start from just <strong>R599</strong> (limited time). Regular pricing: <strong>Static R799-R1,899</strong>, <strong>E-commerce R1,999-R4,499</strong>, <strong>Maintenance R59-R199/month</strong>. Plus amazing discounts available!';
+      }
+      
+      // Static website questions
+      if (msg.includes('static') || msg.includes('basic website')) {
+        return '<i class="fas fa-globe"></i> Our Static Website packages are super affordable: <strong>Starter R799</strong> (3 pages), <strong>Business R1,299</strong> (5 pages), <strong>Professional R1,899</strong> (10 pages). Perfect for small businesses and landing pages!';
+      }
+      
+      // E-commerce questions
+      if (msg.includes('ecommerce') || msg.includes('online store') || msg.includes('shop')) {
+        return '<i class="fas fa-shopping-cart"></i> E-commerce made affordable! <strong>Starter Store R1,999</strong> (10 products), <strong>Business Store R2,999</strong> (50 products), <strong>Enterprise R4,499</strong> (unlimited). Includes PayFast, inventory management, and training!';
+      }
+      
+      // Portfolio questions
+      if (msg.includes('portfolio') || msg.includes('showcase')) {
+        return '<i class="fas fa-briefcase"></i> Showcase your work affordably! <strong>Creative R999</strong> (5 projects), <strong>Professional R1,599</strong> (15 projects), <strong>Studio R2,299</strong> (unlimited). Perfect for artists, photographers, and creatives!';
+      }
+      
+      // Maintenance questions
+      if (msg.includes('maintenance') || msg.includes('support') || msg.includes('update')) {
+        return '<i class="fas fa-shield-alt"></i> Super affordable maintenance! <strong>Essential Care R59/month</strong> (security & backups), <strong>Professional Care R129/month</strong> (includes content updates), <strong>Enterprise Care R199/month</strong> (unlimited updates). Cancel anytime!';
+      }
+      
+      // Discount questions
+      if (msg.includes('discount') || msg.includes('special') || msg.includes('offer')) {
+        return '<i class="fas fa-percentage"></i> Amazing savings available! <strong>Nonprofits 50% OFF</strong>, <strong>Students 35% OFF</strong>, <strong>Bundle deals 30% OFF</strong>, <strong>Referrals R400 cash</strong>. Limited time: ANY website for just <strong>R599</strong>!';
+      }
+      
+      // Technology questions
+      if (msg.includes('technology') || msg.includes('tech') || msg.includes('how')) {
+        return '<i class="fas fa-code"></i> We use modern technologies: HTML5, CSS3, JavaScript, responsive frameworks, SSL encryption, SEO optimization, and integrate with payment gateways like PayFast and Stripe - all included in our affordable packages!';
+      }
+      
+      // Timeline questions
+      if (msg.includes('time') || msg.includes('how long') || msg.includes('delivery')) {
+        return '<i class="fas fa-clock"></i> Quick delivery at affordable prices! Simple sites: 1 week, E-commerce: 2-3 weeks, Complex projects: 3-4 weeks. We keep you updated throughout and deliver on time or give you 10% off!';
+      }
+      
+      // Contact questions
+      if (msg.includes('contact') || msg.includes('reach') || msg.includes('call')) {
+        return '<i class="fas fa-envelope"></i> Ready to get your affordable website? Contact us via the Contact page, WhatsApp, or right here! We respond quickly with custom quotes and can start your project today!';
+      }
+      
+      // Greeting responses
+      if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+        return '<i class="fas fa-hand-peace"></i> Hello! I\'m ShadEl, and I\'m excited to help you get an amazing website at an unbeatable price! Starting from just R599 this month. What type of website do you need?';
+      }
+      
+      // Custom solutions
+      if (msg.includes('custom') || msg.includes('special') || msg.includes('unique')) {
+        return '<i class="fas fa-cogs"></i> Custom solutions at affordable prices! Whether it\'s unique design, special functionality, or industry-specific features, we can build it without breaking the bank. Contact us for a personalized quote!';
+      }
+      
+      // Mobile/responsive questions
+      if (msg.includes('mobile') || msg.includes('responsive') || msg.includes('phone')) {
+        return '<i class="fas fa-mobile-alt"></i> All our affordable websites are fully responsive and mobile-friendly! They look perfect on smartphones, tablets, and desktops. Mobile optimization is included in every package at no extra cost!';
+      }
+      
+      // Payment questions
+      if (msg.includes('payment') || msg.includes('pay') || msg.includes('installment')) {
+        return '<i class="fas fa-credit-card"></i> Flexible payments make it easy! Pay 50/50, 3 monthly installments, or get 5% off for full payment upfront. We accept EFT, cards, PayFast, PayPal. Business accounts get 30-day terms!';
+      }
+      
+      // SEO questions
+      if (msg.includes('seo') || msg.includes('google') || msg.includes('search')) {
+        return '<i class="fas fa-search"></i> SEO included at no extra cost! Basic SEO in static sites, advanced SEO in portfolios, full optimization in e-commerce. Our maintenance plans include ongoing SEO monitoring and improvements!';
+      }
+      
+      // Hosting questions
+      if (msg.includes('hosting') || msg.includes('domain')) {
+        return '<i class="fas fa-server"></i> We help with affordable hosting solutions! Domain registration assistance included, some packages come with free hosting for 3 months. Our maintenance plans can include hosting management too!';
+      }
+      
+      // Default helpful response
+      return '<i class="fas fa-info-circle"></i> I\'m here to help you get an amazing website at an unbeatable price! Our packages start from just R599 (limited time). Ask me about our Static, Portfolio, E-commerce, Community, or Maintenance plans. What interests you most?';
+    }
+</script>
+</body>
+</html>
+
+

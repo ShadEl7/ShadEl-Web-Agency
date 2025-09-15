@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Web Design Preview Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #0f172a 60%, #1e293b 100%);
+            color: #e5e7eb;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-header h1 {
+            font-size: 3rem;
+            color: #38bdf8;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-section {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #38bdf8;
+        }
+        
+        .feature-card h3 {
+            color: #38bdf8;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .demo-input {
+            background: rgba(255,255,255,0.9);
+            color: #1e293b;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            min-height: 120px;
+            font-family: 'Times New Roman', serif;
+            font-size: 1rem;
+            resize: vertical;
+        }
+        
+        .demo-btn {
+            background: #38bdf8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .demo-btn:hover {
+            background: #0ea5e9;
+            transform: translateY(-2px);
+        }
+        
+        .mockup-preview {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-top: 2rem;
+        }
+        
+        .mockup-header {
+            background: #1e293b;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mockup-content {
+            padding: 2rem;
+            color: #1e293b;
+        }
+        
+        .example-prompts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .example-prompt {
+            background: rgba(255,255,255,0.1);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .example-prompt:hover {
+            background: rgba(56, 189, 248, 0.2);
+        }
+        
+        .setup-instructions {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .code-block {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="demo-header">
+            <h1><i class="fas fa-magic"></i> AI Web Design Preview Generator</h1>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+                Transform client descriptions into beautiful website mockups instantly using AI
+            </p>
+        </div>
+
+        <!-- Demo Section -->
+        <div class="demo-section">
+            <h2 style="color: #38bdf8; margin-bottom: 1.5rem;">
+                <i class="fas fa-play-circle"></i> Interactive Demo
+            </h2>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">
+                    Describe your dream website:
+                </label>
+                <textarea 
+                    id="demoInput" 
+                    class="demo-input"
+                    placeholder="Example: I need a website for my bakery with an online ordering system, photo gallery of our cakes, customer testimonials, and a blog about baking tips..."
+                ></textarea>
+            </div>
+            
+            <button class="demo-btn" onclick="generateDemo()">
+                <i class="fas fa-wand-magic-sparkles"></i> Generate AI Preview (Demo)
+            </button>
+            
+            <div class="example-prompts">
+                <div style="width: 100%; margin-bottom: 1rem; font-weight: 600;">Try these examples:</div>
+                <button class="example-prompt" onclick="setExample('bakery')">🧁 Bakery with Online Orders</button>
+                <button class="example-prompt" onclick="setExample('photography')">📸 Photography Portfolio</button>
+                <button class="example-prompt" onclick="setExample('restaurant')">🍽️ Restaurant with Reservations</button>
+                <button class="example-prompt" onclick="setExample('nonprofit')">❤️ Animal Shelter</button>
+            </div>
+            
+            <div id="demoResult" style="display: none;">
+                <div class="mockup-preview">
+                    <div class="mockup-header">
+                        <span><strong id="siteName">Dream Bakery</strong></span>
+                        <span>AI Generated Preview</span>
+                    </div>
+                    <div class="mockup-content">
+                        <h1 id="siteTitle">Welcome to Dream Bakery</h1>
+                        <p id="siteTagline" style="font-style: italic; color: #6b7280; margin-bottom: 2rem;">
+                            "Freshly baked happiness, delivered to your door"
+                        </p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                            <div style="padding: 1rem; background: #f8fafc; border-radius: 8px; text-align: center;">
+                                <i class="fas fa-shopping-cart" style="font-size: 2rem; color: #38bdf8; margin-bottom: 0.5rem;"></i>
+                                <h4>Online Ordering</h4>
+                            </div>
+                            <div style="padding: 1rem; background: #f8fafc; border-radius: 8px; text-align: center;">
+                                <i class="fas fa-images" style="font-size: 2rem; color: #38bdf8; margin-bottom: 0.5rem;"></i>
+                                <h4>Photo Gallery</h4>
+                            </div>
+                            <div style="padding: 1rem; background: #f8fafc; border-radius: 8px; text-align: center;">
+                                <i class="fas fa-star" style="font-size: 2rem; color: #38bdf8; margin-bottom: 0.5rem;"></i>
+                                <h4>Customer Reviews</h4>
+                            </div>
+                        </div>
+                        
+                        <div id="aiSuggestions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="demo-section">
+            <h2 style="color: #38bdf8; margin-bottom: 1.5rem;">
+                <i class="fas fa-rocket"></i> How It Works
+            </h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3><i class="fas fa-comments"></i> 1. Client Describes Vision</h3>
+                    <p>Visitors describe their website needs in natural language - no technical knowledge required.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><i class="fas fa-brain"></i> 2. AI Analyzes Requirements</h3>
+                    <p>OpenAI analyzes the description and suggests optimal website type, features, and design elements.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><i class="fas fa-paint-brush"></i> 3. Instant Mockup Generation</h3>
+                    <p>System creates a professional HTML preview with recommended layout, colors, and sections.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><i class="fas fa-handshake"></i> 4. Convert to Clients</h3>
+                    <p>Impressed visitors contact you to build their actual website - turning browsers into buyers!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Benefits -->
+        <div class="demo-section">
+            <h2 style="color: #38bdf8; margin-bottom: 1.5rem;">
+                <i class="fas fa-chart-line"></i> Business Benefits
+            </h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3><i class="fas fa-users"></i> Increased Lead Generation</h3>
+                    <p>Interactive tool captures more potential clients than static portfolio pages.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><i class="fas fa-gem"></i> Competitive Differentiation</h3>
+                    <p>Unique AI feature sets your agency apart from competitors.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Client Education</h3>
+                    <p>Helps clients understand what they need and see your expertise.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><i class="fas fa-clock"></i> Increased Engagement</h3>
+                    <p>Keeps visitors on your site longer, building trust and interest.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Setup Instructions -->
+        <div class="setup-instructions">
+            <h2 style="color: #10b981; margin-bottom: 1rem;">
+                <i class="fas fa-cog"></i> Ready to Add This to Your Website?
+            </h2>
+            
+            <p style="margin-bottom: 1rem;">Here's what I've created for your ShadEl Web agency:</p>
+            
+            <h3 style="margin: 1rem 0 0.5rem 0;">📁 Files Added:</h3>
+            <ul style="margin-bottom: 1rem; padding-left: 2rem;">
+                <li><strong>server.js</strong> - AI backend with OpenAI integration</li>
+                <li><strong>ai-generator.js</strong> - Frontend component for your website</li>
+                <li><strong>package.json</strong> - Updated with required dependencies</li>
+                <li><strong>.env.example</strong> - Configuration template</li>
+            </ul>
+
+            <h3 style="margin: 1rem 0 0.5rem 0;">🚀 Setup Steps:</h3>
+            <div class="code-block">
+1. Install Node.js from https://nodejs.org
+2. Open terminal in your project folder
+3. Run: npm install
+4. Copy .env.example to .env
+5. Get OpenAI API key from https://platform.openai.com
+6. Add your API key to .env file
+7. Run: npm run dev
+8. Visit http://localhost:3000
+            </div>
+
+            <p style="margin-top: 1rem;">
+                <strong>💡 Cost:</strong> OpenAI API costs about $0.002 per AI generation (very affordable!)
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const examples = {
+            bakery: "I need a website for my bakery with an online ordering system, photo gallery of our delicious cakes and pastries, customer testimonials, delivery information, and a blog about baking tips and seasonal specials.",
+            photography: "Create a portfolio website for my wedding photography business with elegant image galleries, client testimonials, package pricing, booking system, and an about page showcasing my style and experience.",
+            restaurant: "I want a modern restaurant website with an interactive menu, online reservation system, photo gallery of our dishes and atmosphere, location and hours, special events calendar, and customer reviews.",
+            nonprofit: "Build a website for our animal shelter with pet adoption galleries, volunteer signup forms, donation system, success stories, upcoming events, and information about our mission to help homeless animals."
+        };
+
+        function setExample(type) {
+            document.getElementById('demoInput').value = examples[type];
+            generateDemo();
+        }
+
+        function generateDemo() {
+            const input = document.getElementById('demoInput').value;
+            if (input.length < 10) {
+                alert('Please enter a more detailed description (at least 10 characters).');
+                return;
+            }
+
+            // Simulate AI analysis
+            const siteName = extractSiteName(input);
+            const websiteType = detectWebsiteType(input);
+            const tagline = generateDemoTagline(websiteType);
+            
+            document.getElementById('siteName').textContent = siteName;
+            document.getElementById('siteTitle').textContent = `Welcome to ${siteName}`;
+            document.getElementById('siteTagline').textContent = tagline;
+            
+            const suggestions = generateSuggestions(websiteType, input);
+            document.getElementById('aiSuggestions').innerHTML = suggestions;
+            
+            document.getElementById('demoResult').style.display = 'block';
+            document.getElementById('demoResult').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function extractSiteName(input) {
+            const patterns = [
+                /for my (.+?) with/i,
+                /for (.+?) business/i,
+                /(.+?) website/i,
+                /my (.+?) needs/i
+            ];
+            
+            for (const pattern of patterns) {
+                const match = input.match(pattern);
+                if (match) {
+                    return match[1].trim().replace(/^(a|an|the)\s+/i, '');
+                }
+            }
+            return 'Your Business';
+        }
+
+        function detectWebsiteType(input) {
+            const keywords = input.toLowerCase();
+            if (keywords.includes('bakery') || keywords.includes('cafe') || keywords.includes('restaurant') || keywords.includes('food')) return 'restaurant';
+            if (keywords.includes('photography') || keywords.includes('portfolio') || keywords.includes('artist')) return 'portfolio';
+            if (keywords.includes('shop') || keywords.includes('store') || keywords.includes('ecommerce')) return 'ecommerce';
+            if (keywords.includes('nonprofit') || keywords.includes('charity') || keywords.includes('shelter')) return 'nonprofit';
+            return 'business';
+        }
+
+        function generateDemoTagline(type) {
+            const taglines = {
+                restaurant: "Taste the difference, experience the excellence",
+                portfolio: "Capturing life's most precious moments",
+                ecommerce: "Quality products, exceptional service",
+                nonprofit: "Making a difference, one life at a time",
+                business: "Your success is our priority"
+            };
+            return `"${taglines[type] || taglines.business}"`;
+        }
+
+        function generateSuggestions(type, input) {
+            const features = {
+                restaurant: ['Online Menu', 'Reservations', 'Photo Gallery', 'Location Map', 'Reviews'],
+                portfolio: ['Project Gallery', 'Client Testimonials', 'Service Packages', 'Contact Form', 'About Story'],
+                ecommerce: ['Product Catalog', 'Shopping Cart', 'Customer Accounts', 'Payment Processing', 'Reviews'],
+                nonprofit: ['Donation System', 'Volunteer Portal', 'Event Calendar', 'Success Stories', 'Mission Statement'],
+                business: ['Services Overview', 'Client Testimonials', 'Contact Forms', 'About Company', 'Portfolio']
+            };
+
+            const typeFeatures = features[type] || features.business;
+            
+            return `
+                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #38bdf8;">
+                    <h4 style="color: #1e293b; margin-bottom: 1rem;">
+                        <i class="fas fa-lightbulb"></i> AI Recommendations for Your ${type.charAt(0).toUpperCase() + type.slice(1)} Website:
+                    </h4>
+                    <ul style="color: #374151; line-height: 1.8;">
+                        ${typeFeatures.map(feature => `<li><strong>${feature}:</strong> Professional implementation included</li>`).join('')}
+                    </ul>
+                    <div style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 5px;">
+                        <strong style="color: #10b981;">💰 Estimated Investment:</strong> R${Math.floor(Math.random() * 2000) + 1500} - R${Math.floor(Math.random() * 3000) + 3500}<br>
+                        <strong style="color: #3b82f6;">⏱️ Timeline:</strong> 2-4 weeks<br>
+                        <strong style="color: #8b5cf6;">🎨 Style:</strong> Modern, responsive, SEO-optimized
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

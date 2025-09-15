@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Homepage Demo - ShadEl Web</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8fafc;
+            color: #1a202c;
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        .demo-section {
+            background: white;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .test-button {
+            background: #4299e1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .test-button:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+        }
+        .test-button.linkedin {
+            background: #0077b5;
+        }
+        .test-button.reset {
+            background: #e53e3e;
+        }
+        .test-button.analytics {
+            background: #38a169;
+        }
+        .analytics-panel {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        .analytics-item {
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #4299e1;
+        }
+        .visitor-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        .visitor-type.first-time {
+            background: #c6f6d5;
+            color: #2d7d32;
+        }
+        .visitor-type.returning {
+            background: #bee3f8;
+            color: #2b6cb0;
+        }
+        .visitor-type.linkedin {
+            background: #fed7d7;
+            color: #c53030;
+        }
+        code {
+            background: #edf2f7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #4299e1;
+        }
+        .current-status {
+            background: #4299e1;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1>🚀 Dynamic Homepage Testing Demo</h1>
+        <p>Test how the homepage adapts to different visitor types and behaviors</p>
+    </div>
+
+    <div class="demo-section">
+        <h2>Current Visitor Status</h2>
+        <div class="current-status" id="currentStatus">
+            Loading visitor information...
+        </div>
+        <button class="test-button analytics" onclick="refreshStatus()">Refresh Status</button>
+        <button class="test-button analytics" onclick="showAnalytics()">Show Analytics</button>
+    </div>
+
+    <div class="demo-section">
+        <h2>🧪 Test Different Visitor Types</h2>
+        <p>Click these buttons to simulate different visitor scenarios:</p>
+        
+        <div style="margin: 1.5rem 0;">
+            <h3>First-Time Visitor</h3>
+            <p>Clear all data and visit as a new user:</p>
+            <button class="test-button reset" onclick="resetAndVisitAsNew()">Reset & Visit as First-Time</button>
+        </div>
+
+        <div style="margin: 1.5rem 0;">
+            <h3>Returning Visitor</h3>
+            <p>Simulate multiple visits to trigger returning visitor content:</p>
+            <button class="test-button" onclick="simulateReturningVisitor()">Simulate 3 Previous Visits</button>
+            <button class="test-button" onclick="simulateFrequentVisitor()">Simulate Frequent Visitor</button>
+        </div>
+
+        <div style="margin: 1.5rem 0;">
+            <h3>LinkedIn Prospect</h3>
+            <p>Visit with LinkedIn referrer to see business-focused content:</p>
+            <a href="index.html?source=linkedin&campaign=business" class="test-button linkedin">Visit from LinkedIn</a>
+            <button class="test-button linkedin" onclick="simulateLinkedInTraffic()">Simulate LinkedIn Referrer</button>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🎯 Dynamic Content Features</h2>
+        <div class="feature-list">
+            <div class="feature-card">
+                <h3>📍 Visitor Detection</h3>
+                <ul>
+                    <li>Track visit count and frequency</li>
+                    <li>Detect traffic sources (LinkedIn, search, direct)</li>
+                    <li>Monitor campaign parameters</li>
+                    <li>Analyze user behavior patterns</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🎨 Content Adaptation</h3>
+                <ul>
+                    <li>Dynamic hero messages</li>
+                    <li>Personalized call-to-action buttons</li>
+                    <li>Contextual banners and offers</li>
+                    <li>Service highlighting based on visitor type</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📊 Advanced Analytics</h3>
+                <ul>
+                    <li>Real-time visitor behavior tracking</li>
+                    <li>Scroll depth and time-on-page metrics</li>
+                    <li>Click tracking on key elements</li>
+                    <li>Engagement scoring system</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🎯 Business Intelligence</h3>
+                <ul>
+                    <li>Device and browser detection</li>
+                    <li>Geographic and timezone tracking</li>
+                    <li>Referrer analysis and categorization</li>
+                    <li>Session and visitor profiling</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>📈 Visitor Analytics Dashboard</h2>
+        <div class="analytics-panel" id="analyticsPanel">
+            <p>Click "Show Analytics" to view detailed visitor data</p>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🔗 Test Links</h2>
+        <p>Use these links to test specific scenarios:</p>
+        <div style="margin: 1rem 0;">
+            <a href="index.html" class="test-button">Normal Homepage Visit</a>
+            <a href="index.html?source=linkedin&campaign=professional" class="test-button linkedin">LinkedIn Professional Campaign</a>
+            <a href="index.html?source=google&campaign=search" class="test-button">Google Search Traffic</a>
+            <a href="index.html?campaign=email&source=newsletter" class="test-button">Email Newsletter Traffic</a>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🛠️ Developer Information</h2>
+        <h3>How It Works:</h3>
+        <ol>
+            <li><strong>Visitor Detection:</strong> The system uses <code>localStorage</code> and <code>sessionStorage</code> to track visitor behavior</li>
+            <li><strong>Content Adaptation:</strong> JavaScript dynamically modifies the homepage content based on visitor type</li>
+            <li><strong>Analytics Tracking:</strong> Comprehensive event tracking provides insights into user behavior</li>
+            <li><strong>Personalization:</strong> Content is personalized using visitor history and referrer information</li>
+        </ol>
+
+        <h3>Key Files:</h3>
+        <ul>
+            <li><code>js/dynamic-homepage.js</code> - Main content adaptation logic</li>
+            <li><code>js/visitor-analytics.js</code> - Advanced analytics and tracking</li>
+            <li><code>index.html</code> - Homepage with dynamic content integration</li>
+        </ul>
+    </div>
+
+    <script>
+        // Demo functions
+        function resetAndVisitAsNew() {
+            if (confirm('This will clear all visitor data and reload the page as a first-time visitor. Continue?')) {
+                localStorage.clear();
+                sessionStorage.clear();
+                window.location.href = 'index.html';
+            }
+        }
+
+        function simulateReturningVisitor() {
+            localStorage.setItem('visitCount', '3');
+            localStorage.setItem('lastVisit', (Date.now() - 86400000).toString()); // 1 day ago
+            const visitorData = {
+                type: 'returning-visitor',
+                firstVisit: Date.now() - 604800000, // 1 week ago
+                visitCount: 3,
+                source: 'direct'
+            };
+            localStorage.setItem('visitorData', JSON.stringify(visitorData));
+            alert('Returning visitor data set! Visit the homepage to see the changes.');
+        }
+
+        function simulateFrequentVisitor() {
+            localStorage.setItem('visitCount', '8');
+            localStorage.setItem('lastVisit', (Date.now() - 7200000).toString()); // 2 hours ago
+            const visitorData = {
+                type: 'returning-visitor',
+                firstVisit: Date.now() - 2592000000, // 1 month ago
+                visitCount: 8,
+                source: 'direct'
+            };
+            localStorage.setItem('visitorData', JSON.stringify(visitorData));
+            
+            // Add engagement history
+            const history = [];
+            for (let i = 0; i < 20; i++) {
+                history.push({
+                    type: 'page_view',
+                    timestamp: Date.now() - (i * 86400000),
+                    data: { page: '/index.html' }
+                });
+            }
+            localStorage.setItem('visitorHistory', JSON.stringify(history));
+            
+            alert('Frequent visitor data set! Visit the homepage to see personalized content.');
+        }
+
+        function simulateLinkedInTraffic() {
+            const visitorData = {
+                type: 'linkedin-prospect',
+                source: 'LinkedIn',
+                firstVisit: Date.now(),
+                campaign: 'professional'
+            };
+            localStorage.setItem('visitorData', JSON.stringify(visitorData));
+            localStorage.setItem('visitCount', '1');
+            
+            // Simulate LinkedIn referrer
+            const referrerInfo = {
+                referrer: 'https://www.linkedin.com/feed/',
+                isSearch: false,
+                isSocial: true,
+                source: 'linkedin',
+                campaign: 'professional'
+            };
+            localStorage.setItem('referrerInfo', JSON.stringify(referrerInfo));
+            
+            alert('LinkedIn visitor data set! Visit the homepage to see business-focused content.');
+        }
+
+        function refreshStatus() {
+            updateCurrentStatus();
+        }
+
+        function updateCurrentStatus() {
+            const statusDiv = document.getElementById('currentStatus');
+            const visitCount = localStorage.getItem('visitCount') || '0';
+            const visitorData = JSON.parse(localStorage.getItem('visitorData') || '{}');
+            const lastVisit = localStorage.getItem('lastVisit');
+            
+            let statusHTML = `
+                <strong>Visitor Type:</strong> ${visitorData.type || 'Unknown'} 
+                <span class="visitor-type ${visitorData.type?.replace('-', ' ') || 'unknown'}">${visitorData.type || 'Unknown'}</span><br>
+                <strong>Visit Count:</strong> ${visitCount}<br>
+                <strong>Source:</strong> ${visitorData.source || 'Unknown'}<br>
+            `;
+            
+            if (lastVisit) {
+                const lastVisitDate = new Date(parseInt(lastVisit));
+                statusHTML += `<strong>Last Visit:</strong> ${lastVisitDate.toLocaleString()}<br>`;
+            }
+            
+            if (visitorData.campaign) {
+                statusHTML += `<strong>Campaign:</strong> ${visitorData.campaign}<br>`;
+            }
+            
+            statusDiv.innerHTML = statusHTML;
+        }
+
+        function showAnalytics() {
+            const analyticsPanel = document.getElementById('analyticsPanel');
+            const visitorHistory = JSON.parse(localStorage.getItem('visitorHistory') || '[]');
+            const deviceInfo = JSON.parse(localStorage.getItem('deviceInfo') || '{}');
+            const referrerInfo = JSON.parse(localStorage.getItem('referrerInfo') || '{}');
+            const visitorProfile = JSON.parse(localStorage.getItem('visitorProfile') || '{}');
+            
+            let analyticsHTML = '<h3>📊 Detailed Analytics</h3>';
+            
+            // Visitor Profile
+            analyticsHTML += '<div class="analytics-item">';
+            analyticsHTML += '<strong>👤 Visitor Profile:</strong><br>';
+            analyticsHTML += `Total Visits: ${visitorProfile.totalVisits || 0}<br>`;
+            analyticsHTML += `Visit Frequency: ${(visitorProfile.visitFrequency || 0).toFixed(3)} visits/day<br>`;
+            if (visitorProfile.firstVisit) {
+                analyticsHTML += `Member Since: ${new Date(visitorProfile.firstVisit).toLocaleDateString()}<br>`;
+            }
+            analyticsHTML += '</div>';
+            
+            // Device Information
+            if (Object.keys(deviceInfo).length > 0) {
+                analyticsHTML += '<div class="analytics-item">';
+                analyticsHTML += '<strong>📱 Device Information:</strong><br>';
+                analyticsHTML += `Device Type: ${deviceInfo.isMobile ? 'Mobile' : deviceInfo.isTablet ? 'Tablet' : 'Desktop'}<br>`;
+                analyticsHTML += `Browser: ${deviceInfo.browser || 'Unknown'}<br>`;
+                analyticsHTML += `Operating System: ${deviceInfo.os || 'Unknown'}<br>`;
+                analyticsHTML += `Screen: ${deviceInfo.screenWidth}×${deviceInfo.screenHeight}<br>`;
+                analyticsHTML += `Language: ${deviceInfo.language || 'Unknown'}<br>`;
+                analyticsHTML += '</div>';
+            }
+            
+            // Referrer Information
+            if (Object.keys(referrerInfo).length > 0) {
+                analyticsHTML += '<div class="analytics-item">';
+                analyticsHTML += '<strong>🔗 Traffic Source:</strong><br>';
+                analyticsHTML += `Referrer: ${referrerInfo.referrer || 'Direct'}<br>`;
+                analyticsHTML += `Is Search Engine: ${referrerInfo.isSearch ? 'Yes' : 'No'}<br>`;
+                analyticsHTML += `Is Social Media: ${referrerInfo.isSocial ? 'Yes' : 'No'}<br>`;
+                if (referrerInfo.campaign) {
+                    analyticsHTML += `Campaign: ${referrerInfo.campaign}<br>`;
+                }
+                if (referrerInfo.source) {
+                    analyticsHTML += `Source: ${referrerInfo.source}<br>`;
+                }
+                analyticsHTML += '</div>';
+            }
+            
+            // Recent Events
+            if (visitorHistory.length > 0) {
+                analyticsHTML += '<div class="analytics-item">';
+                analyticsHTML += '<strong>📈 Recent Activity:</strong><br>';
+                const recentEvents = visitorHistory.slice(-10).reverse();
+                recentEvents.forEach(event => {
+                    const date = new Date(event.timestamp).toLocaleString();
+                    analyticsHTML += `${date}: ${event.type}<br>`;
+                });
+                analyticsHTML += `<br>Total Events: ${visitorHistory.length}`;
+                analyticsHTML += '</div>';
+            }
+            
+            analyticsPanel.innerHTML = analyticsHTML;
+        }
+
+        // Initialize status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCurrentStatus();
+        });
+    </script>
+</body>
+</html>

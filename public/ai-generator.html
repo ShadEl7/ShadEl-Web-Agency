@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free AI-powered business tools - Logo Generator, Color Palette Creator, Website Copywriter, SEO Meta Generator & Background Remover." />
+  <meta name="keywords" content="AI logo generator, free AI tools, color palette generator, website copywriter, SEO meta generator, background remover" />
+  <title>Free AI Business Tools | ShadEl Web</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+
+  <style>
+    /* Use Times New Roman for the whole page */
+    html, body, input, button, textarea, select {
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+
+    /* Modern dark color palette */
+    :root {
+      --primary: #1e293b;
+      --primary-dark: #0f172a;
+      --primary-light: #334155;
+      --sidebar-bg: linear-gradient(135deg, #0f172a 60%, #1e293b 100%);
+      --sidebar-accent: #38bdf8;
+      --bg: #181a20;
+      --surface: #23263a;
+      --surface-alt: #222436;
+      --text: #e5e7eb;
+      --text-light: #38bdf8;
+      --border: #334155;
+      --shadow: 0 4px 16px rgba(30,41,59,0.18);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .header {
+      background: var(--primary-dark);
+      padding: 1rem 0;
+      border-bottom: 2px solid var(--sidebar-accent);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      color: var(--sidebar-accent);
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    /* Sidebar Navigation with Logo in Circle */
+    .sidebar-nav {
+      position: fixed;
+      top: 0; left: -280px;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      color: #fff;
+      box-shadow: 4px 0 32px rgba(15, 23, 42, 0.4);
+      z-index: 1003;
+      transition: left 0.4s cubic-bezier(.7,.3,.3,1);
+      padding: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    .sidebar-nav.open { 
+      left: 0; 
+      animation: slideInLeft 0.4s ease-out;
+    }
+    
+    @keyframes slideInLeft {
+      from { 
+        left: -280px; 
+        opacity: 0; 
+      }
+      to { 
+        left: 0; 
+        opacity: 1; 
+      }
+    }
+    
+    .sidebar-logo-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      margin-top: 1rem;
+      padding: 0 1.5rem;
+      position: relative;
+      animation: fadeInDown 0.6s ease-out 0.2s both;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .logo-circle {
+      background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+      color: #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      margin-right: 0.8em;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-circle:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+    }
+    
+    .logo-circle::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: rotate(45deg);
+      transition: transform 0.6s ease;
+      opacity: 0;
+    }
+    
+    .logo-circle:hover::before {
+      transform: rotate(45deg) translate(50%, 50%);
+      opacity: 1;
+    }
+    
+    .logo-text {
+      font-size: 1.35rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--sidebar-accent), #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+    }
+    
+    .sidebar-logo-circle a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+    
+    .sidebar-logo-circle a:hover {
+      transform: translateY(-2px);
+    }
+    
+    .sidebar-logo-img {
+      width: 60px;
+      height: 60px;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      vertical-align: middle;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--sidebar-accent);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .sidebar-logo-img:hover {
+      transform: scale(1.1);
+      border-color: #06b6d4;
+    }
+    
+    .sidebar-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 50%;
+      color: var(--sidebar-accent);
+      font-size: 1.2rem;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .sidebar-close:hover {
+      background: var(--sidebar-accent);
+      color: #0f172a;
+      transform: rotate(90deg) scale(1.1);
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+    }
+    
+    .sidebar-nav nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+    }
+    
+    .sidebar-nav nav ul li {
+      margin: 0.8rem 0;
+      opacity: 0;
+      animation: slideInRight 0.4s ease-out forwards;
+    }
+    
+    .sidebar-nav nav ul li:nth-child(1) { animation-delay: 0.1s; }
+    .sidebar-nav nav ul li:nth-child(2) { animation-delay: 0.2s; }
+    .sidebar-nav nav ul li:nth-child(3) { animation-delay: 0.3s; }
+    .sidebar-nav nav ul li:nth-child(4) { animation-delay: 0.4s; }
+    .sidebar-nav nav ul li:nth-child(5) { animation-delay: 0.5s; }
+    .sidebar-nav nav ul li:nth-child(6) { animation-delay: 0.6s; }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .sidebar-nav nav ul li a {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-radius: 0 25px 25px 0;
+      margin-right: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .sidebar-nav nav ul li a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .sidebar-nav nav ul li a:hover::before {
+      left: 100%;
+    }
+    
+    .sidebar-nav nav ul li a i {
+      margin-right: 1rem;
+      width: 20px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    
+    .sidebar-nav nav ul li a:hover,
+    .sidebar-nav nav ul li a.active {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(6, 182, 212, 0.1));
+      border-left: 4px solid var(--sidebar-accent);
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+      transform: translateX(5px);
+    }
+    
+    .sidebar-nav nav ul li a:hover i,
+    .sidebar-nav nav ul li a.active i {
+      color: var(--sidebar-accent);
+      transform: scale(1.1);
+    }
+    
+    .sidebar-nav nav ul li a.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(6, 182, 212, 0.2));
+    }
+    
+    .sidebar-toggle {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      z-index: 1002;
+      background: linear-gradient(135deg, var(--sidebar-accent), #06b6d4);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: pulseGlow 2s infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+        transform: scale(1.05);
+      }
+    }
+    
+    .sidebar-toggle:hover { 
+      background: linear-gradient(135deg, #06b6d4, var(--primary));
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.5);
+      animation: none;
+    }
+    
+    .sidebar-toggle i {
+      transition: transform 0.3s ease;
+    }
+    
+    .sidebar-toggle:hover i {
+      transform: scale(1.2);
+    }
+    
+    @media (max-width: 600px) {
+      .sidebar-nav { width: 90vw; }
+      .sidebar-toggle { left: 12px; top: 12px; }
+    }
+
+    /* Add a subtle background pattern */
+    .sidebar-nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Add a bottom section with social links or additional info */
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 1.5rem;
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.8s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .sidebar-footer p {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin: 0;
+      line-height: 1.4;
+    }
+    
+    .sidebar-footer .social-links {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    
+    .sidebar-footer .social-links a {
+      color: #64748b;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      padding: 0.4rem;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.1);
+    }
+    
+    .sidebar-footer .social-links a:hover {
+      color: var(--sidebar-accent);
+      background: rgba(56, 189, 248, 0.2);
+      transform: translateY(-2px) scale(1.1);
+    }
+
+    /* Add overlay when sidebar is open */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1001;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 2rem 0;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin-bottom: 3rem;
+      border-radius: 20px;
+    }
+
+    .hero-section h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .hero-section p {
+      color: #e8e8ff;
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Tool Navigation */
+    .tool-nav {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      overflow-x: auto;
+      padding: 1rem 0;
+    }
+
+    .tool-nav-item {
+      background: var(--surface);
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 1rem;
+      min-width: 200px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .tool-nav-item:hover,
+    .tool-nav-item.active {
+      border-color: var(--sidebar-accent);
+      background: var(--primary-light);
+      transform: translateY(-3px);
+    }
+
+    .tool-nav-item i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .tool-nav-item h3 {
+      color: var(--text);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* Tool Sections */
+    .tool-section {
+      display: none;
+      background: var(--surface);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .tool-section.active {
+      display: block;
+    }
+
+    .tool-section h2 {
+      color: var(--sidebar-accent);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .tool-section p {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--sidebar-accent);
+    }
+
+    .btn {
+      background: var(--sidebar-accent);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn:disabled {
+      background: #6b7280;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Results */
+    .results-section {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--primary-dark);
+      border-radius: 10px;
+      display: none;
+    }
+
+    .results-section.show {
+      display: block;
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .logo-option {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .logo-option:hover {
+      transform: scale(1.05);
+    }
+
+    .color-palette {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .color-swatch:hover {
+      transform: scale(1.1);
+    }
+
+    .copy-content {
+      background: var(--bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--sidebar-accent);
+      margin-top: 1rem;
+    }
+
+    .seo-meta {
+      background: var(--bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .seo-meta h4 {
+      color: var(--sidebar-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .image-upload-area {
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 3rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .image-upload-area:hover {
+      border-color: var(--sidebar-accent);
+      background: rgba(56, 189, 248, 0.05);
+    }
+
+    .image-upload-area.dragover {
+      border-color: var(--sidebar-accent);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .image-preview {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .loading.show {
+      display: block;
+    }
+
+    .spinner {
+      border: 4px solid var(--border);
+      border-top: 4px solid var(--sidebar-accent);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+
+      .tool-nav {
+        flex-direction: column;
+      }
+
+      .tool-nav-item {
+        min-width: auto;
+      }
+
+      .color-palette {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar-nav" id="sidebarNav">
+    <div class="sidebar-logo-circle">
+      <a href="index.html" aria-label="ShadEl Web Home">
+        <img src="images/Logo.png" alt="ShadEl Web Logo" class="sidebar-logo-img">
+        <span class="logo-text">ShadEl Web</span>
+      </a>
+    </div>
+    <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar"><i class="fas fa-times"></i></button>
+    <nav>
+      <ul>
+        <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html" id="nav-about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="services.html" id="nav-services"><i class="fas fa-cogs"></i> Services</a></li>
+        <li><a href="ai-generator.html" id="nav-apps" class="active"><i class="fas fa-magic"></i> Free AI Tools</a></li>
+        <li><a href="portfolio.html" id="nav-portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <li><a href="contact.html" id="nav-contact"><i class="fas fa-phone"></i> Contact</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Professional Web Development<br>Since 2023</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </aside>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open sidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <i class="fas fa-magic"></i> ShadEl AI Tools
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <h1><i class="fas fa-magic"></i> Free AI Business Tools</h1>
+        <p>Professional-grade AI tools to help you create stunning branding, content, and marketing materials for your business.</p>
+      </section>
+
+      <!-- Tool Navigation -->
+      <div class="tool-nav">
+        <div class="tool-nav-item active" data-tool="logo">
+          <i class="fas fa-palette" style="color: #ff6b6b;"></i>
+          <h3>Logo Generator</h3>
+        </div>
+        <div class="tool-nav-item" data-tool="colors">
+          <i class="fas fa-eye-dropper" style="color: #9c88ff;"></i>
+          <h3>Color Palette</h3>
+        </div>
+        <div class="tool-nav-item" data-tool="copy">
+          <i class="fas fa-pen-fancy" style="color: #20bf6b;"></i>
+          <h3>Website Copy</h3>
+        </div>
+        <div class="tool-nav-item" data-tool="seo">
+          <i class="fas fa-search" style="color: #fd79a8;"></i>
+          <h3>SEO Meta</h3>
+        </div>
+        <div class="tool-nav-item" onclick="window.open('ai-blog-writer.html', '_blank')">
+          <i class="fas fa-pen-fancy" style="color: #8b5cf6;"></i>
+          <h3>Blog Writer</h3>
+        </div>
+        <div class="tool-nav-item" data-tool="background">
+          <i class="fas fa-cut" style="color: #f39c12;"></i>
+          <h3>Background Remover</h3>
+        </div>
+      </div>
+
+      <!-- Logo Generator Tool -->
+      <section id="logo-tool" class="tool-section active">
+        <h2><i class="fas fa-palette"></i> AI Logo Generator</h2>
+        <p>Create professional logos for your business in seconds. Just enter your business name and describe your style preferences.</p>
+        
+        <div class="form-group">
+          <label for="business-name">Business Name</label>
+          <input type="text" id="business-name" placeholder="Enter your business name">
+        </div>
+
+        <div class="form-group">
+          <label for="business-type">Business Type</label>
+          <select id="business-type">
+            <option value="">Select your industry</option>
+            <option value="restaurant">Restaurant/Food</option>
+            <option value="tech">Technology</option>
+            <option value="healthcare">Healthcare</option>
+            <option value="fitness">Fitness/Sports</option>
+            <option value="beauty">Beauty/Wellness</option>
+            <option value="finance">Finance</option>
+            <option value="education">Education</option>
+            <option value="real-estate">Real Estate</option>
+            <option value="retail">Retail</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="logo-style">Style Preferences</label>
+          <textarea id="logo-style" placeholder="Describe your preferred style (e.g., modern, minimalist, vintage, playful, professional...)"></textarea>
+        </div>
+
+        <button id="generate-logo" class="btn">
+          <i class="fas fa-magic"></i> Generate Logos
+        </button>
+
+        <div id="logo-loading" class="loading">
+          <div class="spinner"></div>
+          <p>Creating your logos...</p>
+        </div>
+
+        <div id="logo-results" class="results-section">
+          <h3>Your Logo Concepts</h3>
+          <div id="logo-grid" class="logo-grid"></div>
+        </div>
+      </section>
+
+      <!-- Color Palette Tool -->
+      <section id="colors-tool" class="tool-section">
+        <h2><i class="fas fa-eye-dropper"></i> AI Color Palette Generator</h2>
+        <p>Generate perfect color combinations for your brand based on your industry and style preferences.</p>
+        
+        <div class="form-group">
+          <label for="brand-mood">Brand Mood</label>
+          <select id="brand-mood">
+            <option value="professional">Professional & Trustworthy</option>
+            <option value="modern">Modern & Innovative</option>
+            <option value="warm">Warm & Friendly</option>
+            <option value="energetic">Energetic & Bold</option>
+            <option value="elegant">Elegant & Sophisticated</option>
+            <option value="playful">Playful & Creative</option>
+            <option value="natural">Natural & Organic</option>
+            <option value="luxury">Luxury & Premium</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="color-industry">Industry</label>
+          <select id="color-industry">
+            <option value="tech">Technology</option>
+            <option value="healthcare">Healthcare</option>
+            <option value="finance">Finance</option>
+            <option value="food">Food & Beverage</option>
+            <option value="fashion">Fashion & Beauty</option>
+            <option value="education">Education</option>
+            <option value="real-estate">Real Estate</option>
+            <option value="fitness">Fitness & Wellness</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <button id="generate-colors" class="btn">
+          <i class="fas fa-palette"></i> Generate Palette
+        </button>
+
+        <div id="colors-loading" class="loading">
+          <div class="spinner"></div>
+          <p>Creating your color palette...</p>
+        </div>
+
+        <div id="colors-results" class="results-section">
+          <h3>Your Brand Colors</h3>
+          <div id="color-palette" class="color-palette"></div>
+          <p style="margin-top: 1rem; color: var(--text-light);">Click any color to copy its hex code!</p>
+        </div>
+      </section>
+
+      <!-- Website Copywriter Tool -->
+      <section id="copy-tool" class="tool-section">
+        <h2><i class="fas fa-pen-fancy"></i> AI Website Copywriter</h2>
+        <p>Generate compelling website content including About sections, service descriptions, and marketing copy.</p>
+        
+        <div class="form-group">
+          <label for="copy-business-name">Business Name</label>
+          <input type="text" id="copy-business-name" placeholder="Your business name">
+        </div>
+
+        <div class="form-group">
+          <label for="copy-description">Business Description</label>
+          <textarea id="copy-description" placeholder="Briefly describe what your business does, your target audience, and what makes you unique..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="copy-type">Content Type</label>
+          <select id="copy-type">
+            <option value="about">About Us Page</option>
+            <option value="services">Services Description</option>
+            <option value="homepage">Homepage Hero Text</option>
+            <option value="mission">Mission Statement</option>
+          </select>
+        </div>
+
+        <button id="generate-copy" class="btn">
+          <i class="fas fa-edit"></i> Generate Copy
+        </button>
+
+        <div id="copy-loading" class="loading">
+          <div class="spinner"></div>
+          <p>Writing your content...</p>
+        </div>
+
+        <div id="copy-results" class="results-section">
+          <h3>Your Website Copy</h3>
+          <div id="copy-content" class="copy-content"></div>
+        </div>
+      </section>
+
+      <!-- SEO Meta Generator Tool -->
+      <section id="seo-tool" class="tool-section">
+        <h2><i class="fas fa-search"></i> SEO Meta Generator</h2>
+        <p>Create optimized meta titles, descriptions, and keywords to help your website rank higher in Google.</p>
+        
+        <div class="form-group">
+          <label for="seo-page-topic">Page Topic/Focus</label>
+          <input type="text" id="seo-page-topic" placeholder="e.g., Yoga classes in Cape Town">
+        </div>
+
+        <div class="form-group">
+          <label for="seo-business-type">Business Type</label>
+          <input type="text" id="seo-business-type" placeholder="e.g., Yoga studio, Restaurant, Law firm">
+        </div>
+
+        <div class="form-group">
+          <label for="seo-location">Location (Optional)</label>
+          <input type="text" id="seo-location" placeholder="e.g., Cape Town, Johannesburg">
+        </div>
+
+        <div class="form-group">
+          <label for="seo-target-audience">Target Audience</label>
+          <input type="text" id="seo-target-audience" placeholder="e.g., Busy professionals, New mothers, Students">
+        </div>
+
+        <button id="generate-seo" class="btn">
+          <i class="fas fa-chart-line"></i> Generate SEO Meta
+        </button>
+
+        <div id="seo-loading" class="loading">
+          <div class="spinner"></div>
+          <p>Optimizing your SEO...</p>
+        </div>
+
+        <div id="seo-results" class="results-section">
+          <h3>Your SEO Meta Tags</h3>
+          <div id="seo-content"></div>
+        </div>
+      </section>
+
+      <!-- Background Remover Tool -->
+      <section id="background-tool" class="tool-section">
+        <h2><i class="fas fa-cut"></i> AI Background Remover</h2>
+        <p>Upload any image and our AI will instantly remove the background, creating a transparent PNG perfect for websites.</p>
+        
+        <div class="image-upload-area" id="upload-area">
+          <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--sidebar-accent); margin-bottom: 1rem;"></i>
+          <h3>Drop your image here or click to upload</h3>
+          <p>Supports JPG, PNG, WebP formats</p>
+          <input type="file" id="image-input" accept="image/*" style="display: none;">
+        </div>
+
+        <div id="background-loading" class="loading">
+          <div class="spinner"></div>
+          <p>Removing background...</p>
+        </div>
+
+        <div id="background-results" class="results-section">
+          <h3>Background Removed</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div>
+              <h4>Original</h4>
+              <img id="original-image" class="image-preview" alt="Original">
+            </div>
+            <div>
+              <h4>Background Removed</h4>
+              <img id="processed-image" class="image-preview" alt="Processed">
+              <button id="download-image" class="btn" style="margin-top: 1rem;">
+                <i class="fas fa-download"></i> Download PNG
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Sidebar Navigation
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarNav');
+      const overlay = document.getElementById('sidebarOverlay');
+      
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebarNav');
+      const toggle = document.querySelector('.sidebar-toggle');
+      const overlay = document.getElementById('sidebarOverlay');
+      
+      if (!sidebar.contains(event.target) && !toggle.contains(event.target) && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+      }
+    });
+
+    // Tool switching functionality
+    const toolNavItems = document.querySelectorAll('.tool-nav-item');
+    const toolSections = document.querySelectorAll('.tool-section');
+
+    // Check URL parameters for tool selection
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedTool = urlParams.get('tool');
+
+    if (selectedTool) {
+      // Show the selected tool from URL parameter
+      showTool(selectedTool);
+    }
+
+    toolNavItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const tool = item.dataset.tool;
+        showTool(tool);
+        
+        // Update URL without refreshing page
+        const newUrl = new URL(window.location);
+        newUrl.searchParams.set('tool', tool);
+        window.history.pushState({}, '', newUrl);
+      });
+    });
+
+    function showTool(toolName) {
+      // Remove active class from all nav items and sections
+      toolNavItems.forEach(item => item.classList.remove('active'));
+      toolSections.forEach(section => section.classList.remove('active'));
+      
+      // Add active class to selected tool
+      const selectedNavItem = document.querySelector(`[data-tool="${toolName}"]`);
+      const selectedSection = document.getElementById(`${toolName}-tool`);
+      
+      if (selectedNavItem && selectedSection) {
+        selectedNavItem.classList.add('active');
+        selectedSection.classList.add('active');
+      }
+    }
+
+    // Logo Generator
+    document.getElementById('generate-logo').addEventListener('click', generateLogos);
+
+    async function generateLogos() {
+      const businessName = document.getElementById('business-name').value;
+      const businessType = document.getElementById('business-type').value;
+      const logoStyle = document.getElementById('logo-style').value;
+
+      if (!businessName) {
+        alert('Please enter your business name');
+        return;
+      }
+
+      showLoading('logo');
+      
+      // Simulate AI generation (replace with actual API call)
+      setTimeout(() => {
+        const logoGrid = document.getElementById('logo-grid');
+        logoGrid.innerHTML = '';
+        
+        // Generate mock logos
+        for (let i = 1; i <= 4; i++) {
+          const logoDiv = document.createElement('div');
+          logoDiv.className = 'logo-option';
+          logoDiv.innerHTML = `
+            <div style="font-size: 3rem; margin-bottom: 1rem; color: ${getRandomColor()};">${businessName.charAt(0)}</div>
+            <h4>${businessName}</h4>
+            <p>Logo Concept ${i}</p>
+          `;
+          logoGrid.appendChild(logoDiv);
+        }
+        
+        hideLoading('logo');
+        document.getElementById('logo-results').classList.add('show');
+      }, 2000);
+    }
+
+    // Color Palette Generator
+    document.getElementById('generate-colors').addEventListener('click', generateColors);
+
+    async function generateColors() {
+      const mood = document.getElementById('brand-mood').value;
+      const industry = document.getElementById('color-industry').value;
+
+      showLoading('colors');
+      
+      // Simulate AI generation
+      setTimeout(() => {
+        const palette = document.getElementById('color-palette');
+        palette.innerHTML = '';
+        
+        const colors = generateColorPalette(mood, industry);
+        colors.forEach(color => {
+          const swatch = document.createElement('div');
+          swatch.className = 'color-swatch';
+          swatch.style.backgroundColor = color;
+          swatch.textContent = color;
+          swatch.addEventListener('click', () => {
+            navigator.clipboard.writeText(color);
+            alert(`Copied ${color} to clipboard!`);
+          });
+          palette.appendChild(swatch);
+        });
+        
+        hideLoading('colors');
+        document.getElementById('colors-results').classList.add('show');
+      }, 2000);
+    }
+
+    // Website Copywriter
+    document.getElementById('generate-copy').addEventListener('click', generateCopy);
+
+    async function generateCopy() {
+      const businessName = document.getElementById('copy-business-name').value;
+      const description = document.getElementById('copy-description').value;
+      const copyType = document.getElementById('copy-type').value;
+
+      if (!businessName || !description) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      showLoading('copy');
+      
+      // Simulate AI generation
+      setTimeout(() => {
+        const content = document.getElementById('copy-content');
+        const generatedCopy = generateWebsiteCopy(businessName, description, copyType);
+        content.innerHTML = `<h4>${getCopyTypeTitle(copyType)}</h4><p>${generatedCopy}</p>`;
+        
+        hideLoading('copy');
+        document.getElementById('copy-results').classList.add('show');
+      }, 2000);
+    }
+
+    // SEO Meta Generator
+    document.getElementById('generate-seo').addEventListener('click', generateSEO);
+
+    async function generateSEO() {
+      const topic = document.getElementById('seo-page-topic').value;
+      const businessType = document.getElementById('seo-business-type').value;
+      const location = document.getElementById('seo-location').value;
+      const audience = document.getElementById('seo-target-audience').value;
+
+      if (!topic || !businessType) {
+        alert('Please fill in the required fields');
+        return;
+      }
+
+      showLoading('seo');
+      
+      // Simulate AI generation
+      setTimeout(() => {
+        const content = document.getElementById('seo-content');
+        const seoMeta = generateSEOMeta(topic, businessType, location, audience);
+        content.innerHTML = `
+          <div class="seo-meta">
+            <h4>Meta Title</h4>
+            <p>${seoMeta.title}</p>
+          </div>
+          <div class="seo-meta">
+            <h4>Meta Description</h4>
+            <p>${seoMeta.description}</p>
+          </div>
+          <div class="seo-meta">
+            <h4>Keywords</h4>
+            <p>${seoMeta.keywords}</p>
+          </div>
+        `;
+        
+        hideLoading('seo');
+        document.getElementById('seo-results').classList.add('show');
+      }, 2000);
+    }
+
+    // Background Remover
+    const uploadArea = document.getElementById('upload-area');
+    const imageInput = document.getElementById('image-input');
+
+    uploadArea.addEventListener('click', () => imageInput.click());
+    uploadArea.addEventListener('dragover', handleDragOver);
+    uploadArea.addEventListener('drop', handleDrop);
+    imageInput.addEventListener('change', handleImageSelect);
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      uploadArea.classList.add('dragover');
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      uploadArea.classList.remove('dragover');
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        processImage(files[0]);
+      }
+    }
+
+    function handleImageSelect(e) {
+      const file = e.target.files[0];
+      if (file) {
+        processImage(file);
+      }
+    }
+
+    function processImage(file) {
+      if (!file.type.startsWith('image/')) {
+        alert('Please select a valid image file');
+        return;
+      }
+
+      showLoading('background');
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('original-image').src = e.target.result;
+        
+        // Simulate background removal (replace with actual API call)
+        setTimeout(() => {
+          document.getElementById('processed-image').src = e.target.result; // Placeholder
+          
+          hideLoading('background');
+          document.getElementById('background-results').classList.add('show');
+        }, 3000);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Utility functions
+    function showLoading(tool) {
+      document.getElementById(`${tool}-loading`).classList.add('show');
+      document.getElementById(`${tool}-results`).classList.remove('show');
+    }
+
+    function hideLoading(tool) {
+      document.getElementById(`${tool}-loading`).classList.remove('show');
+    }
+
+    function getRandomColor() {
+      const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b', '#6c5ce7', '#a29bfe'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function generateColorPalette(mood, industry) {
+      const palettes = {
+        professional: ['#1e3a8a', '#3b82f6', '#60a5fa', '#93c5fd', '#dbeafe'],
+        modern: ['#374151', '#6b7280', '#9ca3af', '#d1d5db', '#f3f4f6'],
+        warm: ['#dc2626', '#ea580c', '#f59e0b', '#eab308', '#84cc16'],
+        energetic: ['#dc2626', '#e11d48', '#f97316', '#eab308', '#22c55e'],
+        elegant: ['#1f2937', '#374151', '#6b7280', '#9ca3af', '#e5e7eb'],
+        playful: ['#ec4899', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6'],
+        natural: ['#166534', '#15803d', '#16a34a', '#22c55e', '#4ade80'],
+        luxury: ['#1f2937', '#7c3aed', '#a855f7', '#c084fc', '#e9d5ff']
+      };
+
+      return palettes[mood] || palettes.professional;
+    }
+
+    function generateWebsiteCopy(businessName, description, copyType) {
+      const templates = {
+        about: `Welcome to ${businessName}! ${description} Our commitment to excellence and customer satisfaction sets us apart in the industry. We believe in delivering outstanding results that exceed expectations and build lasting relationships with our clients.`,
+        services: `At ${businessName}, we offer comprehensive services tailored to meet your unique needs. ${description} Our experienced team uses cutting-edge techniques and industry best practices to deliver exceptional results every time.`,
+        homepage: `Transform Your Experience with ${businessName}. ${description} Discover why thousands of satisfied customers trust us for all their needs. Get started today and see the difference quality makes.`,
+        mission: `Our mission at ${businessName} is simple: ${description} We're dedicated to providing unparalleled service and innovative solutions that make a real difference in our customers' lives.`
+      };
+
+      return templates[copyType] || templates.about;
+    }
+
+    function getCopyTypeTitle(copyType) {
+      const titles = {
+        about: 'About Us Content',
+        services: 'Services Description',
+        homepage: 'Homepage Hero Text',
+        mission: 'Mission Statement'
+      };
+      return titles[copyType] || 'Generated Content';
+    }
+
+    function generateSEOMeta(topic, businessType, location, audience) {
+      const locationText = location ? ` in ${location}` : '';
+      const audienceText = audience ? ` for ${audience}` : '';
+      
+      return {
+        title: `${topic}${locationText} | Professional ${businessType} Services`,
+        description: `Looking for ${topic.toLowerCase()}${locationText}? Our professional ${businessType.toLowerCase()} services are perfect${audienceText}. Get started today!`,
+        keywords: `${topic.toLowerCase()}, ${businessType.toLowerCase()}${location ? `, ${location.toLowerCase()}` : ''}${audience ? `, ${audience.toLowerCase()}` : ''}, professional services`
+      };
+    }
+  </script>
+</body>
+</html>
